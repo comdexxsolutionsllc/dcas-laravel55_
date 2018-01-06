@@ -1,0 +1,185 @@
+{
+  "name": "fiberhopllc_dcas",
+  "description": "FiberHop LLC - DCAS - Datacenter Automation Suite",
+  "keywords": [
+    "framework",
+    "laravel",
+    "dcas",
+    "web hosting",
+    "datacenter",
+    "fiberhop"
+  ],
+  "license": "Closed Source",
+  "type": "project",
+  "require": {
+    "php": ">=7.0.0",
+    "ajthinking/tinx": "^0.8.2",
+    "anlutro/l4-settings": "^0.5.0",
+    "artem-schander/l5-modular": "^1.4",
+    "barryvdh/laravel-cors": "^0.9.3",
+    "barryvdh/laravel-ide-helper": "^2.4",
+    "barryvdh/laravel-snappy": "^0.4.0",
+    "bugsnag/bugsnag-laravel": "^2.0",
+    "cviebrock/eloquent-sluggable": "^4.3",
+    "doctrine/dbal": "^2.6",
+    "dompdf/dompdf": "v0.7.0",
+    "fideloper/proxy": "~3.3",
+    "gadyb/laravel-model-view-generator": "^1.0",
+    "geoip/geoip": "^1.17",
+    "google/recaptcha": "~1.1",
+    "guzzlehttp/guzzle": "^6.3",
+    "h4cc/wkhtmltoimage-amd64": "0.12.x",
+    "h4cc/wkhtmltopdf-amd64": "0.12.x",
+    "hnhdigital-os/laravel-model-traits": "~1.0",
+    "infyomlabs/adminlte-templates": "5.5.x-dev",
+    "infyomlabs/laravel-generator": "5.5.x-dev",
+    "infyomlabs/swagger-generator": "dev-master",
+    "intervention/image": "^2.4",
+    "itsgoingd/clockwork": "^2.0",
+    "jenssegers/date": "^3.2",
+    "jlapp/swaggervel": "dev-master",
+    "jtant/laravel-env-sync": "^1.3",
+    "kalnoy/nestedset": "^4.2",
+    "kitetail/zttp": "^0.3.0",
+    "laracademy/interactive-make": "^1.1",
+    "laracasts/presenter": "^0.2.1",
+    "laracasts/utilities": "^3.0",
+    "laravel/cashier": "~7.0",
+    "laravel/envoy": "~1.0",
+    "laravel/framework": "5.5.*",
+    "laravel/passport": "*",
+    "laravel/scout": "*",
+    "laravel/socialite": "*",
+    "laravel/tinker": "~1.0",
+    "laravelcollective/html": "*",
+    "lavary/laravel-menu": "^1.6",
+    "league/glide-laravel": "^1.0",
+    "league/pipeline": "^0.3.0",
+    "league/uri": "^5.0",
+    "lubusin/laravel-decomposer": "^1.2",
+    "mercuryseries/flashy": "^1.0",
+    "michelecurletta/laravel-schedule-overview": "^1.0",
+    "mirzabusatlic/laravel-schedule-monitor": "^1.02",
+    "mpociot/reanimate": "1.*",
+    "neptunedesign/list-routes": "^0.0.4",
+    "nicolaslopezj/searchable": "1.*",
+    "open-cetacean/laravel-json-header": "^1.0",
+    "orchid/socket": "^1.5",
+    "pragmarx/countries": "^0.1.1",
+    "predis/predis": "^1.1",
+    "pusher/pusher-php-server": "^2.6",
+    "renatomarinho/laravel-page-speed": "^1.8",
+    "rogercbe/table-sorter": "^1.1",
+    "spatie/array-to-xml": "^2.5",
+    "spatie/laravel-activitylog": "^2.1",
+    "spatie/laravel-collection-macros": "^3.1",
+    "spatie/laravel-failed-job-monitor": "^3.0",
+    "spatie/laravel-fractal": "^5.0",
+    "spatie/laravel-glide": "^3.2",
+    "spatie/laravel-medialibrary": "^6.0.0",
+    "spatie/laravel-model-cleanup": "^2.0",
+    "spatie/laravel-or-abort": "^1.0",
+    "spatie/laravel-responsecache": "^4.1",
+    "spatie/laravel-sitemap": "^3.2",
+    "spatie/laravel-tags": "^2.0",
+    "spatie/laravel-tail": "^2.0",
+    "spatie/laravel-translatable": "^2.0",
+    "spatie/laravel-translation-loader": "^2.0",
+    "spatie/laravel-url-signer": "^2.1",
+    "spatie/url": "^1.2",
+    "srmklive/authy": "^0.5.9",
+    "stripe/stripe-php": "~3.0",
+    "teamtnt/laravel-scout-tntsearch-driver": "^3.0",
+    "tightenco/ziggy": "^0.4.1",
+    "tymon/jwt-auth": "0.5.*",
+    "watson/rememberable": "^2.0",
+    "y-zono/laravel-link-header-pagination": "^0.0.1",
+    "yab/laravel-scout-mysql-driver": "dev-master",
+    "yajra/laravel-datatables-buttons": "^3.0",
+    "yajra/laravel-datatables-oracle": "~8.0",
+    "zgabievi/promocodes": "^1.1",
+    "zigastrgar/orderable": "^1.1",
+    "zizaco/entrust": "5.2.x-dev"
+  },
+  "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.0",
+    "behat/behat": "^3.3",
+    "behat/mink": "^1.7",
+    "behat/mink-browserkit-driver": "^1.3",
+    "behat/mink-extension": "^2.2",
+    "codeception/codeception": "*",
+    "filp/whoops": "~2.0",
+    "fzaninotto/faker": "~1.4",
+    "laracasts/behat-laravel-extension": "^1.0",
+    "laracasts/generators": "dev-master as 1.1.4",
+    "laravel/dusk": "^2.0",
+    "maddhatter/laravel-view-generator": "^0.0.4",
+    "markhilton/monolog-mysql": "^0.1.6",
+    "mikey179/vfsStream": "^1.6",
+    "mockery/mockery": "0.9.*",
+    "phpspec/phpspec": "^3.1",
+    "phpunit/phpunit": "~6.0",
+    "sven/artisan-view": "^2.0",
+    "symfony/css-selector": "3.1.*",
+    "symfony/dom-crawler": "3.1.*",
+    "symfony/psr-http-message-bridge": "^1.0",
+    "tasioleiva/laravel-usercommands": "^0.1.0",
+    "thedevsaddam/laravel-schema": "^2.0",
+    "wnx/laravel-stats": "^1.2",
+    "xethron/migrations-generator": "^2.0",
+    "zendframework/zend-diactoros": "^1.6"
+  },
+  "autoload": {
+    "classmap": [
+      "database/seeds",
+      "database/factories"
+    ],
+    "psr-4": {
+      "App\\": "app/",
+      "DCAS\\": "app/DCAS",
+      "Modules\\": "app/Modules"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    },
+    "files": [
+      "tests/helpers/functions.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": [
+      ]
+    }
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate"
+    ],
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover"
+    ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "@php artisan optimize",
+      "@php artisan ide-helper:generate",
+      "@php artisan ide-helper:meta",
+      "@php artisan view:clear",
+      "@php artisan cache:clear",
+      "@composer dump-autoload"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "minimum-stability" : "dev",
+    "prefer-stable" : true
+  }
+}

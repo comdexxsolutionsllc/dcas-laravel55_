@@ -1,0 +1,1 @@
+php artisan make:view --resource --extends=layouts.app --directory=app/Modules/Internal/Views/ --section=content

@@ -1,0 +1,12 @@
+formatter.name: pretty
+suites:
+    general:
+        namespace: DCAS
+        spec_path: ./app
+        spec_prefix: Spec
+        src_path: ./app
+    module:
+        namespace: Modules
+        spec_path: ./app
+        spec_prefix: Spec
+        src_path: ./app
