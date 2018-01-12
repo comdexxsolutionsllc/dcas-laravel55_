@@ -1,0 +1,5 @@
+<?php
+
+/**
+ *	SupportDesk Helper  
+ */
