@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Authy;
-use DCAS\UtilityClass\FlashMessage;
+use Flashy;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->invalidate();
 
-        FlashMessage::info('You have been logged out.');
+        Flashy::info('You have been logged out.');
 
         return redirect('/');
     }

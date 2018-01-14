@@ -11,8 +11,7 @@
                 <div class="panel-body">
                     @include('SupportDesk::includes.flash')
 
-                    <form class="form-horizontal" role="form" method="POST"
-                          action="{{ url('/SupportDesk/new_ticket') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/SupportDesk/new_ticket') }}">
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
