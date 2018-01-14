@@ -16,6 +16,7 @@ class UponUserLoginLockout extends Mailable
      */
     public function __construct()
     {
+        //
     }
 
     /**

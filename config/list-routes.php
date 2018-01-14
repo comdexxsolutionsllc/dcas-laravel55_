@@ -9,14 +9,10 @@ return [
     /*
      * The methods to hide.
      */
-    'hide_methods' => [
-        'HEAD',
-    ],
+    'hide_methods' => ['HEAD'],
 
     /*
      * The routes to hide with regular expression
      */
-    'hide_matching' => [
-        '#^_debugbar#',
-    ],
+    'hide_matching' => ['#^_debugbar#', '#^_dusk#', '#^oauth#', '#^api/v1#', '#^gbarak/vcm/test#', '#^testing#'],
 ];

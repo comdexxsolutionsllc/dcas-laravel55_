@@ -1,9 +1,11 @@
 <?php
 
-namespace App;
+namespace Modules\SupportDesk\Models;
+
+use App\Model;
 
 /**
- * App\NullTicket
+ * App\NullComment
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model sortable($defaultSortColumn = null, $direction = 'asc')
  * @property-read string $is_active
@@ -20,94 +22,42 @@ namespace App;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @mixin \Eloquent
  */
-class NullTicket extends Model
+class NullComment extends Model
 {
-    /**
-     * @var int
-     */
-    protected $user_id = 0;
-
-    /**
-     * @var int
-     */
-    protected $category_id = 0;
-
     /**
      * @var null
      */
     protected $ticket_id = null;
 
     /**
-     * @var string
-     */
-    protected $title = '';
-
-    /**
      * @var int
      */
-    protected $priority = 0;
+    protected $user_id = 0;
 
     /**
-     * @var string
+     * @var null
      */
-    protected $message = '';
-
-    /**
-     * @var string
-     */
-    protected $status = 'nullable';
+    protected $comment = null;
 
     /**
      * @return int
      */
-    public function getUserId(): int
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCategoryId(): int
-    {
-        return $this->category_id;
-    }
-
-    public function getTicketId()
+    public function getTicketIdAttribute(): int
     {
         return $this->ticket_id;
     }
 
     /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    /**
      * @return int
      */
-    public function getPriority(): int
+    public function getUserIdAttribute(): int
     {
-        return $this->priority;
+        return $this->user_id;
     }
 
-    /**
-     * @return string
-     */
-    public function getMessage(): string
+    public function getCommentAttribute()
     {
-        return $this->message;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
+        return $this->comment;
     }
 
     /**
@@ -117,6 +67,6 @@ class NullTicket extends Model
      */
     public function searchableAs(): string
     {
-        return 'nulltickets_index';
+        return 'nullcomments_index';
     }
 }

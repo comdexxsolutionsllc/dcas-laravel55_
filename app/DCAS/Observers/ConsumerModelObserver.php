@@ -12,6 +12,7 @@ class ConsumerModelObserver
 {
     /**
      * @param Consumer $model
+     * @return null
      */
     public function created(Consumer $model)
     {

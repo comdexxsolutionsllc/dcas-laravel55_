@@ -80,7 +80,7 @@ class Comment extends Model
      *
      * @return string
      */
-    public function searchableAs()
+    public function searchableAs(): string
     {
         return 'comments_index';
     }

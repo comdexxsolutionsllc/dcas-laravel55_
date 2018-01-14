@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Authy;
-use DCAS\UtilityClass\FlashMessage;
+use Flashy;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -44,14 +46,14 @@ class LoginController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout(Request $request)
+    public function logout(Request $request): RedirectResponse
     {
         $this->guard()->logout();
         $request->session()->invalidate();
 
-        FlashMessage::info('You have been logged out.');
+        Flashy::info('You have been logged out.');
 
         return redirect('/');
     }
@@ -73,7 +75,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function postToken(Request $request)
+    public function postToken(Request $request): Response
     {
         $this->validate($request, ['token' => 'required']);
         if (!session('authy:auth:id')) {
@@ -116,7 +118,7 @@ class LoginController extends Controller
      *
      * @return string
      */
-    public function username()
+    public function username(): string
     {
         return 'username';
     }
@@ -128,7 +130,7 @@ class LoginController extends Controller
      *
      * @return array
      */
-    protected function credentials(Request $request)
+    protected function credentials(Request $request): array
     {
         return $request->only($this->username(), 'password', 'domain');
     }
@@ -161,9 +163,9 @@ class LoginController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user)
+    protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user): RedirectResponse
     {
         auth($this->getGuard())->logout();
 

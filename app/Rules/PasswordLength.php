@@ -27,7 +27,7 @@ class PasswordLength implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         $password_length = strlen($this->user->password);
 
@@ -39,7 +39,7 @@ class PasswordLength implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'The given account\'s password length does not match given security requirements.';
     }

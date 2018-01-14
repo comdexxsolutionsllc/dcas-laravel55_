@@ -61,7 +61,7 @@ class Tag extends Model
      *
      * @return string
      */
-    public function searchableAs()
+    public function searchableAs(): string
     {
         return 'tags_index';
     }

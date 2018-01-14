@@ -67,12 +67,36 @@ class NullUser extends Authenticatable
      */
     protected $table = 'accounts';
 
+    /**
+     * @var int
+     */
     protected $id = 0;
+
+    /**
+     * @var string
+     */
     protected $name = 'Null User';
+
+    /**
+     * @var string
+     */
     protected $email = 'nulluser@domain.tld';
+
+    /**
+     * @var string
+     */
     protected $username = 'null_user';
+
     protected $domain = null;
+
+    /**
+     * @var string
+     */
     protected $slug = 'null-user';
+
+    /**
+     * @var int
+     */
     protected $is_disabled = 0;
 
     /**
@@ -122,7 +146,7 @@ class NullUser extends Authenticatable
     /**
      * @return int
      */
-    public function getId(): int
+    public function getIdAttribute(): int
     {
         return $this->id;
     }
@@ -130,7 +154,7 @@ class NullUser extends Authenticatable
     /**
      * @return string
      */
-    public function getName(): string
+    public function getNameAttribute(): string
     {
         return $this->name;
     }
@@ -138,7 +162,7 @@ class NullUser extends Authenticatable
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmailAttribute(): string
     {
         return $this->email;
     }
@@ -146,12 +170,12 @@ class NullUser extends Authenticatable
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsernameAttribute(): string
     {
         return $this->username;
     }
 
-    public function getDomain()
+    public function getDomainAttribute()
     {
         return $this->domain;
     }
@@ -159,7 +183,7 @@ class NullUser extends Authenticatable
     /**
      * @return string
      */
-    public function getSlug(): string
+    public function getSlugAttribute(): string
     {
         return $this->slug;
     }

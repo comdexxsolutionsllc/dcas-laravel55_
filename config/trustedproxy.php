@@ -33,7 +33,7 @@ return [
      * Or, to trust all proxies that connect
      * directly to your server, uncomment this:
      */
-     // 'proxies' => '*',
+    // 'proxies' => '*',
 
     /*
      * Or, to trust ALL proxies, including those that

@@ -25,4 +25,4 @@ Route::get('auth/token', 'Auth\TwoFactorAuthController@getToken')->name('token')
 Route::post('auth/token', 'Auth\TwoFactorAuthController@postToken')->name('token.post');
 /* End Authentication token login/logout */
 
-Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser')->name('verify_user');

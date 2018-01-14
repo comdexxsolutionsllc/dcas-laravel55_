@@ -15,9 +15,9 @@ class ProfilePolicy
      * @param \App\User $user
      * @param $ability
      *
-     * @return void
+     * @return bool
      */
-    public function before($user, $ability)
+    public function before($user, $ability): bool
     {
         if ($user->isAdmin()) return true;
     }

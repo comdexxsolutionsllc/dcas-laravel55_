@@ -62,7 +62,7 @@ class Category extends Model
      *
      * @return string
      */
-    public function searchableAs()
+    public function searchableAs(): string
     {
         return 'categories_index';
     }

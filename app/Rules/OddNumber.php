@@ -11,6 +11,7 @@ class OddNumber implements Rule
      */
     public function __construct()
     {
+        //
     }
 
     /**
@@ -21,7 +22,7 @@ class OddNumber implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         return (int)$value % 2 === 1;
     }
@@ -31,7 +32,7 @@ class OddNumber implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'The given number is not odd.';
     }

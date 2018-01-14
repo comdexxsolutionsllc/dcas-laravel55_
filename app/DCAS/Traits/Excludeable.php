@@ -2,7 +2,7 @@
 
 namespace DCAS\Traits;
 
-trait Excludable
+trait Excludeable
 {
     /**
      * Exclude an array of elements from the result.

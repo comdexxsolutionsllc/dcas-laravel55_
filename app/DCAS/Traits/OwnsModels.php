@@ -13,7 +13,7 @@ trait OwnsModels
      *
      * @return bool
      */
-    public function owns(Model $model)
+    public function owns(Model $model): bool
     {
         return $this->id === $model->{$this->getForeignKey()};
     }

@@ -67,7 +67,7 @@ class Technician extends Model
      *
      * @return string
      */
-    public function searchableAs()
+    public function searchableAs(): string
     {
         return 'technicians_index';
     }

@@ -12,6 +12,7 @@ final class UUIDModelObserver
 {
     /**
      * @param UUIDModel $model
+     * @return null
      */
     public function creating(UUIDModel $model)
     {

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.28 on 2018-01-13.
+ * Generated for Laravel 5.5.28 on 2018-01-15.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -5640,34 +5640,6 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Log a message to the logs.
-         *
-         * @param string $level
-         * @param string $message
-         * @param array $context
-         * @return void 
-         * @static 
-         */ 
-        public static function log($level, $message, $context = array())
-        {
-            \Illuminate\Log\Writer::log($level, $message, $context);
-        }
-        
-        /**
-         * Dynamically pass log calls into the writer.
-         *
-         * @param string $level
-         * @param string $message
-         * @param array $context
-         * @return void 
-         * @static 
-         */ 
-        public static function write($level, $message, $context = array())
-        {
-            \Illuminate\Log\Writer::write($level, $message, $context);
-        }
-        
-        /**
          * Register a file log handler.
          *
          * @param string $path
@@ -5677,7 +5649,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function useFiles($path, $level = 'debug')
         {
-            \Illuminate\Log\Writer::useFiles($path, $level);
+            \Bugsnag\BugsnagLaravel\LaravelLogger::useFiles($path, $level);
         }
         
         /**
@@ -5691,47 +5663,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function useDailyFiles($path, $days = 0, $level = 'debug')
         {
-            \Illuminate\Log\Writer::useDailyFiles($path, $days, $level);
-        }
-        
-        /**
-         * Register a Syslog handler.
-         *
-         * @param string $name
-         * @param string $level
-         * @param mixed $facility
-         * @return \Psr\Log\LoggerInterface 
-         * @static 
-         */ 
-        public static function useSyslog($name = 'laravel', $level = 'debug', $facility = 8)
-        {
-            return \Illuminate\Log\Writer::useSyslog($name, $level, $facility);
-        }
-        
-        /**
-         * Register an error_log handler.
-         *
-         * @param string $level
-         * @param int $messageType
-         * @return void 
-         * @static 
-         */ 
-        public static function useErrorLog($level = 'debug', $messageType = 0)
-        {
-            \Illuminate\Log\Writer::useErrorLog($level, $messageType);
-        }
-        
-        /**
-         * Register a new callback handler for when a log event is triggered.
-         *
-         * @param \Closure $callback
-         * @return void 
-         * @throws \RuntimeException
-         * @static 
-         */ 
-        public static function listen($callback)
-        {
-            \Illuminate\Log\Writer::listen($callback);
+            \Bugsnag\BugsnagLaravel\LaravelLogger::useDailyFiles($path, $days, $level);
         }
         
         /**
@@ -5742,7 +5674,34 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getMonolog()
         {
-            return \Illuminate\Log\Writer::getMonolog();
+            return \Bugsnag\BugsnagLaravel\LaravelLogger::getMonolog();
+        }
+        
+        /**
+         * Set the notifyLevel of the logger, as defined in Psr\Log\LogLevel.
+         *
+         * @param string $notifyLevel
+         * @return void 
+         * @static 
+         */ 
+        public static function setNotifyLevel($notifyLevel)
+        {
+            //Method inherited from \Bugsnag\PsrLogger\BugsnagLogger            
+            \Bugsnag\BugsnagLaravel\LaravelLogger::setNotifyLevel($notifyLevel);
+        }
+        
+        /**
+         * Log a message to the logs.
+         *
+         * @param string $level
+         * @param mixed $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function log($level, $message, $context = array())
+        {
+            \Bugsnag\BugsnagLaravel\LaravelLogger::log($level, $message, $context);
         }
         
         /**
@@ -5753,7 +5712,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getEventDispatcher()
         {
-            return \Illuminate\Log\Writer::getEventDispatcher();
+            return \Bugsnag\BugsnagLaravel\LaravelLogger::getEventDispatcher();
         }
         
         /**
@@ -5765,7 +5724,20 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setEventDispatcher($dispatcher)
         {
-            \Illuminate\Log\Writer::setEventDispatcher($dispatcher);
+            \Bugsnag\BugsnagLaravel\LaravelLogger::setEventDispatcher($dispatcher);
+        }
+        
+        /**
+         * Register a new callback handler for when a log event is triggered.
+         *
+         * @param \Closure $callback
+         * @throws \RuntimeException
+         * @return void 
+         * @static 
+         */ 
+        public static function listen($callback)
+        {
+            \Bugsnag\BugsnagLaravel\LaravelLogger::listen($callback);
         }
          
     }

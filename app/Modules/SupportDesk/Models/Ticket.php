@@ -5,7 +5,9 @@ namespace Modules\SupportDesk\Models;
 use App\Model;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -106,7 +108,7 @@ class Ticket extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }
@@ -114,7 +116,7 @@ class Ticket extends Model
     /**
      * @return BelongsTo
      */
-    public function technicians()
+    public function technicians(): BelongsTo
     {
         return $this->belongsTo(Technician::class);
     }
@@ -122,7 +124,7 @@ class Ticket extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function requestor()
+    public function requestor(): HasOne
     {
         return $this->hasOne(Requestor::class);
     }
@@ -130,7 +132,7 @@ class Ticket extends Model
     /**
      * @return BelongsTo
      */
-    public function queue()
+    public function queue(): BelongsTo
     {
         return $this->belongsTo(Queue::class);
     }
@@ -162,7 +164,7 @@ class Ticket extends Model
     /**
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return '[ticket_id]';
     }
@@ -172,7 +174,7 @@ class Ticket extends Model
      *
      * @return string
      */
-    public function searchableAs()
+    public function searchableAs(): string
     {
         return 'tickets_index';
     }

@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\Laravel\Passport\Events\AccessTokenCreated;
+use Laravel\Passport\Events\AccessTokenCreated;
 
 class RevokeOldTokens
 {

@@ -13,8 +13,9 @@ class Arr
      * @author Bran van der Meer <branmovic@gmail.com>
      *
      * @since 29-01-2010
+     * @return bool
      */
-    public static function find($needle, array $haystack)
+    public static function find($needle, array $haystack): bool
     {
         foreach ($haystack as $key => $value) {
             if (false !== stripos($value, $needle)) {

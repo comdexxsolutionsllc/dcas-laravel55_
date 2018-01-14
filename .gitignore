@@ -5,6 +5,7 @@
 /public/hot
 /public/storage
 /resources/assets/bower
+/routes/web.testing.php
 /staging
 /storage/*.key
 /storage/debugbar

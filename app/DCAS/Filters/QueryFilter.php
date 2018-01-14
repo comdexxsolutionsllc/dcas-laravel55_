@@ -39,7 +39,7 @@ abstract class QueryFilter
      *
      * @return Builder
      */
-    public function apply(Builder $builder)
+    public function apply(Builder $builder): Builder
     {
         $this->builder = $builder;
         foreach ($this->filters() as $name => $value) {
@@ -61,7 +61,7 @@ abstract class QueryFilter
      *
      * @return array
      */
-    public function filters()
+    public function filters(): array
     {
         return $this->request->all();
     }

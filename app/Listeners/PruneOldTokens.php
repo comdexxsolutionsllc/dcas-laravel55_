@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\Laravel\Passport\Events\RefreshTokenCreated;
+use Laravel\Passport\Events\RefreshTokenCreated;
 
 class PruneOldTokens
 {

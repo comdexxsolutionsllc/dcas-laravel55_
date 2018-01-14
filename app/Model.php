@@ -7,6 +7,7 @@ use Bluora\LaravelModelTraits\ModelStateTrait;
 use Bluora\LaravelModelTraits\ModelValidationTrait;
 use Bluora\LaravelModelTraits\OrderByTrait;
 use Carbon\Carbon;
+use DCAS\Traits\ProvidesModelCacheKey;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Laravel\Scout\Searchable;
@@ -24,7 +25,7 @@ use ZigaStrgar\Orderable\Orderable;
 abstract class Model extends Eloquent implements GetsCleanedUp
 {
     use HasTranslations, ModelEventsTrait, ModelStateTrait, ModelValidationTrait,
-        Orderable, OrderByTrait, Rememberable, Searchable, SearchableTrait,
+        Orderable, OrderByTrait, ProvidesModelCacheKey, Rememberable, Searchable, SearchableTrait,
         Sortable;
 
     /**
@@ -41,6 +42,13 @@ abstract class Model extends Eloquent implements GetsCleanedUp
      * @var array
      */
     protected $searchable = [];
+
+    /**
+     *  All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = [];
 
     /**
      * @param Builder $query

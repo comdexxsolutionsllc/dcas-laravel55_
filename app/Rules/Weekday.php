@@ -12,6 +12,7 @@ class Weekday implements Rule
      */
     public function __construct()
     {
+        //
     }
 
     /**
@@ -22,7 +23,7 @@ class Weekday implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         return (new Carbon($value))->isWeekDay();
     }
@@ -32,7 +33,7 @@ class Weekday implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'The given value is not a weekday.';
     }

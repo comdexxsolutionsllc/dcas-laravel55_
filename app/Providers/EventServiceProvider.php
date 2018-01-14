@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Event;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,19 +13,19 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Laravel\Passport\Events\AccessTokenCreated' => [
-            'App\Listeners\RevokeOldTokens',
+        'Illuminate\Auth\Events\Lockout' => [
+            'App\Listeners\UserEventSubscriber@onUserLockout',
         ],
-
-        'Laravel\Passport\Events\RefreshTokenCreated' => [
-            'App\Listeners\PruneOldTokens',
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\UserEventSubscriber@onUserLogin',
+        ],
+        'Illuminate\Auth\Events\Logout' => [
+            'App\Listeners\UserEventSubscriber@onUserLogout',
         ],
     ];
 
     /**
      * Register any events for your application.
-     *
-     * @return void
      */
     public function boot()
     {

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\VerifyUser
@@ -20,6 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VerifyUser extends Model
 {
+    /**
+     * @var array
+     */
     protected $fillable = [
         "user_id",
         "token"
@@ -28,7 +32,7 @@ class VerifyUser extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

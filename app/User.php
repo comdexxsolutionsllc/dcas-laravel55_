@@ -96,7 +96,6 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @property int $verified
  * @property-read bool $is_admin
  * @property-read \App\VerifyUser $verifyUser
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereProfileId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereVerified($value)
  * @mixin \Eloquent

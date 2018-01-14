@@ -1,4 +1,7 @@
-<?php namespace Zizaco\Entrust;
+<?php
+//namespace Zizaco\Entrust;
+namespace App\Console\Commands;
+
 
 /**
  * This file is part of Entrust,

@@ -61,6 +61,9 @@ class Profile extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         "avatar",
         "biography",

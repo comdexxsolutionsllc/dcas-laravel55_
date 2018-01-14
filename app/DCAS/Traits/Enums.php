@@ -40,7 +40,7 @@ trait Enums
      *
      * @return bool
      */
-    protected function hasEnumProperty(string $field)
+    protected function hasEnumProperty(string $field): bool
     {
         $property = $this->getEnumProperty($field);
 
@@ -54,7 +54,7 @@ trait Enums
      *
      * @return string
      */
-    protected function getEnumProperty(string $field)
+    protected function getEnumProperty(string $field): string
     {
         return 'enum' . Str::plural(Str::studly($field));
     }
@@ -67,7 +67,7 @@ trait Enums
      *
      * @return bool
      */
-    protected function isValidEnum(string $field, $value)
+    protected function isValidEnum(string $field, $value): bool
     {
         return $this->isValueEnum($field, $value) ||
             $this->isKeyedEnum($field, $value);
@@ -81,7 +81,7 @@ trait Enums
      *
      * @return bool
      */
-    protected function isValueEnum(string $field, $value)
+    protected function isValueEnum(string $field, $value): bool
     {
         return in_array($value, static::getEnum($field));
     }
@@ -114,7 +114,7 @@ trait Enums
      *
      * @return bool
      */
-    protected function isKeyedEnum(string $field, $key)
+    protected function isKeyedEnum(string $field, $key): bool
     {
         return in_array($key, array_keys(static::getEnum($field)), true);
     }

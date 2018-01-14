@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;

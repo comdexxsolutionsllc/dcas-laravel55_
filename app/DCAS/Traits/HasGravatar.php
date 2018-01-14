@@ -16,7 +16,7 @@ trait HasGravatar
      *
      * @return string
      */
-    public function getGravatarAttribute()
+    public function getGravatarAttribute(): string
     {
         $hash = md5(strtolower(trim($this->attributes[$this->gravatarEmail])));
 

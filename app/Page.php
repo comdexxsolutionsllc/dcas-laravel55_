@@ -41,7 +41,7 @@ class Page extends Model
      * @param $slug
      * @return Page
      */
-    public static function findBySlug($slug)
+    public static function findBySlug($slug): Page
     {
         return new Page(compact('slug'));
     }

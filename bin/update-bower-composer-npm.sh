@@ -5,11 +5,11 @@ node_modules/.bin/bower update
 echo "Updated bower components..."
 echo ""
 echo "Updating npm components..."
-npm update
+ncu -u && npm update
 echo "Updated npm components..."
 echo ""
 echo "Updating composer components..."
-composer update
+composer self-update && composer update
 echo "Updated composer components..."
 echo ""
 echo ""

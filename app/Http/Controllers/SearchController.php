@@ -17,7 +17,7 @@ class SearchController extends Controller
      */
     public function search(Request $request): Collection
     {
-        return $this->find();
+        return $this->find($request);
     }
 
     /**

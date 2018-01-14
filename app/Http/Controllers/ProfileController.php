@@ -7,11 +7,18 @@ use Request;
 
 class ProfileController extends Controller
 {
+    /**
+     * ProfileController constructor.
+     */
     public function __construct()
     {
         $this->middleware(['auth']);
     }
 
+    /**
+     * @param Profile $profile
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Profile $profile)
     {
         // Return the views with all the profile list
@@ -20,6 +27,11 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * @param Profile $profile
+     * @param $username
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Profile $profile, $username)
     {
         $this->middleware(['guest']);
@@ -30,12 +42,19 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         // Return the `create form` views
         return view('profile.create');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
         // Create new Profile instance

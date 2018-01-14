@@ -12,7 +12,7 @@ class ModelHelper
      *
      * @return string
      */
-    public static function generateUuid()
+    public static function generateUuid(): string
     {
         return Uuid::uuid4()->toString();
     }
@@ -22,7 +22,7 @@ class ModelHelper
      *
      * @return string
      */
-    public static function generateApiToken(Consumer $consumer)
+    public static function generateApiToken(Consumer $consumer): string
     {
         return hash_hmac('sha256', strtolower(trim($consumer->{$consumer->getKeyName()} . $consumer->{$consumer->getUpdatedAtColumn()})), config('app.key'));
     }

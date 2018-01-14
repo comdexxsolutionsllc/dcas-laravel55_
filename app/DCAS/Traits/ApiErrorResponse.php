@@ -49,9 +49,9 @@ trait ApiErrorResponse
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->StatusCode;
     }

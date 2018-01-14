@@ -1,3 +1,10 @@
+import Chart from 'chart.js'
+import Collect from 'collect.js'
+import Echo from 'laravel-echo'
+import iCheck from 'icheck'
+import Moment from 'moment'
+import Select2 from 'select2'
+import typeahead from 'typeahead.js'
 
 window._ = require('lodash');
 
@@ -23,6 +30,19 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.chart = Chart;
+
+window.collect = Collect;
+
+window.icheck = iCheck;
+
+window.moment = Moment;
+
+window.select2 = Select2;
+
+window.typeahead = typeahead;
+
+
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -43,9 +63,7 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
-
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',

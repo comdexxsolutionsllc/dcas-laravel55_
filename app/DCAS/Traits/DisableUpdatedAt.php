@@ -31,6 +31,7 @@ trait DisableUpdatedAt
      */
     public function setUpdatedAt($value)
     {
+        //
     }
 
     /**

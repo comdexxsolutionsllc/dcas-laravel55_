@@ -24,7 +24,7 @@ class Pdf extends Dompdf
      *
      * @return string
      */
-    public function action()
+    public function action(): string
     {
         return request()->has('download') ? 'attachment' : 'inline';
     }
@@ -36,7 +36,7 @@ class Pdf extends Dompdf
      * @param  \App\Invoice $invoice
      * @return string
      */
-    public function generate(Invoice $invoice)
+    public function generate(Invoice $invoice): string
     {
         $this->loadHtml(
             View::make('your.blade.template', compact('invoice'))->render()

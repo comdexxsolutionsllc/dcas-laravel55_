@@ -75,7 +75,7 @@ class NullProfile extends Model
     /**
      * @return int
      */
-    public function getId(): int
+    public function getIdAttribute(): int
     {
         return $this->id;
     }
@@ -83,7 +83,7 @@ class NullProfile extends Model
     /**
      * @return int
      */
-    public function getUserId(): int
+    public function getUserIdAttribute(): int
     {
         return $this->user_id;
     }
@@ -91,7 +91,7 @@ class NullProfile extends Model
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsernameAttribute(): string
     {
         return $this->username;
     }
@@ -99,7 +99,7 @@ class NullProfile extends Model
     /**
      * @return string
      */
-    public function getBiography(): string
+    public function getBiographyAttribute(): string
     {
         return $this->biography;
     }
@@ -107,12 +107,12 @@ class NullProfile extends Model
     /**
      * @return string
      */
-    public function getAddress1(): string
+    public function getAddress1Attribute(): string
     {
         return $this->address_1;
     }
 
-    public function getAddress2()
+    public function getAddress2Attribute()
     {
         return $this->address_2;
     }
@@ -120,7 +120,7 @@ class NullProfile extends Model
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCityAttribute(): string
     {
         return $this->city;
     }
@@ -128,7 +128,7 @@ class NullProfile extends Model
     /**
      * @return string
      */
-    public function getState(): string
+    public function getStateAttribute(): string
     {
         return $this->state;
     }
@@ -136,7 +136,7 @@ class NullProfile extends Model
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountryAttribute(): string
     {
         return $this->country;
     }
@@ -144,7 +144,7 @@ class NullProfile extends Model
     /**
      * @return string
      */
-    public function getPostalCode(): string
+    public function getPostalCodeAttribute(): string
     {
         return $this->postal_code;
     }

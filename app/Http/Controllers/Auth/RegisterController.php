@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\VerifyMail;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Request;
@@ -46,7 +47,7 @@ class RegisterController extends Controller
      * @param $token
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function verifyUser($token)
+    public function verifyUser($token): RedirectResponse
     {
         $verifyUser = VerifyUser::where('token', $token)->first();
         if (isset($verifyUser)) {
@@ -86,7 +87,7 @@ class RegisterController extends Controller
      * @param  array $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
         $user = User::create([
             'name' => $data['name'],
@@ -112,7 +113,7 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function registered(Request $request, $user)
+    protected function registered(Request $request, $user): RedirectResponse
     {
         $this->guard()->logout();
 
