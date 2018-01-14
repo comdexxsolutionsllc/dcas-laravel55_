@@ -13,7 +13,6 @@ use Laravel\Scout\Searchable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Rogercbe\TableSorter\Sortable;
 use Spatie\ModelCleanup\GetsCleanedUp;
-use Spatie\OrAbort\OrAbort;
 use Spatie\Translatable\HasTranslations;
 use Watson\Rememberable\Rememberable;
 use ZigaStrgar\Orderable\Orderable;
@@ -24,7 +23,7 @@ use ZigaStrgar\Orderable\Orderable;
  */
 abstract class Model extends Eloquent implements GetsCleanedUp
 {
-    use HasTranslations, ModelEventsTrait, ModelStateTrait, ModelValidationTrait, OrAbort,
+    use HasTranslations, ModelEventsTrait, ModelStateTrait, ModelValidationTrait,
         Orderable, OrderByTrait, Rememberable, Searchable, SearchableTrait,
         Sortable;
 

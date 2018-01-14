@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Authy;
+use DCAS\UtilityClass\FlashMessage;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\View\View;
 
 class LoginController extends Controller
 {
@@ -30,12 +29,10 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -43,43 +40,28 @@ class LoginController extends Controller
     }
 
     /**
-     * Send the post-authentication response.
+     * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable $user
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    protected function authenticated(Request $request, Authenticatable $user)
+    public function logout(Request $request)
     {
-        if (Authy::getProvider()->isEnabled($user) || (env('AUTHY_ENABLED') === true)) {
-            return $this->logoutAndRedirectToTokenScreen($request, $user);
-        }
+        $this->guard()->logout();
+        $request->session()->invalidate();
 
-        return redirect()->intended($this->redirectPath());
+        FlashMessage::info('You have been logged out.');
+
+        return redirect('/');
     }
 
     /**
-     * Generate a redirect response to the two-factor token screen.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable $user
-     * @return \Illuminate\Http\Response
-     */
-    protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user): Response
-    {
-        auth($this->getGuard())->logout();
-
-        $request->session()->put('authy:auth:id', $user->id);
-
-        return redirect(url('auth/token'));
-    }
-
-    /**
-     * Show two-factor authentication page
+     * Show two-factor authentication page.
      *
      * @return \Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function getToken(): View
+    public function getToken()
     {
         return session('authy:auth:id') ? view('auth.token') : redirect(url('login'));
     }
@@ -87,10 +69,11 @@ class LoginController extends Controller
     /**
      * Verify the two-factor authentication token.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function postToken(Request $request): Response
+    public function postToken(Request $request)
     {
         $this->validate($request, ['token' => 'required']);
         if (!session('authy:auth:id')) {
@@ -101,7 +84,7 @@ class LoginController extends Controller
         $provider = config('auth.guards.' . $guard . '.provider');
         $model = config('auth.providers.' . $provider . '.model');
 
-        $user = (new $model)->findOrFail(
+        $user = (new $model())->findOrFail(
             $request->session()->pull('authy:auth:id')
         );
 
@@ -112,5 +95,80 @@ class LoginController extends Controller
         } else {
             return redirect(url('login'))->withErrors('Invalid two-factor authentication token provided!');
         }
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'domain' => 'nullable|string',
+        ]);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password', 'domain');
+    }
+
+    /**
+     * Send the post-authentication response.
+     *
+     * @param Request $request
+     * @param $user
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if (Authy::getProvider()->isEnabled($user)) {
+            return $this->logoutAndRedirectToTokenScreen($request, $user);
+        }
+
+        if (!$user->verified) {
+            auth()->logout();
+            return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+        }
+
+        return redirect()->intended($this->redirectPath());
+    }
+
+    /**
+     * Generate a redirect response to the two-factor token screen.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user)
+    {
+        auth($this->getGuard())->logout();
+
+        $request->session()->put('authy:auth:id', $user->id);
+
+        return redirect(url('auth/token'));
     }
 }

@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Modules\SupportDesk\Controllers;
+namespace Modules\SupportDesk\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Modules\SupportDesk\Models\Status;
 
-class SupportDeskController extends Controller
+class StatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'admin']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -15,7 +20,7 @@ class SupportDeskController extends Controller
      */
     public function index()
     {
-        return view("SupportDesk::index");
+        //
     }
 
     /**
@@ -31,7 +36,7 @@ class SupportDeskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,10 +47,10 @@ class SupportDeskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Modules\SupportDesk\Models\Status $status
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Status $status)
     {
         //
     }
@@ -53,10 +58,10 @@ class SupportDeskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \Modules\SupportDesk\Models\Status $status
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Status $status)
     {
         //
     }
@@ -64,11 +69,11 @@ class SupportDeskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Modules\SupportDesk\Models\Status $status
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Status $status)
     {
         //
     }
@@ -76,10 +81,10 @@ class SupportDeskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \Modules\SupportDesk\Models\Status $status
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Status $status)
     {
         //
     }

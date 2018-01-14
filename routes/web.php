@@ -1,30 +1,14 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::view('/', 'welcome')->name('welcome');
+Route::get('/home', 'HomeController@index')->name('user.home');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('invoice/{invoice}', 'PdfController');
+
+// Dashboard profile.
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('profiles', 'ProfileController@index');
+    Route::get('profile/create', 'ProfileController@create');
+    Route::post('profile', 'ProfileController@store');
+    Route::get('/profile/{username}', 'ProfileController@show')->name('profile.{username}')->middleware(['auth']);
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/decompose','\Lubusin\Decomposer\Controllers\DecomposerController@index');
-
-Route::get('auth/token','Auth\LoginController@getToken');
-Route::post('auth/token','Auth\LoginController@postToken');
-
-Route::get('login/github', 'Auth\LoginController@redirectToProvider');
-Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
-
-Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
