@@ -181,6 +181,12 @@ return [
         /*
          * DCAS Service Providers...
          */
+        App\Providers\BladeServiceProvider::class,
+        App\Providers\CollectionMacroServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
+        App\Providers\MacroServiceProvider::class,
+        App\Providers\ObserverServiceProvider::class,
+        App\Providers\OnlineUsersProvider::class,
 
         /*
          * 3rd Party Service Providers...

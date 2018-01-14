@@ -2,9 +2,15 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AddUser;
+use App\Console\Commands\DisableUser;
+use App\Console\Commands\EnableUser;
+use App\Console\Commands\MakeVueFile;
+use App\Console\Commands\ResetPassword;
 use Busatlic\ScheduleMonitor\MonitorsSchedule;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -16,26 +22,27 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        MakeVueFile::class,
+        AddUser::class,
+        DisableUser::class,
+        EnableUser::class,
+        ResetPassword::class,
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
-     * @return void
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('clean:models')->daily();
+        $schedule->command('sitemap:generate')->daily();
 
         $this->monitor($schedule);
     }
 
     /**
      * Register the commands for the application.
-     *
-     * @return void
      */
     protected function commands()
     {
