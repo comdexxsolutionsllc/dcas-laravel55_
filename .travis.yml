@@ -1,3 +1,20 @@
+branches:
+  only:
+  - master
+  - /^deploy-.*$/
+
+notifications:
+  email:
+    recipients:
+      - sarah@sarahrenner.work
+      - sarahalexandrarenner@icloud.com
+    on_success: change
+    on_failure: always
+
+addons:
+  hosts:
+  - dcas-laravel55.dev
+
 language: php
 
 sudo: required
@@ -8,6 +25,8 @@ php:
 cache:
   directories:
     - $HOME/.composer/cache
+    - node_modules
+    - vendor
 
 before_install:
   - sudo apt-get -qq update
@@ -19,18 +38,11 @@ before_script:
   - travis_retry composer install --dev --prefer-source --no-interaction
   - npm install
   - php artisan migrate
-
-cache:
-  directories:
-    - node_modules
-    - vendor
+  - node_modules/.bin/bower update
 
 script:
-  - node_modules/.bin/bower update
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
   - vendor/phpspec/phpspec/bin/phpspec run
-  - vendor/bin/codecept build
-  - vendor/bin/codecept run
   - vendor/bin/behat
 
 services:

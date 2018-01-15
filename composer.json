@@ -156,7 +156,8 @@
   },
   "scripts": {
     "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "@touch routes/web.testing.php"
     ],
     "post-create-project-cmd": [
       "@php artisan key:generate"
