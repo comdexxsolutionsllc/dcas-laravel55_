@@ -52,6 +52,8 @@ class AppMailer
     /**
      * @param $user
      * @param Ticket $ticket
+     *
+     * @return bool
      */
     public function sendTicketInformation($user, Ticket $ticket)
     {
@@ -65,6 +67,8 @@ class AppMailer
 
     /**
      * Deliver mail.
+     *
+     * @return bool
      */
     public function deliver()
     {
@@ -72,11 +76,15 @@ class AppMailer
             $message->from($this->fromAddress, $this->fromName)
                 ->to($this->to)->subject($this->subject);
         });
+
+        return true;
     }
 
     /**
      * @param $ticketOwner
      * @param Ticket $ticket
+     *
+     * @return bool
      */
     public function sendTicketStatusNotification($ticketOwner, Ticket $ticket)
     {
@@ -93,6 +101,8 @@ class AppMailer
      * @param $user
      * @param Ticket $ticket
      * @param $comment
+     *
+     * @return bool
      */
     public function sendTicketComments($ticketOwner, $user, Ticket $ticket, $comment)
     {

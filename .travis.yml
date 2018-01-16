@@ -44,6 +44,7 @@ script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
   - vendor/phpspec/phpspec/bin/phpspec run
   - vendor/bin/behat
+  - vendor/bin/codecept run -c tests/Codeception
 
 services:
   - mysql

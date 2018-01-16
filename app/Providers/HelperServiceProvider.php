@@ -11,7 +11,7 @@ class HelperServiceProvider extends ServiceProvider
      */
     protected $helpers = [
         // Add your helpers in here
-        DCAS\Helpers\Arr::class,
+        \DCAS\Helpers\Arr::class,
     ];
 
     /**

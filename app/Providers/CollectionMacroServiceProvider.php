@@ -8,6 +8,11 @@ use Illuminate\Support\ServiceProvider;
 class CollectionMacroServiceProvider extends ServiceProvider
 {
     /**
+     * @var array
+     */
+    protected $items = [];
+
+    /**
      * Bootstrap the application services.
      */
     public function boot(): void

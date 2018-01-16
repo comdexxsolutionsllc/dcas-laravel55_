@@ -14,9 +14,11 @@ trait GetRemoteIP
         'REMOTE_ADDR',
     ];
 
+    protected $whitelist = [];
+
     public function isAllowed(): bool
     {
-        return in_array(self::execute(), $this->whitelist);
+        return in_array($this->execute(), $this->whitelist);
     }
 
     private function execute(): string

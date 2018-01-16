@@ -4,6 +4,7 @@ namespace DCAS\Traits;
 
 use Carbon\Carbon;
 use DateTimeInterface;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 trait CustomCasts
@@ -124,8 +125,6 @@ trait CustomCasts
             return Carbon::createFromFormat('h:i:s', $value);
         }
 
-        var_dump($value);
-
         // Finally, we will just assume this date is in the format used by default on
         // the database connection and use that format to create the Carbon object
         // that is returned back out to the developers after we convert it here.
@@ -165,7 +164,7 @@ trait CustomCasts
             case 'json':
                 return $this->fromJson($value);
             case 'collection':
-                return new BaseCollection($this->fromJson($value));
+                return new Collection($this->fromJson($value));
             case 'date':
             case 'datetime':
                 return $this->asDateTime($value);

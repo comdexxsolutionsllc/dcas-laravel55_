@@ -13,7 +13,7 @@ class TwoFactorAuthController extends Controller
     /**
      * Show two-factor authentication page.
      *
-     * @return \Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\Response|\Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function getToken()
     {
@@ -25,7 +25,7 @@ class TwoFactorAuthController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function postToken(Request $request): Response
     {
@@ -57,7 +57,7 @@ class TwoFactorAuthController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     protected function authenticated(Request $request, Authenticatable $user): Response
     {
@@ -74,7 +74,7 @@ class TwoFactorAuthController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user): Response
     {

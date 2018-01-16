@@ -377,9 +377,9 @@ class User extends Authenticatable implements Presentable, TwoFactorAuthenticata
     /**
      * @param $roles
      *
-     * @return bool
+     * @return bool|null
      */
-    public function authorizeRoles($roles): bool
+    public function authorizeRoles($roles)
     {
         if ($this->hasAnyRole($roles)) {
             return true;

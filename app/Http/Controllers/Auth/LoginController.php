@@ -61,7 +61,7 @@ class LoginController extends Controller
     /**
      * Show two-factor authentication page.
      *
-     * @return \Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Http\Response|\Illuminate\View\View|\Illuminate\Http\RedirectRespons
      */
     public function getToken()
     {
@@ -73,7 +73,7 @@ class LoginController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function postToken(Request $request): Response
     {

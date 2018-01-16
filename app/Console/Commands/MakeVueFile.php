@@ -49,7 +49,7 @@ class MakeVueFile extends Command
      */
     public function handle()
     {
-        $this->fileName = ucfirst($this->argument('fileName')) . '.vue';
+        $this->fileName = ucfirst((string) $this->argument('fileName')) . '.vue';
 
         (!\File::copy($this->locationOfStub, $this->option('directory') . $this->fileName)) ?
             $this->error('Couldn\'t copy stub file {$this->locationOfStub} to {$this->fileName}.') :

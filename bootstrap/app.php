@@ -43,7 +43,7 @@ $app->singleton(
 
 $app->register(Thedevsaddam\LaravelSchema\LaravelSchemaServiceProvider::class);
 
-$app->configureMonologUsing(function ($monolog) use ($app) {
+$app->configureMonologUsing(function ($monolog) {
     $monolog->pushHandler(new Logger\Monolog\Handler\MysqlHandler());
 });
 

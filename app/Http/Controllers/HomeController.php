@@ -35,7 +35,7 @@ class HomeController extends Controller
     /**
      * Inject primary domain name into session.
      *
-     * @return string
+     * @return string|null
      */
     protected function injectDomain(): string
     {

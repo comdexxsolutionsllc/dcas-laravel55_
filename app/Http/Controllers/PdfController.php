@@ -20,7 +20,7 @@ class PdfController extends Controller
      * @param  \App\Services\Pdf $pdf
      * @return void
      */
-    public function __construct(Pdf $pdf)
+    public function __construct()
     {
         $this->middleware('auth');
 

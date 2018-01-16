@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Profile::class, function (Faker $faker) {
     $user_id = User::pluck('id')->toArray();
-    $username = User::where('id', $user_id)->pluck('username')[0];
+//    $username = User::where('id', $user_id)->pluck('username')[0];
 
     return [
         'user_id' => $faker->randomElement($user_id),

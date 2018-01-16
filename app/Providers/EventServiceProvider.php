@@ -32,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         Event::listen('revisionable.*', function ($model, $revisions) {
-            //dd($model, $revisions);
+            echo ($model. '' . $revisions);
         });
     }
 }

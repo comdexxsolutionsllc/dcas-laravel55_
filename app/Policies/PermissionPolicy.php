@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Permission;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -14,11 +13,10 @@ class PermissionPolicy
      * Determine whether the user can view the permission.
      *
      * @param \App\User $user
-     * @param \App\Permission $permission
      *
      * @return mixed
      */
-    public function view(User $user, Permission $permission)
+    public function view(User $user)
     {
         return $user->may('view-permissions');
     }
@@ -41,11 +39,10 @@ class PermissionPolicy
      * Determine whether the user can update the permission.
      *
      * @param \App\User $user
-     * @param \App\Permission $permission
      *
      * @return mixed
      */
-    public function update(User $user, Permission $permission)
+    public function update(User $user)
     {
         if ($user->isAdmin()) {
             return true;
@@ -55,12 +52,9 @@ class PermissionPolicy
     /**
      * Determine whether the user can delete the permission.
      *
-     * @param \App\User $user
-     * @param \App\Permission $permission
-     *
      * @return mixed
      */
-    public function delete(User $user, Permission $permission)
+    public function delete()
     {
         return false;
     }

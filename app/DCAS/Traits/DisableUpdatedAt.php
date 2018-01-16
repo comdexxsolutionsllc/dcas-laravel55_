@@ -29,7 +29,7 @@ trait DisableUpdatedAt
     /**
      * @param $value
      */
-    public function setUpdatedAt($value)
+    public function setUpdatedAt($value = null)
     {
         //
     }
