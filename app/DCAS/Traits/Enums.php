@@ -83,7 +83,7 @@ trait Enums
      */
     protected function isValueEnum(string $field, $value): bool
     {
-        return in_array($value, static::getEnum($field));
+        return is_string($data = static::getEnum($field)) ? in_array($value, $data) : false;
     }
 
     /**

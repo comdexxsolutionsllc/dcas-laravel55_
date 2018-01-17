@@ -24,10 +24,8 @@ class UserEventSubscriber
 
     /**
      * Handle user login events.
-     *
-     * @param Login $event
      */
-    public function onUserLogin(Login $event)
+    public function onUserLogin()
     {
         if (auth()->check()) {
             $userId = auth()->user()->id;
@@ -45,10 +43,9 @@ class UserEventSubscriber
     /**
      * Handle user logout events.
      *
-     * @param Logout $event
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function onUserLogout(Logout $event)
+    public function onUserLogout()
     {
         $userId = auth()->user()->id;
 

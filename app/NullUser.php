@@ -29,9 +29,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string|null $phone_country_code
  * @property string|null $phone_number
  * @property string|null $two_factor_options
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\NullComment[] $comments
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\SupportDesk\Models\NullComment[] $comments
  * @property-read \App\NullProfile $profile
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\NullTicket[] $tickets
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\SupportDesk\Models\NullTicket[] $tickets
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereCardBrand($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereCardLastFour($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereCreatedAt($value)

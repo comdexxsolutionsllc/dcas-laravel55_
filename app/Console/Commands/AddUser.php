@@ -25,7 +25,7 @@ class AddUser extends Command
 
         $email = $this->argument('email');
 
-        $slug = $email . '-' . $username;
+        $slug = (string) $email . '-' . (string) $username;
 
         if ($this->confirm('Let system generate password for you?')) {
             $password = str_random(16);
@@ -35,8 +35,6 @@ class AddUser extends Command
         }
         $password = bcrypt($password);
 
-        $is_admin = $this->ask('Is the user an admin? [yes=1 or no=0]');
-
         $is_disabled = 0;
 
         if ($this->confirm('Does the user have a main domain?')) {
@@ -45,6 +43,6 @@ class AddUser extends Command
             $domain = null;
         }
 
-        User::create(compact(['name', 'username', 'email', 'password', 'is_admin', 'is_disabled', 'slug', 'domain']));
+        User::create(compact(['name', 'username', 'email', 'password', 'is_disabled', 'slug', 'domain']));
     }
 }

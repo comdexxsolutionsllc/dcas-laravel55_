@@ -37,7 +37,7 @@ class MigrationCommand extends Command
      */
     public function handle()
     {
-        $this->laravel->view->addNamespace('entrust', substr(__DIR__, 0, -8) . 'views');
+        view()->addNamespace('entrust', substr(__DIR__, 0, -8) . 'views');
 
         $rolesTable = Config::get('entrust.roles_table');
         $roleUserTable = Config::get('entrust.role_user_table');
@@ -91,7 +91,7 @@ class MigrationCommand extends Command
 
         $data = compact('rolesTable', 'roleUserTable', 'permissionsTable', 'permissionRoleTable', 'usersTable', 'userKeyName');
 
-        $output = $this->laravel->view->make('entrust.generators.migration')->with($data)->render();
+        $output = view()->make('entrust.generators.migration')->with($data)->render();
 
         if (!file_exists($migrationFile) && $fs = fopen($migrationFile, 'x')) {
             fwrite($fs, $output);

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
 
 class Ajaxify
 {
@@ -12,11 +13,10 @@ class Ajaxify
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
-     * @param null $guard
      *
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
         // Get the original response
         $response = $next($request);
@@ -76,7 +76,7 @@ class Ajaxify
     /**
      * @param $request
      *
-     * @return static
+     * @return static|\Illuminate\Support\Collection
      */
     protected function getFlashData($request)
     {

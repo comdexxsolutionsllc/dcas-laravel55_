@@ -22,11 +22,11 @@ class RestrictByIP
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
      *
-     * @return mixed
+     * @return bool|null
      */
     public function handle(Request $request, Closure $next)
     {
-        return (self::isAllowed()) ? $next($request) : abort(
+        return ($this->isAllowed()) ? $next($request) : abort(
             403,
             "Your IP address is not in the application's whitelist.  Please contact the system administrator for more information."
         );

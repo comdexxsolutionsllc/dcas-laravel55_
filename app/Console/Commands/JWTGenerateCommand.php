@@ -39,11 +39,12 @@ class JWTGenerateCommand extends Command
         $key = $this->getRandomKey();
 
         if ($this->option('show')) {
-            return $this->line('<comment>' . $key . '</comment>');
+            $this->line('<comment>' . $key . '</comment>');
         }
 
         $path = config_path('jwt.php');
 
+        // TODO:  FIX THIS
         if (file_exists($path)) {
             file_put_contents($path, str_replace(
                 $this->laravel['config']['jwt.secret'],

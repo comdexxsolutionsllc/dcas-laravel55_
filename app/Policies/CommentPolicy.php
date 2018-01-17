@@ -14,11 +14,10 @@ class CommentPolicy
      * Authorize all actions for the given model to Admins.
      *
      * @param \App\User $user
-     * @param $ability
      *
      * @return bool
      */
-    public function before($user, $ability): bool
+    public function before($user): bool
     {
         if ($user->isAdmin()) return true;
     }
@@ -27,11 +26,10 @@ class CommentPolicy
      * Determine whether the user can view the comment.
      *
      * @param \App\User $user
-     * @param \App\Comment|Comment $comment
      *
      * @return mixed
      */
-    public function view(User $user, Comment $comment)
+    public function view(User $user)
     {
         return $user->may('view-comments');
     }
@@ -64,12 +62,9 @@ class CommentPolicy
     /**
      * Determine whether the user can delete the comment.
      *
-     * @param \App\User $user
-     * @param \Modules\Supportdesk\Models\Comment $comment
-     *
      * @return mixed
      */
-    public function delete(User $user, Comment $comment)
+    public function delete()
     {
         return false;
     }

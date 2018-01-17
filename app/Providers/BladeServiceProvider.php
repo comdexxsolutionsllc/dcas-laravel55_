@@ -136,9 +136,22 @@ class BladeServiceProvider extends ServiceProvider
         // add pluralize for nouns
         Blade::directive('plural', function ($expression) {
             $expression = trim($expression, '()');
-            list($count, $str, $spacer) = array_pad(preg_split('/,\s*/', $expression), 3, "' '");
+            $extraction = preg_split('/,\s*/', $expression);
 
-            return "<?php echo $count . $spacer . str_plural($str, $count) ?>";
+            if (is_array($extraction))
+            {
+                list($count, $str, $spacer) = array_pad(
+                    $extraction,
+                    3,
+                    "' '"
+                );
+
+                return "<?php echo $count . $spacer . str_plural($str, $count) ?>";
+            }
+
+            if ($extraction !== true) return false;
+
+            throw new \Exception('Unable to pluralize string.');
         });
 
         // Add @set for Variable Assignment

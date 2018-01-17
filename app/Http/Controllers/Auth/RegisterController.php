@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\VerifyMail;
 use App\User;
+use App\VerifyUser;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Request;
 
 class RegisterController extends Controller
 {
@@ -95,7 +96,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        $verifyUser = VerifyUser::create([
+        VerifyUser::create([
             'user_id' => $user->id,
             'token' => str_random(40)
         ]);
@@ -108,12 +109,9 @@ class RegisterController extends Controller
     /**
      *
      *
-     * @param Request $request
-     * @param $user
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function registered(Request $request, $user): RedirectResponse
+    protected function registered(): RedirectResponse
     {
         $this->guard()->logout();
 
