@@ -17,7 +17,5 @@ class ConsumerModelObserver
     public function created(Consumer $model)
     {
         $model->{$model->getApiTokenKey()} = ModelHelper::generateApiToken($model);
-
-        return null;
     }
 }

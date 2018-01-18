@@ -3,11 +3,11 @@
 namespace Modules\SupportDesk\Models;
 
 use App\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Modules\SupportDesk\Models\Category
+ * Modules\SupportDesk\Models\Category.
  *
  * @property int $id
  * @property string $name
@@ -47,7 +47,7 @@ class Category extends Model
     /**
      * @var array
      */
-    protected $fillable = ["name"];
+    protected $fillable = ['name'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

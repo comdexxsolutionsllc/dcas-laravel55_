@@ -2,11 +2,11 @@
 
 namespace Modules\SupportDesk\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Modules\SupportDesk\Mailers\AppMailer;
 use Modules\SupportDesk\Models\Comment;
+use Modules\SupportDesk\Mailers\AppMailer;
 
 class CommentsController extends Controller
 {

@@ -2,13 +2,13 @@
 
 namespace Modules\SupportDesk\Models;
 
-use App\Model;
 use App\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Modules\SupportDesk\Models\Comment
+ * Modules\SupportDesk\Models\Comment.
  *
  * @property int $id
  * @property int $ticket_id
@@ -54,9 +54,9 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        "ticket_id",
-        "user_id",
-        "comment"
+        'ticket_id',
+        'user_id',
+        'comment',
     ];
 
     /**

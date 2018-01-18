@@ -2,22 +2,21 @@
 
 namespace App;
 
-use Bluora\LaravelModelTraits\ModelEventsTrait;
-use Bluora\LaravelModelTraits\ModelStateTrait;
-use Bluora\LaravelModelTraits\ModelValidationTrait;
-use Bluora\LaravelModelTraits\OrderByTrait;
 use Carbon\Carbon;
-use DCAS\Traits\ProvidesModelCacheKey;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model as Eloquent;
 use Laravel\Scout\Searchable;
-use Nicolaslopezj\Searchable\SearchableTrait;
 use Rogercbe\TableSorter\Sortable;
+use ZigaStrgar\Orderable\Orderable;
+use Watson\Rememberable\Rememberable;
+use DCAS\Traits\ProvidesModelCacheKey;
 use Spatie\ModelCleanup\GetsCleanedUp;
 use Spatie\Translatable\HasTranslations;
-use Watson\Rememberable\Rememberable;
-use ZigaStrgar\Orderable\Orderable;
-
+use Illuminate\Database\Eloquent\Builder;
+use Bluora\LaravelModelTraits\OrderByTrait;
+use Nicolaslopezj\Searchable\SearchableTrait;
+use Bluora\LaravelModelTraits\ModelStateTrait;
+use Bluora\LaravelModelTraits\ModelEventsTrait;
+use Bluora\LaravelModelTraits\ModelValidationTrait;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
  * Generic Model Class.

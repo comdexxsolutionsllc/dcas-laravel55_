@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
     return [
-        'name' => $faker->firstName() . ' ' . $faker->lastName,
+        'name' => $faker->firstName().' '.$faker->lastName,
         'username' => $faker->unique(1)->userName,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
@@ -41,18 +41,18 @@ $factory->state(App\User::class, 'testing', function () {
 
 $factory->state(App\User::class, 'hasRememberToken', function () {
     return [
-        'remember_token' => str_random(25)
+        'remember_token' => str_random(25),
     ];
 });
 
 $factory->state(App\User::class, 'isDisabled', function () {
     return [
-        'is_disabled' => 1
+        'is_disabled' => 1,
     ];
 });
 
 $factory->state(App\User::class, 'verified', function () {
     return [
-        'verified' => 1
+        'verified' => 1,
     ];
 });

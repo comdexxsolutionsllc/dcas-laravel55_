@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MacroServiceProvider extends ServiceProvider
 {

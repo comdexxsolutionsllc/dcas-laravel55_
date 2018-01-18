@@ -11,8 +11,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
 class JWTGenerateCommand extends Command
@@ -39,7 +39,7 @@ class JWTGenerateCommand extends Command
         $key = $this->getRandomKey();
 
         if ($this->option('show')) {
-            $this->line('<comment>' . $key . '</comment>');
+            $this->line('<comment>'.$key.'</comment>');
         }
 
         $path = config_path('jwt.php');

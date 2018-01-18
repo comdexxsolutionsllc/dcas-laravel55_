@@ -27,7 +27,7 @@ class SessionTimeout
     {
         $isLoggedIn = $request->path() != '/logout';
 
-        if (!session('lastActivityTime')) {
+        if (! session('lastActivityTime')) {
             $this->session->put('lastActivityTime', time());
         } elseif (time() - $this->session->get('lastActivityTime') > $this->timeout) {
             $this->session->forget('lastActivityTime');
@@ -37,7 +37,7 @@ class SessionTimeout
 
             auth()->logout();
 
-            flash('You have been logged out due to inactivity.  Timeout for this site set to ' . $this->timeout / 60 . 'minutes.');
+            flash('You have been logged out due to inactivity.  Timeout for this site set to '.$this->timeout / 60 .'minutes.');
 
             return redirect('/login')->withInput(compact('email'))->withCookie($cookie);
         }

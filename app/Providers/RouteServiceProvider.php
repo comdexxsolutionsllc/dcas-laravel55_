@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -91,7 +91,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
             ->middleware('api')
             ->as('api.')
-            ->namespace($this->namespace . "\Api")
+            ->namespace($this->namespace."\Api")
             ->group(base_path('routes/api.v1.php'));
     }
 
@@ -110,7 +110,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::get('/dashboard/admin/{view}', function ($view) {
             try {
-                $view = 'dashboard.admin.' . $view;
+                $view = 'dashboard.admin.'.$view;
 
                 return view($view);
             } catch (\Exception $e) {
@@ -199,7 +199,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::get('/dashboard/{view}', function ($view) {
             try {
-                $view = 'dashboard.user.' . $view;
+                $view = 'dashboard.user.'.$view;
 
                 return view($view);
             } catch (\Exception $e) {

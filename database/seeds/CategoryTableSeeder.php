@@ -26,7 +26,7 @@ class CategoryTableSeeder extends Seeder
         'Storage',
         'Technical Support',
         'Unassigned',
-        'White Gloves'
+        'White Gloves',
     ];
 
     /**
@@ -39,9 +39,8 @@ class CategoryTableSeeder extends Seeder
         foreach ($this->categories as $index => $category) {
             DB::table('categories')->insert([
                 'name' => $category,
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ]);
-
         }
     }
 }

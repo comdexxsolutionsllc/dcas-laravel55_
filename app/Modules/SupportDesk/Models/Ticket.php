@@ -2,16 +2,16 @@
 
 namespace Modules\SupportDesk\Models;
 
-use App\Model;
 use App\User;
+use App\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Modules\SupportDesk\Models\Ticket
+ * Modules\SupportDesk\Models\Ticket.
  *
  * @property int $id
  * @property int $user_id
@@ -74,15 +74,15 @@ class Ticket extends Model
      * @var array
      */
     protected $fillable = [
-        "user_id",
-        "category_id",
-        "queue_id",
-        "technician_id",
-        "ticket_id",
-        "title",
-        "priority",
-        "status",
-        "message"
+        'user_id',
+        'category_id',
+        'queue_id',
+        'technician_id',
+        'ticket_id',
+        'title',
+        'priority',
+        'status',
+        'message',
     ];
 
     /**

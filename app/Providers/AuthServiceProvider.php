@@ -2,21 +2,21 @@
 
 namespace App\Providers;
 
+use App\Role;
+use App\Profile;
+use Carbon\Carbon;
 use App\Permission;
-use App\Policies\CategoryPolicy;
-use App\Policies\CommentPolicy;
-use App\Policies\PermissionPolicy;
-use App\Policies\ProfilePolicy;
 use App\Policies\RolePolicy;
 use App\Policies\TicketPolicy;
-use App\Profile;
-use App\Role;
-use Carbon\Carbon;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
-use Modules\SupportDesk\Models\Category;
-use Modules\SupportDesk\Models\Comment;
+use App\Policies\CommentPolicy;
+use App\Policies\ProfilePolicy;
+use App\Policies\CategoryPolicy;
+use App\Policies\PermissionPolicy;
 use Modules\SupportDesk\Models\Ticket;
+use Modules\SupportDesk\Models\Comment;
+use Modules\SupportDesk\Models\Category;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 //use Illuminate\Support\Facades\Gate;
 

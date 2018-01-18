@@ -5,7 +5,7 @@ namespace Modules\SupportDesk\Models;
 use App\Model;
 
 /**
- * App\NullTicket
+ * App\NullTicket.
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model sortable($defaultSortColumn = null, $direction = 'asc')
  * @property-read string $is_active

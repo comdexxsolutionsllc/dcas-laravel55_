@@ -5,8 +5,8 @@ use Carbon\Carbon;
 use DCAS\Classes\TicketId;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Modules\SupportDesk\Models\Category;
 use Modules\SupportDesk\Models\Queue;
+use Modules\SupportDesk\Models\Category;
 use Modules\SupportDesk\Models\Technician;
 
 class TicketTableSeeder extends Seeder
@@ -26,7 +26,7 @@ class TicketTableSeeder extends Seeder
             'On Hold',
             'Pending Customer Response',
             'Awaiting Manager Review',
-            'Closed'
+            'Closed',
         ];
         $queue_ids = Queue::pluck('id')->toArray();
         $technician_ids = Technician::pluck('id')->toArray();
@@ -44,7 +44,7 @@ class TicketTableSeeder extends Seeder
                 'message' => $faker->paragraph(),
                 'status' => $faker->randomElement($statuses),
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

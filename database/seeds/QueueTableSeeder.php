@@ -15,7 +15,7 @@ class QueueTableSeeder extends Seeder
                 'name' => $faker->word,
                 'description' => $faker->word,
                 'created_at' => Carbon::now()->subDay(1),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

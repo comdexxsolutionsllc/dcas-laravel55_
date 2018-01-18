@@ -18,7 +18,7 @@ $factory->define(Modules\SupportDesk\Models\Ticket::class, function (Faker $fake
         'On Hold',
         'Pending Customer Response',
         'Awaiting Manager Review',
-        'Closed'
+        'Closed',
     ];
 
     return [
@@ -29,6 +29,6 @@ $factory->define(Modules\SupportDesk\Models\Ticket::class, function (Faker $fake
         'priority' => $faker->randomElement($priorities),
         'message' => $faker->paragraph(5),
         'status' => $faker->randomElement($statuses),
-        'created_at' => Carbon::now()->subDay(2)
+        'created_at' => Carbon::now()->subDay(2),
     ];
 });

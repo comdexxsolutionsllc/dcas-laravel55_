@@ -3,8 +3,7 @@
 namespace DCAS\Traits;
 
 /**
- * Trait ProvidesModelCacheKey
- * @package DCAS\Traits
+ * Trait ProvidesModelCacheKey.
  * @see https://laravel-news.com/laravel-model-caching
  */
 trait ProvidesModelCacheKey
@@ -21,14 +20,14 @@ trait ProvidesModelCacheKey
     public function cacheKey()
     {
         return sprintf(
-            "%s/%s-%s",
+            '%s/%s-%s',
             $this->getTable(),
             $this->getKey(),
             $this->updated_at->timestamp
         );
     }
 
-    /**
+    /*
      * @example
      */
     //    public function comments()

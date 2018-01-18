@@ -4,8 +4,8 @@ namespace DCAS\Traits;
 
 use Carbon\Carbon;
 use DateTimeInterface;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
 trait CustomCasts
 {
@@ -25,7 +25,7 @@ trait CustomCasts
         // which simply lets the developers tweak the attribute as it is set on
         // the model, such as "json_encoding" an listing of data for storage.
         if ($this->hasSetMutator($key)) {
-            $method = 'set' . Str::studly($key) . 'Attribute';
+            $method = 'set'.Str::studly($key).'Attribute';
 
             return $this->{$method}($value);
         }
@@ -39,7 +39,7 @@ trait CustomCasts
             $value = $this->fromTime($value);
         }
 
-        if ($this->isJsonCastable($key) && !is_null($value)) {
+        if ($this->isJsonCastable($key) && ! is_null($value)) {
             $value = $this->asJson($value);
         }
 
@@ -148,16 +148,16 @@ trait CustomCasts
         switch ($this->getCastType($key)) {
             case 'int':
             case 'integer':
-                return (int)$value;
+                return (int) $value;
             case 'real':
             case 'float':
             case 'double':
-                return (float)$value;
+                return (float) $value;
             case 'string':
-                return (string)$value;
+                return (string) $value;
             case 'bool':
             case 'boolean':
-                return (bool)$value;
+                return (bool) $value;
             case 'object':
                 return $this->fromJson($value, true);
             case 'array':

@@ -2,10 +2,10 @@
 
 namespace Modules\SupportDesk\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\View\View;
+use App\Http\Controllers\Controller;
 
 class RolesController extends Controller
 {

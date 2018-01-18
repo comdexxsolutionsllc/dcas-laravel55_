@@ -11,5 +11,5 @@ return [
         'reset' => [
             'password' => 'required|string|confirmed|min:6',
         ],
-    ]
+    ],
 ];

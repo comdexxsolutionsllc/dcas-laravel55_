@@ -24,7 +24,7 @@ class EvenNumber implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return (int)$value % 2 === 0;
+        return (int) $value % 2 === 0;
     }
 
     /**

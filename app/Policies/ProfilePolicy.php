@@ -18,7 +18,9 @@ class ProfilePolicy
      */
     public function before($user): bool
     {
-        if ($user->isAdmin()) return true;
+        if ($user->isAdmin()) {
+            return true;
+        }
     }
 
     /**
@@ -41,7 +43,6 @@ class ProfilePolicy
     public function create(User $user)
     {
         return $user->may('create-profile');
-
     }
 
     /**

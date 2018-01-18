@@ -3,7 +3,7 @@
 namespace App;
 
 /**
- * App\NullProfile
+ * App\NullProfile.
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model sortable($defaultSortColumn = null, $direction = 'asc')
  * @property-read string $is_active

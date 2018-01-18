@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
+use Log;
 use Exception;
 use Illuminate\Http\Response;
-use Log;
 
 class AccountDisabledException extends Exception
 {

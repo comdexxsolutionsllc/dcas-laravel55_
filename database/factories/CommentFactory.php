@@ -13,6 +13,6 @@ $factory->define(Modules\SupportDesk\Models\Comment::class, function (Faker $fak
     return [
         'ticket_id' => $faker->randomElement($ticket_ids),
         'user_id' => $faker->randomElement($user_ids),
-        'comment' => $faker->paragraph
+        'comment' => $faker->paragraph,
     ];
 });

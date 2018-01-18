@@ -24,7 +24,7 @@ class OddNumber implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return (int)$value % 2 === 1;
+        return (int) $value % 2 === 1;
     }
 
     /**

@@ -3,11 +3,11 @@
 namespace Modules\SupportDesk\Models;
 
 use App\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Modules\SupportDesk\Models\Technician
+ * Modules\SupportDesk\Models\Technician.
  *
  * @property int $id
  * @property string $firstName
@@ -49,9 +49,9 @@ class Technician extends Model
     use SoftDeletes;
 
     public $fillable = [
-        "firstName",
-        "lastName",
-        "email"
+        'firstName',
+        'lastName',
+        'email',
     ];
 
     /**

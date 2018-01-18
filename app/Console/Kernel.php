@@ -3,14 +3,13 @@
 namespace App\Console;
 
 use App\Console\Commands\AddUser;
-use App\Console\Commands\DisableUser;
 use App\Console\Commands\EnableUser;
+use App\Console\Commands\DisableUser;
 use App\Console\Commands\MakeVueFile;
 use App\Console\Commands\ResetPassword;
-use Busatlic\ScheduleMonitor\MonitorsSchedule;
 use Illuminate\Console\Scheduling\Schedule;
+use Busatlic\ScheduleMonitor\MonitorsSchedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
 
 class Kernel extends ConsoleKernel
 {
@@ -46,7 +45,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }

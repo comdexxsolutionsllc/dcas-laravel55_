@@ -3,11 +3,11 @@
 namespace Modules\SupportDesk\Models;
 
 use App\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Modules\SupportDesk\Models\Status
+ * Modules\SupportDesk\Models\Status.
  *
  * @property int $id
  * @property string $name
@@ -47,8 +47,8 @@ class Status extends Model
     use SoftDeletes;
 
     public $fillable = [
-        "name",
-        "hex"
+        'name',
+        'hex',
     ];
 
     /**

@@ -3,11 +3,11 @@
 namespace Modules\SupportDesk\Models;
 
 use App\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Modules\SupportDesk\Models\Requestor
+ * Modules\SupportDesk\Models\Requestor.
  *
  * @property int $id
  * @property string $firstName
@@ -49,9 +49,9 @@ class Requestor extends Model
     use SoftDeletes;
 
     public $fillable = [
-        "firstName",
-        "lastName",
-        "email"
+        'firstName',
+        'lastName',
+        'email',
     ];
 
     /**

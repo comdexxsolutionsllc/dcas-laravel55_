@@ -3,11 +3,11 @@
 namespace Modules\SupportDesk\Models;
 
 use App\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Modules\SupportDesk\Models\Tag
+ * Modules\SupportDesk\Models\Tag.
  *
  * @property int $id
  * @property mixed $name

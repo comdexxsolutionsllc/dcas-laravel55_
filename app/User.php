@@ -3,34 +3,34 @@
 namespace App;
 
 use Cache;
-use Cviebrock\EloquentSluggable\Sluggable;
 use DCAS\Helpers\Arr;
 use DCAS\Traits\Filterable;
 use DCAS\Traits\HasGravatar;
-use Gabievi\Promocodes\Traits\Rewardable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use InvalidArgumentException;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
-use Modules\SupportDesk\Models\Comment;
+use Rogercbe\TableSorter\Sortable;
 use Modules\SupportDesk\Models\Ticket;
+use Modules\SupportDesk\Models\Comment;
+use Illuminate\Notifications\Notifiable;
+use Gabievi\Promocodes\Traits\Rewardable;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Prettus\Repository\Contracts\Presentable;
 use Prettus\Repository\Traits\PresentableTrait;
-use Rogercbe\TableSorter\Sortable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Srmklive\Authy\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatable;
 use Srmklive\Authy\Contracts\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatableContract;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 //use DCAS\Traits\Excludable;
 
 /**
- * App\User
+ * App\User.
  *
  * @property int $id
  * @property string $name
@@ -103,7 +103,6 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 class User extends Authenticatable implements Presentable, TwoFactorAuthenticatableContract
 {
     use Authorizable, Billable, Filterable, HasApiTokens, HasGravatar, Notifiable, PresentableTrait, Rewardable, SearchableTrait, Sluggable, Sortable, TwoFactorAuthenticatable;
-
     use EntrustUserTrait {
         EntrustUserTrait::restore as private restoreA;
         EntrustUserTrait::can as may;
@@ -229,7 +228,7 @@ class User extends Authenticatable implements Presentable, TwoFactorAuthenticata
      */
     public function isOnline(): bool
     {
-        return Cache::has('user-is-online-' . $this->id);
+        return Cache::has('user-is-online-'.$this->id);
     }
 
     /**
@@ -305,22 +304,22 @@ class User extends Authenticatable implements Presentable, TwoFactorAuthenticata
     public function ability($roles, $permissions, $options = [])
     {
         // Convert string to array if that's what is passed in.
-        if (!is_array($roles)) {
+        if (! is_array($roles)) {
             $roles = explode(',', $roles);
         }
-        if (!is_array($permissions)) {
+        if (! is_array($permissions)) {
             $permissions = explode(',', $permissions);
         }
 
         // Set up default values and validate options.
-        if (!isset($options['validate_all'])) {
+        if (! isset($options['validate_all'])) {
             $options['validate_all'] = false;
         } else {
             if ($options['validate_all'] !== true && $options['validate_all'] !== false) {
                 throw new InvalidArgumentException();
             }
         }
-        if (!isset($options['return_type'])) {
+        if (! isset($options['return_type'])) {
             $options['return_type'] = 'boolean';
         } else {
             if ($options['return_type'] != 'boolean' &&
@@ -343,8 +342,8 @@ class User extends Authenticatable implements Presentable, TwoFactorAuthenticata
         // If validate all and there is a false in either
         // Check that if validate all, then there should not be any false.
         // Check that if not validate all, there must be at least one true.
-        if (($options['validate_all'] && !(in_array(false, $checkedRoles) || in_array(false, $checkedPermissions))) ||
-            (!$options['validate_all'] && (in_array(true, $checkedRoles) || in_array(true, $checkedPermissions)))) {
+        if (($options['validate_all'] && ! (in_array(false, $checkedRoles) || in_array(false, $checkedPermissions))) ||
+            (! $options['validate_all'] && (in_array(true, $checkedRoles) || in_array(true, $checkedPermissions)))) {
             $validateAll = true;
         } else {
             $validateAll = false;

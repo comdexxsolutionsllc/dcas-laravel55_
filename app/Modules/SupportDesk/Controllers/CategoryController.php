@@ -2,14 +2,13 @@
 
 namespace Modules\SupportDesk\Controllers;
 
-use App\Http\Controllers\Controller;
-use DCAS\Traits\ApiErrorResponse;
 use Illuminate\Http\Request;
+use DCAS\Traits\ApiErrorResponse;
+use App\Http\Controllers\Controller;
 use Modules\SupportDesk\Models\Category;
 
 class CategoryController extends Controller
 {
-
     use ApiErrorResponse;
 
     /**

@@ -1,8 +1,7 @@
 <?php
 
-use App\{
-    Permission, Role
-};
+use App\Role;
+use App\Permission;
 use Illuminate\Database\Seeder;
 
 class PermissionRoleSeeder extends Seeder
@@ -32,7 +31,6 @@ class PermissionRoleSeeder extends Seeder
          * description — A more detailed explanation of the Permission.
          */
         // End doc block.
-
 
         // Super Administrator
         $super_admin = new Role();
@@ -208,7 +206,6 @@ class PermissionRoleSeeder extends Seeder
         $employee->display_name = 'Employee';
         $employee->description = 'Default employee role';
         $employee->save();
-
 
         /** Add Role/Permission to Admin user */
         $user = App\User::first();

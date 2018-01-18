@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\VerifyUser
+ * App\VerifyUser.
  *
  * @property int $user_id
  * @property string $token
@@ -24,8 +24,8 @@ class VerifyUser extends Model
      * @var array
      */
     protected $fillable = [
-        "user_id",
-        "token"
+        'user_id',
+        'token',
     ];
 
     /**

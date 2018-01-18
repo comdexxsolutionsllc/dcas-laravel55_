@@ -2,9 +2,9 @@
 
 namespace Modules\SupportDesk\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\SupportDesk\Models\Tag;
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {

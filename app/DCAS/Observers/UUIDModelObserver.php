@@ -17,7 +17,5 @@ final class UUIDModelObserver
     public function creating(UUIDModel $model)
     {
         $model->{$model->getKeyName()} = ModelHelper::generateUuid();
-
-        return null;
     }
 }

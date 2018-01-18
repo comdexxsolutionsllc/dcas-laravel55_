@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Authy;
 use Flashy;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -78,13 +78,13 @@ class LoginController extends Controller
     public function postToken(Request $request): Response
     {
         $this->validate($request, ['token' => 'required']);
-        if (!session('authy:auth:id')) {
+        if (! session('authy:auth:id')) {
             return redirect(url('login'));
         }
 
         $guard = config('auth.defaults.guard');
-        $provider = config('auth.guards.' . $guard . '.provider');
-        $model = config('auth.providers.' . $provider . '.model');
+        $provider = config('auth.guards.'.$guard.'.provider');
+        $model = config('auth.providers.'.$provider.'.model');
 
         $user = (new $model())->findOrFail(
             $request->session()->pull('authy:auth:id')
@@ -149,8 +149,9 @@ class LoginController extends Controller
             return $this->logoutAndRedirectToTokenScreen($request, $user);
         }
 
-        if (!$user->verified) {
+        if (! $user->verified) {
             auth()->logout();
+
             return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
         }
 
