@@ -1,6 +1,6 @@
 tools:
     external_code_coverage:
-        timeout: 600
+        timeout: 1800
 checks:
     php:
          verify_property_names: true
