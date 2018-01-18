@@ -1,1 +1,8 @@
 preset: laravel
+finder:
+  exclude:
+    - "tests"
+  name:
+    - "*.php"
+  contains:
+    - "_ide_helper"
