@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Modules\Supportdesk\Models\Comment;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommentPolicy
 {
@@ -19,7 +19,9 @@ class CommentPolicy
      */
     public function before($user): bool
     {
-        if ($user->isAdmin()) return true;
+        if ($user->isAdmin()) {
+            return true;
+        }
     }
 
     /**

@@ -57,7 +57,7 @@ return [
      */
     'separator' => '-',
 
-    /**
+    /*
      * User model
      */
     'user_model' => \App\User::class,

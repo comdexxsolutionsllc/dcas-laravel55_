@@ -29,7 +29,6 @@ class Pdf extends Dompdf
         return request()->has('download') ? 'attachment' : 'inline';
     }
 
-
     /**
      * Render the PDF.
      *

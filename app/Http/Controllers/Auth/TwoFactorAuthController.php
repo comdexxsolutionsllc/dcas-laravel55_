@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Authy;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class TwoFactorAuthController extends Controller
 {
@@ -30,13 +30,13 @@ class TwoFactorAuthController extends Controller
     public function postToken(Request $request): Response
     {
         $this->validate($request, ['token' => 'required']);
-        if (!session('authy:auth:id')) {
+        if (! session('authy:auth:id')) {
             return redirect(url('login'));
         }
 
         $guard = config('auth.defaults.guard');
-        $provider = config('auth.guards.' . $guard . '.provider');
-        $model = config('auth.providers.' . $provider . '.model');
+        $provider = config('auth.guards.'.$guard.'.provider');
+        $model = config('auth.providers.'.$provider.'.model');
 
         $user = (new $model())->findOrFail(
             $request->session()->pull('authy:auth:id')

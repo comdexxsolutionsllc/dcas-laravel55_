@@ -6,6 +6,6 @@ $factory->define(\Modules\SupportDesk\Models\Technician::class, function (Faker 
     return [
         'firstName' => $faker->firstName,
         'lastName' => $faker->lastName,
-        'email' => $faker->email
+        'email' => $faker->email,
     ];
 });

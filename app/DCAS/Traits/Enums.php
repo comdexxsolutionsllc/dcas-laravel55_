@@ -2,8 +2,8 @@
 
 namespace DCAS\Traits;
 
-use App\Exceptions\InvalidEnumException;
 use Illuminate\Support\Str;
+use App\Exceptions\InvalidEnumException;
 
 trait Enums
 {
@@ -21,8 +21,8 @@ trait Enums
     public function setAttribute($field, $value)
     {
         if ($this->hasEnumProperty($field)) {
-            if (!$this->isValidEnum($field, $value)) {
-                throw new InvalidEnumException('Invalid value for ' . static::class . "::$field ($value)");
+            if (! $this->isValidEnum($field, $value)) {
+                throw new InvalidEnumException('Invalid value for '.static::class."::$field ($value)");
             }
 
             if ($this->isKeyedEnum($field, $value)) {
@@ -56,7 +56,7 @@ trait Enums
      */
     protected function getEnumProperty(string $field): string
     {
-        return 'enum' . Str::plural(Str::studly($field));
+        return 'enum'.Str::plural(Str::studly($field));
     }
 
     /**

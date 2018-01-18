@@ -2,14 +2,14 @@
 
 namespace Modules\SupportDesk\Controllers;
 
+use Zttp\Zttp;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Modules\SupportDesk\Mailers\AppMailer;
-use Modules\SupportDesk\Models\Category;
 use Modules\SupportDesk\Models\Ticket;
-use Zttp\Zttp;
+use Modules\SupportDesk\Models\Category;
+use Modules\SupportDesk\Mailers\AppMailer;
 
 class TicketsController extends Controller
 {
@@ -99,7 +99,7 @@ class TicketsController extends Controller
             'remoteip' => $_SERVER['REMOTE_ADDR'],
         ]);
 
-        if (!$response->json()['success']) {
+        if (! $response->json()['success']) {
             throw new \Exception('Recaptcha failed');
         }
 

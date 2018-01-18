@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
 use Request;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -23,7 +23,7 @@ class ProfileController extends Controller
     {
         // Return the views with all the profile list
         return view('profile.index', [
-            'profiles' => $profile->all()
+            'profiles' => $profile->all(),
         ]);
     }
 
@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
         // Return the views of the requested profile
         return view('profile.show', [
-            'profile' => $profile->where('username', $username)->get()
+            'profile' => $profile->where('username', $username)->get(),
         ]);
     }
 
@@ -71,7 +71,7 @@ class ProfileController extends Controller
                 'city' => 'required',
                 'state' => 'required|between:2,2',
                 'country' => 'required|between:2,2',
-                'postal_code' => 'required'
+                'postal_code' => 'required',
             ])
         );
 
@@ -82,6 +82,6 @@ class ProfileController extends Controller
         $profile->save();
 
         // Redirect to the profile
-        return redirect('/dashboard/profile/' . $profile->username);
+        return redirect('/dashboard/profile/'.$profile->username);
     }
 }

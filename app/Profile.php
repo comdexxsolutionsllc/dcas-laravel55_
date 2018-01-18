@@ -2,11 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\Profile
+ * App\Profile.
  *
  * @property int $id
  * @property int $user_id
@@ -65,14 +65,14 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-        "avatar",
-        "biography",
-        "address_1",
-        "address_2",
-        "city",
-        "state",
-        "country",
-        "postal_code"
+        'avatar',
+        'biography',
+        'address_1',
+        'address_2',
+        'city',
+        'state',
+        'country',
+        'postal_code',
     ];
 
     /**

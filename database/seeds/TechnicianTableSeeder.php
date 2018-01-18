@@ -16,7 +16,7 @@ class TechnicianTableSeeder extends Seeder
                 'lastName' => $faker->lastName,
                 'email' => $faker->email,
                 'created_at' => Carbon::now()->subDay(1),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

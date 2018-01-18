@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use Session;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -39,7 +39,7 @@ class HomeController extends Controller
      */
     protected function injectDomain(): string
     {
-        !Session::has('domain') ? Session::put('domain', auth()->user()->domain) : true;
+        ! Session::has('domain') ? Session::put('domain', auth()->user()->domain) : true;
 
         $this->setDomain(Session::get('domain'));
 

@@ -3,11 +3,11 @@
 namespace Modules\SupportDesk\Models;
 
 use App\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Modules\SupportDesk\Models\Queue
+ * Modules\SupportDesk\Models\Queue.
  *
  * @property int $id
  * @property string $name
@@ -47,8 +47,8 @@ class Queue extends Model
     use SoftDeletes;
 
     public $fillable = [
-        "name",
-        "description"
+        'name',
+        'description',
     ];
 
     /**

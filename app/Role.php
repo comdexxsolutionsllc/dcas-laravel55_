@@ -5,7 +5,7 @@ namespace App;
 use Zizaco\Entrust\EntrustRole;
 
 /**
- * App\Role
+ * App\Role.
  *
  * @property int $id
  * @property string $name

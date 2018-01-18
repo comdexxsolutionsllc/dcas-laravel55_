@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
 use Socialite;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 
 abstract class OAuthController extends Controller
 {
@@ -28,6 +28,6 @@ abstract class OAuthController extends Controller
         $user = Socialite::driver('github')->user();
 
         // Handle provider callback. The following is filler.
-         $user->token;
+        $user->token;
     }
 }

@@ -12,12 +12,12 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::if ('admin', function ($user = null) {
-            if (!$user && auth()->check()) {
+        Blade::if('admin', function ($user = null) {
+            if (! $user && auth()->check()) {
                 $user = auth()->user();
             }
 
-            if (!$user) {
+            if (! $user) {
                 return false;
             }
 
@@ -41,7 +41,7 @@ class BladeServiceProvider extends ServiceProvider
             $metaTag = "<meta name=\"csrf-token\" content=\"{$csrf}\">";
             $scriptTag = "<script>window.{$namespace} = {'csrfToken': '{$csrf}'}</script>";
 
-            return $metaTag . $scriptTag;
+            return $metaTag.$scriptTag;
         });
 
         // add datetime for blade
@@ -60,11 +60,11 @@ class BladeServiceProvider extends ServiceProvider
             return "<?php dd(with{$expression}); ?>";
         });
 
-        Blade::if ('disabled', function () {
+        Blade::if('disabled', function () {
             return auth()->check() && auth()->user()->isDisabled();
         });
 
-        Blade::if ('env', function ($environment) {
+        Blade::if('env', function ($environment) {
             return app()->environment($environment);
         });
 
@@ -138,8 +138,7 @@ class BladeServiceProvider extends ServiceProvider
             $expression = trim($expression, '()');
             $extraction = preg_split('/,\s*/', $expression);
 
-            if (is_array($extraction))
-            {
+            if (is_array($extraction)) {
                 list($count, $str, $spacer) = array_pad(
                     $extraction,
                     3,
@@ -149,7 +148,9 @@ class BladeServiceProvider extends ServiceProvider
                 return "<?php echo $count . $spacer . str_plural($str, $count) ?>";
             }
 
-            if ($extraction !== true) return false;
+            if ($extraction !== true) {
+                return false;
+            }
 
             throw new \Exception('Unable to pluralize string.');
         });
@@ -162,8 +163,8 @@ class BladeServiceProvider extends ServiceProvider
             $variable = trim(str_replace('\'', '', $variable));
 
             // Make sure that the variable starts with $
-            if (!starts_with($variable, '$')) {
-                $variable = '$' . $variable;
+            if (! starts_with($variable, '$')) {
+                $variable = '$'.$variable;
             }
 
             $value = trim($value);

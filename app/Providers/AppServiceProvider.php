@@ -28,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
             $this->app->register(\Way\Generators\GeneratorsServiceProvider::class);
             $this->app->register(\Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class);
-
         }
 
         $this->app->alias('bugsnag.logger', \Illuminate\Contracts\Logging\Log::class);

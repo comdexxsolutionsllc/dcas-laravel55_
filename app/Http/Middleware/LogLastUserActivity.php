@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use App\User;
 use Carbon\Carbon;
-use Closure;
 
 class LogLastUserActivity
 {
@@ -25,7 +25,7 @@ class LogLastUserActivity
             $user->save();
 
             $expiresAt = Carbon::now()->addMinutes(5);
-            cache()->put('user-is-online-' . auth()->user()->id, true, $expiresAt);
+            cache()->put('user-is-online-'.auth()->user()->id, true, $expiresAt);
         }
 
         return $next($request);

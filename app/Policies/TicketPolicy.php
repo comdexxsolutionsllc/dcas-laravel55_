@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Modules\SupportDesk\Models\Ticket;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TicketPolicy
 {
@@ -20,7 +20,9 @@ class TicketPolicy
      */
     public function before($user, $ability): bool
     {
-        if ($user->isAdmin()) return true;
+        if ($user->isAdmin()) {
+            return true;
+        }
     }
 
     /**

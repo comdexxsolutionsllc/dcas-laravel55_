@@ -26,7 +26,7 @@ class ProfileTableSeeder extends Seeder
                 'country' => $faker->countryCode,
                 'postal_code' => '99999',
                 'created_at' => Carbon::now()->subDay(1),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

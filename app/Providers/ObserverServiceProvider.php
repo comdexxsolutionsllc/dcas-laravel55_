@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Profile;
 use App\User;
-use DCAS\Observers\ProfileObserver;
+use App\Profile;
 use DCAS\Observers\UserObserver;
+use DCAS\Observers\ProfileObserver;
 use Illuminate\Support\ServiceProvider;
 
 class ObserverServiceProvider extends ServiceProvider

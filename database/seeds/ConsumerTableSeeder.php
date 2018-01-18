@@ -24,7 +24,7 @@ class ConsumerTableSeeder extends Seeder
                 'ip' => $faker->ipv4,
                 'active' => $faker->boolean,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

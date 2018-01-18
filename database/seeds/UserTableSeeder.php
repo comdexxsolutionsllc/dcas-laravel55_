@@ -17,9 +17,9 @@ class UserTableSeeder extends Seeder
 
         $faker = Faker::create();
         foreach (range(1, 99) as $index) {
-            $name = $faker->firstName() . ' ' . $faker->lastName;
+            $name = $faker->firstName().' '.$faker->lastName;
             $username = $faker->userName;
-            $slug = str_slug($name . '-' . $username);
+            $slug = str_slug($name.'-'.$username);
 
             DB::table('accounts')->insert([
                 'profile_id' => $index, // TODO:  Change this?
@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
                 'domain' => $faker->domainName,
                 'slug' => $slug,
                 'created_at' => Carbon::now()->subDay(1),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

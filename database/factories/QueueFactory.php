@@ -8,6 +8,6 @@ $factory->define(\Modules\SupportDesk\Models\Queue::class, function (Faker $fake
         'name' => $faker->word,
         'description' => $faker->word,
         'created_at' => Carbon::now()->subDay(1),
-        'updated_at' => Carbon::now()
+        'updated_at' => Carbon::now(),
     ];
 });

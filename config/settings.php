@@ -1,4 +1,5 @@
 <?php
+
 return [
     // which type of store to use.
     // valid options: 'json', 'database'
@@ -6,7 +7,7 @@ return [
 
     // if the json store is used, give the full path to the .json file
     // that the store writes to.
-    'path' => storage_path() . '/settings.json',
+    'path' => storage_path().'/settings.json',
 
     // if the database store is used, set the name of the table used..
     'table' => 'settings',
@@ -18,5 +19,5 @@ return [
     // If you want to use custom column names in database store you could
     // set them in this configuration
     'keyColumn' => 'key',
-    'valueColumn' => 'value'
+    'valueColumn' => 'value',
 ];

@@ -5,7 +5,7 @@ namespace App;
 use DCAS\Observers\ConsumerModelObserver;
 
 /**
- * App\Consumer
+ * App\Consumer.
  *
  * @property string $id
  * @property string|null $api_token

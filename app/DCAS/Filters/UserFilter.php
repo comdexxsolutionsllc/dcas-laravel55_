@@ -27,6 +27,6 @@ class UserFilter extends QueryFilter
      */
     public function name($name)
     {
-        return $this->builder->where('name', 'LIKE', '%' . $name . '%');
+        return $this->builder->where('name', 'LIKE', '%'.$name.'%');
     }
 }

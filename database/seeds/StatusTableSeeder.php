@@ -16,7 +16,7 @@ class StatusTableSeeder extends Seeder
             'On Hold',
             'Pending Customer Response',
             'Awaiting Manager Review',
-            'Closed'
+            'Closed',
         ];
 
         foreach (range(0, 5) as $index) {
@@ -24,7 +24,7 @@ class StatusTableSeeder extends Seeder
                 'name' => $statuses[$index],
                 'hex' => $faker->safeHexColor,
                 'created_at' => Carbon::now()->subDay(1),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

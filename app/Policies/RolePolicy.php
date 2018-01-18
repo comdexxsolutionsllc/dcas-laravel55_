@@ -20,7 +20,7 @@ class RolePolicy
      */
     public function before($user, $ability)
     {
-        // 
+        //
     }
 
     /**

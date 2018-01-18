@@ -25,7 +25,7 @@ class CommentTableSeeder extends Seeder
                 'user_id' => $faker->randomElement($user_ids),
                 'comment' => $faker->paragraph(),
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ]);
         }
     }

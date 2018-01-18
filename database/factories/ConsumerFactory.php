@@ -10,6 +10,6 @@ $factory->define(\App\Consumer::class, function (Faker $faker) {
         'ip' => $faker->ipv4,
         'active' => $faker->boolean,
         'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'updated_at' => Carbon::now(),
     ];
 });

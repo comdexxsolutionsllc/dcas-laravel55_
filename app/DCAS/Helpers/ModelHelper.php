@@ -24,6 +24,6 @@ class ModelHelper
      */
     public static function generateApiToken(Consumer $consumer): string
     {
-        return hash_hmac('sha256', strtolower(trim($consumer->{$consumer->getKeyName()} . $consumer->{$consumer->getUpdatedAtColumn()})), config('app.key'));
+        return hash_hmac('sha256', strtolower(trim($consumer->{$consumer->getKeyName()}.$consumer->{$consumer->getUpdatedAtColumn()})), config('app.key'));
     }
 }

@@ -3,7 +3,7 @@
 namespace App;
 
 /**
- * App\Page
+ * App\Page.
  *
  * @property int $id
  * @property string $slug
@@ -34,16 +34,16 @@ class Page extends Model
      * @var array
      */
     public $fillable = [
-        'slug'
+        'slug',
     ];
 
     /**
      * @param $slug
      * @return Page
      */
-    public static function findBySlug($slug): Page
+    public static function findBySlug($slug): self
     {
-        return new Page(compact('slug'));
+        return new self(compact('slug'));
     }
 
     /**

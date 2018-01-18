@@ -16,6 +16,6 @@ $factory->define(App\Profile::class, function (Faker $faker) {
         'city' => $faker->city,
         'state' => 'AB',
         'country' => $faker->countryCode,
-        'postal_code' => $faker->postcode
+        'postal_code' => $faker->postcode,
     ];
 });

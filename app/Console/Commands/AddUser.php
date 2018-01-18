@@ -25,7 +25,7 @@ class AddUser extends Command
 
         $email = $this->argument('email');
 
-        $slug = (string) $email . '-' . (string) $username;
+        $slug = (string) $email.'-'.(string) $username;
 
         if ($this->confirm('Let system generate password for you?')) {
             $password = str_random(16);

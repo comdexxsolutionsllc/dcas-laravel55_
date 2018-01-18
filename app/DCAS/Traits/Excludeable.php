@@ -14,7 +14,7 @@ trait Excludeable
      */
     public function scopeExclude($query, $columns)
     {
-        return $query->select(array_diff($this->getTableColumns(), (array)$columns));
+        return $query->select(array_diff($this->getTableColumns(), (array) $columns));
     }
 
     /**
