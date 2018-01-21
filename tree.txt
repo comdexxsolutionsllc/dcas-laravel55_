@@ -1,0 +1,500 @@
+.
+├── ./app
+│   ├── ./app/Console
+│   │   ├── ./app/Console/Commands
+│   │   │   ├── ./app/Console/Commands/AddUser.php
+│   │   │   ├── ./app/Console/Commands/DisableUser.php
+│   │   │   ├── ./app/Console/Commands/EnableUser.php
+│   │   │   ├── ./app/Console/Commands/GenerateSitemap.php
+│   │   │   ├── ./app/Console/Commands/JWTGenerateCommand.php
+│   │   │   ├── ./app/Console/Commands/MakeVueFile.php
+│   │   │   ├── ./app/Console/Commands/MigrationCommand.php
+│   │   │   └── ./app/Console/Commands/ResetPassword.php
+│   │   ├── ./app/Console/Kernel.php
+│   │   └── ./app/Console/Stubs
+│   │       └── ./app/Console/Stubs/MakeVue.stub
+│   ├── ./app/Consumer.php
+│   ├── ./app/DCAS
+│   │   ├── ./app/DCAS/Classes
+│   │   │   └── ./app/DCAS/Classes/TicketId.php
+│   │   ├── ./app/DCAS/Contracts
+│   │   │   └── ./app/DCAS/Contracts/RepositoryContract.php
+│   │   ├── ./app/DCAS/Facades
+│   │   ├── ./app/DCAS/Filters
+│   │   │   ├── ./app/DCAS/Filters/QueryFilter.php
+│   │   │   └── ./app/DCAS/Filters/UserFilter.php
+│   │   ├── ./app/DCAS/Helpers
+│   │   │   ├── ./app/DCAS/Helpers/Arr.php
+│   │   │   └── ./app/DCAS/Helpers/ModelHelper.php
+│   │   ├── ./app/DCAS/Observers
+│   │   │   ├── ./app/DCAS/Observers/ConsumerModelObserver.php
+│   │   │   ├── ./app/DCAS/Observers/ProfileObserver.php
+│   │   │   ├── ./app/DCAS/Observers/UUIDModelObserver.php
+│   │   │   └── ./app/DCAS/Observers/UserObserver.php
+│   │   ├── ./app/DCAS/Presenters
+│   │   ├── ./app/DCAS/Scoping
+│   │   ├── ./app/DCAS/Services
+│   │   ├── ./app/DCAS/Support
+│   │   ├── ./app/DCAS/Traits
+│   │   │   ├── ./app/DCAS/Traits/ApiErrorResponse.php
+│   │   │   ├── ./app/DCAS/Traits/CustomCasts.php
+│   │   │   ├── ./app/DCAS/Traits/DisableUpdatedAt.php
+│   │   │   ├── ./app/DCAS/Traits/Enums.php
+│   │   │   ├── ./app/DCAS/Traits/Excludeable.php
+│   │   │   ├── ./app/DCAS/Traits/Filterable.php
+│   │   │   ├── ./app/DCAS/Traits/GetRemoteIP.php
+│   │   │   ├── ./app/DCAS/Traits/HasGravatar.php
+│   │   │   ├── ./app/DCAS/Traits/OwnsModels.php
+│   │   │   └── ./app/DCAS/Traits/ProvidesModelCacheKey.php
+│   │   ├── ./app/DCAS/Translations
+│   │   ├── ./app/DCAS/UtilityClasses
+│   │   └── ./app/DCAS/ViewComposers
+│   ├── ./app/Exceptions
+│   │   ├── ./app/Exceptions/AccountDisabledException.php
+│   │   ├── ./app/Exceptions/Handler.php
+│   │   └── ./app/Exceptions/InvalidEnumException.php
+│   ├── ./app/Http
+│   │   ├── ./app/Http/Controllers
+│   │   │   ├── ./app/Http/Controllers/Admin
+│   │   │   │   └── ./app/Http/Controllers/Admin/UserController.php
+│   │   │   ├── ./app/Http/Controllers/Api
+│   │   │   │   └── ./app/Http/Controllers/Api/WebhookController.php
+│   │   │   ├── ./app/Http/Controllers/Auth
+│   │   │   │   ├── ./app/Http/Controllers/Auth/ForgotPasswordController.php
+│   │   │   │   ├── ./app/Http/Controllers/Auth/LoginController.php
+│   │   │   │   ├── ./app/Http/Controllers/Auth/OAuthController.php
+│   │   │   │   ├── ./app/Http/Controllers/Auth/RegisterController.php
+│   │   │   │   ├── ./app/Http/Controllers/Auth/ResetPasswordController.php
+│   │   │   │   └── ./app/Http/Controllers/Auth/TwoFactorAuthController.php
+│   │   │   ├── ./app/Http/Controllers/Controller.php
+│   │   │   ├── ./app/Http/Controllers/HomeController.php
+│   │   │   ├── ./app/Http/Controllers/PdfController.php
+│   │   │   ├── ./app/Http/Controllers/ProfileController.php
+│   │   │   └── ./app/Http/Controllers/SearchController.php
+│   │   ├── ./app/Http/Kernel.php
+│   │   └── ./app/Http/Middleware
+│   │       ├── ./app/Http/Middleware/AdminMiddleware.php
+│   │       ├── ./app/Http/Middleware/Ajaxify.php
+│   │       ├── ./app/Http/Middleware/CacheStatuses.php
+│   │       ├── ./app/Http/Middleware/DenyFrames.php
+│   │       ├── ./app/Http/Middleware/EncryptCookies.php
+│   │       ├── ./app/Http/Middleware/GenerateMenus.php
+│   │       ├── ./app/Http/Middleware/JsonpResponse.php
+│   │       ├── ./app/Http/Middleware/LogLastUserActivity.php
+│   │       ├── ./app/Http/Middleware/RedirectIfAuthenticated.php
+│   │       ├── ./app/Http/Middleware/RestrictByIP.php
+│   │       ├── ./app/Http/Middleware/SessionTimeout.php
+│   │       ├── ./app/Http/Middleware/TrimStrings.php
+│   │       ├── ./app/Http/Middleware/TrustProxies.php
+│   │       └── ./app/Http/Middleware/VerifyCsrfToken.php
+│   ├── ./app/Invoice.php
+│   ├── ./app/Listeners
+│   │   ├── ./app/Listeners/PruneOldTokens.php
+│   │   ├── ./app/Listeners/RevokeOldTokens.php
+│   │   └── ./app/Listeners/UserEventSubscriber.php
+│   ├── ./app/Mail
+│   │   ├── ./app/Mail/UponUserLoginLockout.php
+│   │   └── ./app/Mail/VerifyMail.php
+│   ├── ./app/Model.php
+│   ├── ./app/Modules
+│   │   └── ./app/Modules/SupportDesk
+│   │       ├── ./app/Modules/SupportDesk/Controllers
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/API
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/CategoryController.php
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/CommentsController.php
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/PermissionsController.php
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/QueueController.php
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/RolesController.php
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/StatusController.php
+│   │       │   ├── ./app/Modules/SupportDesk/Controllers/TagController.php
+│   │       │   └── ./app/Modules/SupportDesk/Controllers/TicketsController.php
+│   │       ├── ./app/Modules/SupportDesk/Mailers
+│   │       │   └── ./app/Modules/SupportDesk/Mailers/AppMailer.php
+│   │       ├── ./app/Modules/SupportDesk/Models
+│   │       │   ├── ./app/Modules/SupportDesk/Models/Category.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/Comment.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullCategory.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullComment.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullQueue.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullRequestor.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullStatus.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullTag.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullTechnician.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/NullTicket.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/Queue.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/Requestor.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/Status.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/Tag.php
+│   │       │   ├── ./app/Modules/SupportDesk/Models/Technician.php
+│   │       │   └── ./app/Modules/SupportDesk/Models/Ticket.php
+│   │       ├── ./app/Modules/SupportDesk/Translations
+│   │       │   └── ./app/Modules/SupportDesk/Translations/en
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/categories.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/emails.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/example.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/main.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/permissions.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/queues.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/roles.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/statuses.php
+│   │       │       ├── ./app/Modules/SupportDesk/Translations/en/tags.php
+│   │       │       └── ./app/Modules/SupportDesk/Translations/en/tickets.php
+│   │       ├── ./app/Modules/SupportDesk/Views
+│   │       │   ├── ./app/Modules/SupportDesk/Views/categories
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/categories/create.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/categories/edit.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/categories/index.blade.php
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/categories/show.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/emails
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/emails/ticket_comments.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/emails/ticket_info.blade.php
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/emails/ticket_status.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/includes
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/includes/flash.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/index.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/partials
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/partials/ticket_grid.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/permissions
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/permissions/create.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/permissions/edit.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/permissions/index.blade.php
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/permissions/show.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/queues
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/queues/create.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/queues/edit.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/queues/index.blade.php
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/queues/show.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/roles
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/roles/create.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/roles/edit.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/roles/index.blade.php
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/roles/show.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/statuses
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/statuses/create.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/statuses/edit.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/statuses/index.blade.php
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/statuses/show.blade.php
+│   │       │   ├── ./app/Modules/SupportDesk/Views/tags
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/tags/create.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/tags/edit.blade.php
+│   │       │   │   ├── ./app/Modules/SupportDesk/Views/tags/index.blade.php
+│   │       │   │   └── ./app/Modules/SupportDesk/Views/tags/show.blade.php
+│   │       │   └── ./app/Modules/SupportDesk/Views/tickets
+│   │       │       ├── ./app/Modules/SupportDesk/Views/tickets/closed.blade.php
+│   │       │       ├── ./app/Modules/SupportDesk/Views/tickets/create.blade.php
+│   │       │       ├── ./app/Modules/SupportDesk/Views/tickets/index.blade.php
+│   │       │       ├── ./app/Modules/SupportDesk/Views/tickets/show.blade.php
+│   │       │       ├── ./app/Modules/SupportDesk/Views/tickets/ticket_info.blade.php
+│   │       │       └── ./app/Modules/SupportDesk/Views/tickets/user_tickets.blade.php
+│   │       ├── ./app/Modules/SupportDesk/helper.php
+│   │       └── ./app/Modules/SupportDesk/routes
+│   │           ├── ./app/Modules/SupportDesk/routes/api.php
+│   │           └── ./app/Modules/SupportDesk/routes/web.php
+│   ├── ./app/Notifications
+│   │   ├── ./app/Notifications/CommentCreated.php
+│   │   ├── ./app/Notifications/ProfileUpdated.php
+│   │   ├── ./app/Notifications/TicketCreated.php
+│   │   ├── ./app/Notifications/TicketUpdated.php
+│   │   └── ./app/Notifications/UserCreated.php
+│   ├── ./app/NullProfile.php
+│   ├── ./app/NullUser.php
+│   ├── ./app/Page.php
+│   ├── ./app/Permission.php
+│   ├── ./app/Policies
+│   │   ├── ./app/Policies/CategoryPolicy.php
+│   │   ├── ./app/Policies/CommentPolicy.php
+│   │   ├── ./app/Policies/PermissionPolicy.php
+│   │   ├── ./app/Policies/ProfilePolicy.php
+│   │   ├── ./app/Policies/RolePolicy.php
+│   │   └── ./app/Policies/TicketPolicy.php
+│   ├── ./app/Profile.php
+│   ├── ./app/Providers
+│   │   ├── ./app/Providers/AppServiceProvider.php
+│   │   ├── ./app/Providers/AuthServiceProvider.php
+│   │   ├── ./app/Providers/BladeServiceProvider.php
+│   │   ├── ./app/Providers/BroadcastServiceProvider.php
+│   │   ├── ./app/Providers/CollectionMacroServiceProvider.php
+│   │   ├── ./app/Providers/EventServiceProvider.php
+│   │   ├── ./app/Providers/HelperServiceProvider.php
+│   │   ├── ./app/Providers/MacroServiceProvider.php
+│   │   ├── ./app/Providers/ObserverServiceProvider.php
+│   │   ├── ./app/Providers/OnlineUsersProvider.php
+│   │   ├── ./app/Providers/PdfServiceProvider.php
+│   │   └── ./app/Providers/RouteServiceProvider.php
+│   ├── ./app/Role.php
+│   ├── ./app/Rules
+│   │   ├── ./app/Rules/EvenNumber.php
+│   │   ├── ./app/Rules/IncrementOnly.php
+│   │   ├── ./app/Rules/OddNumber.php
+│   │   ├── ./app/Rules/PasswordLength.php
+│   │   └── ./app/Rules/Weekday.php
+│   ├── ./app/Services
+│   │   └── ./app/Services/Pdf.php
+│   ├── ./app/UUIDModel.php
+│   ├── ./app/User.php
+│   └── ./app/VerifyUser.php
+├── ./artisan
+├── ./behat.yml
+├── ./bin
+│   ├── ./bin/git-branch-status-v2.sh
+│   ├── ./bin/git-branch_status.sh
+│   ├── ./bin/make-tree-output.sh
+│   ├── ./bin/phpdoc.sh
+│   ├── ./bin/setup-codebase.sh
+│   └── ./bin/update-bower-composer-npm.sh
+├── ./bower.json
+├── ./composer.json
+├── ./config
+│   ├── ./config/activitylog.php
+│   ├── ./config/app.php
+│   ├── ./config/auth.php
+│   ├── ./config/authy.php
+│   ├── ./config/broadcasting.php
+│   ├── ./config/bugsnag.php
+│   ├── ./config/cache.php
+│   ├── ./config/cors.php
+│   ├── ./config/database.php
+│   ├── ./config/datatables-buttons.php
+│   ├── ./config/datatables.php
+│   ├── ./config/debugbar.php
+│   ├── ./config/dompdf.php
+│   ├── ./config/entrust.php
+│   ├── ./config/failed-job-monitor.php
+│   ├── ./config/filesystems.php
+│   ├── ./config/fractal.php
+│   ├── ./config/ide-helper.php
+│   ├── ./config/image.php
+│   ├── ./config/javascript.php
+│   ├── ./config/jwt.php
+│   ├── ./config/l4-settings.php
+│   ├── ./config/laravel-glide.php
+│   ├── ./config/laravel-menu
+│   │   ├── ./config/laravel-menu/settings.php
+│   │   └── ./config/laravel-menu/views.php
+│   ├── ./config/laravel-page-speed.php
+│   ├── ./config/list-routes.php
+│   ├── ./config/mail.php
+│   ├── ./config/medialibrary.php
+│   ├── ./config/model-cleanup.php
+│   ├── ./config/modules.php
+│   ├── ./config/promocodes.php
+│   ├── ./config/queue.php
+│   ├── ./config/responsecache.php
+│   ├── ./config/scout.php
+│   ├── ./config/services.php
+│   ├── ./config/session.php
+│   ├── ./config/settings.php
+│   ├── ./config/sitemap.php
+│   ├── ./config/sluggable.php
+│   ├── ./config/snappy.php
+│   ├── ./config/socket.php
+│   ├── ./config/stats.php
+│   ├── ./config/tags.php
+│   ├── ./config/translatable.php
+│   ├── ./config/translation-loader.php
+│   ├── ./config/trustedproxy.php
+│   ├── ./config/url-signer.php
+│   ├── ./config/usercommands.php
+│   ├── ./config/validation.php
+│   └── ./config/view.php
+├── ./database
+│   ├── ./database/factories
+│   │   ├── ./database/factories/CategoryFactory.php
+│   │   ├── ./database/factories/CommentFactory.php
+│   │   ├── ./database/factories/ConsumerFactory.php
+│   │   ├── ./database/factories/PermissionFactory.php
+│   │   ├── ./database/factories/ProfileFactory.php
+│   │   ├── ./database/factories/QueueFactory.php
+│   │   ├── ./database/factories/RequestorFactory.php
+│   │   ├── ./database/factories/RoleFactory.php
+│   │   ├── ./database/factories/StatusFactory.php
+│   │   ├── ./database/factories/TechnicianFactory.php
+│   │   ├── ./database/factories/TicketFactory.php
+│   │   └── ./database/factories/UserFactory.php
+│   ├── ./database/migrations
+│   │   ├── ./database/migrations/2014_10_12_000000_create_accounts_table.php
+│   │   ├── ./database/migrations/2014_10_12_100000_create_password_resets_table.php
+│   │   ├── ./database/migrations/2015_08_25_172600_create_settings_table.php
+│   │   ├── ./database/migrations/2016_05_17_221000_create_promocodes_table.php
+│   │   ├── ./database/migrations/2017_08_30_221625_create_cache_table.php
+│   │   ├── ./database/migrations/2017_10_10_085739_create_tickets_table.php
+│   │   ├── ./database/migrations/2017_10_10_090314_create_categories_table.php
+│   │   ├── ./database/migrations/2017_10_10_102315_create_comments_table.php
+│   │   ├── ./database/migrations/2017_10_11_125238_create_profiles_table.php
+│   │   ├── ./database/migrations/2017_11_06_201606_create_consumers_table.php
+│   │   ├── ./database/migrations/2017_12_09_184230_create_verify_users_table.php
+│   │   ├── ./database/migrations/2017_12_09_194809_create_invoices_table.php
+│   │   ├── ./database/migrations/2017_12_22_182306_create_pages_table.php
+│   │   ├── ./database/migrations/2017_12_23_173902_create_technicians_table.php
+│   │   ├── ./database/migrations/2017_12_23_174022_create_requestors_table.php
+│   │   ├── ./database/migrations/2017_12_23_174028_create_queues_table.php
+│   │   ├── ./database/migrations/2017_12_23_174033_create_statuses_table.php
+│   │   ├── ./database/migrations/2017_12_24_054258_create_foreign_keys.php
+│   │   ├── ./database/migrations/2018_01_06_032033_create_notifications_table.php
+│   │   ├── ./database/migrations/2018_01_06_032122_create_failed_jobs_table.php
+│   │   ├── ./database/migrations/2018_01_06_032200_create_jobs_table.php
+│   │   ├── ./database/migrations/2018_01_06_032246_create_sessions_table.php
+│   │   ├── ./database/migrations/2018_01_06_032946_create_logs_table.php
+│   │   ├── ./database/migrations/2018_01_09_075148_create_activity_log_table.php
+│   │   ├── ./database/migrations/2018_01_09_080651_create_media_table.php
+│   │   ├── ./database/migrations/2018_01_09_082542_create_tag_tables.php
+│   │   ├── ./database/migrations/2018_01_09_083206_create_language_lines_table.php
+│   │   ├── ./database/migrations/2018_01_09_083805_update_accounts_table.php
+│   │   └── ./database/migrations/2018_01_10_120641_entrust_setup_tables.php
+│   └── ./database/seeds
+│       ├── ./database/seeds/CategoryTableSeeder.php
+│       ├── ./database/seeds/CommentTableSeeder.php
+│       ├── ./database/seeds/ConsumerTableSeeder.php
+│       ├── ./database/seeds/DatabaseSeeder.php
+│       ├── ./database/seeds/PermissionRoleSeeder.php
+│       ├── ./database/seeds/ProfileTableSeeder.php
+│       ├── ./database/seeds/QueueTableSeeder.php
+│       ├── ./database/seeds/RequestorTableSeeder.php
+│       ├── ./database/seeds/StatusTableSeeder.php
+│       ├── ./database/seeds/TechnicianTableSeeder.php
+│       ├── ./database/seeds/TicketTableSeeder.php
+│       └── ./database/seeds/UserTableSeeder.php
+├── ./features
+├── ./orchid-socket.supervisor.conf
+├── ./package.json
+├── ./phpcs.xml
+├── ./phpspec.yml
+├── ./phpunit.xml
+├── ./public
+│   ├── ./public/css
+│   │   └── ./public/css/app.css
+│   ├── ./public/favicon.ico
+│   ├── ./public/fonts
+│   ├── ./public/images
+│   ├── ./public/img
+│   │   └── ./public/img/blue_logo_150x150.jpg
+│   ├── ./public/index.php
+│   ├── ./public/js
+│   │   └── ./public/js/app.js
+│   ├── ./public/mix-manifest.json
+│   └── ./public/sitemap.xml
+├── ./resources
+│   ├── ./resources/assets
+│   │   ├── ./resources/assets/js
+│   │   │   ├── ./resources/assets/js/app.js
+│   │   │   ├── ./resources/assets/js/bootstrap.js
+│   │   │   └── ./resources/assets/js/components
+│   │   │       ├── ./resources/assets/js/components/ExampleComponent.vue
+│   │   │       └── ./resources/assets/js/components/passport
+│   │   │           ├── ./resources/assets/js/components/passport/AuthorizedClients.vue
+│   │   │           ├── ./resources/assets/js/components/passport/Clients.vue
+│   │   │           └── ./resources/assets/js/components/passport/PersonalAccessTokens.vue
+│   │   └── ./resources/assets/sass
+│   │       ├── ./resources/assets/sass/_variables.scss
+│   │       └── ./resources/assets/sass/app.scss
+│   ├── ./resources/lang
+│   │   └── ./resources/lang/en
+│   │       ├── ./resources/lang/en/auth.php
+│   │       ├── ./resources/lang/en/pagination.php
+│   │       ├── ./resources/lang/en/passwords.php
+│   │       └── ./resources/lang/en/validation.php
+│   └── ./resources/views
+│       ├── ./resources/views/auth
+│       │   ├── ./resources/views/auth/emails
+│       │   │   └── ./resources/views/auth/emails/password.blade.php
+│       │   ├── ./resources/views/auth/login.blade.php
+│       │   ├── ./resources/views/auth/passwords
+│       │   │   ├── ./resources/views/auth/passwords/email.blade.php
+│       │   │   └── ./resources/views/auth/passwords/reset.blade.php
+│       │   ├── ./resources/views/auth/register.blade.php
+│       │   └── ./resources/views/auth/token.blade.php
+│       ├── ./resources/views/dashboard
+│       │   ├── ./resources/views/dashboard/admin
+│       │   │   └── ./resources/views/dashboard/admin/index.blade.php
+│       │   └── ./resources/views/dashboard/user
+│       ├── ./resources/views/emails
+│       │   └── ./resources/views/emails/verifyUser.blade.php
+│       ├── ./resources/views/entrust
+│       │   └── ./resources/views/entrust/generators
+│       │       └── ./resources/views/entrust/generators/migration.blade.php
+│       ├── ./resources/views/errors
+│       │   └── ./resources/views/errors/account-disabled.blade.php
+│       ├── ./resources/views/home.blade.php
+│       ├── ./resources/views/layouts
+│       │   ├── ./resources/views/layouts/app.blade.php
+│       │   ├── ./resources/views/layouts/datatables_css.blade.php
+│       │   ├── ./resources/views/layouts/datatables_js.blade.php
+│       │   ├── ./resources/views/layouts/menu.blade.php
+│       │   └── ./resources/views/layouts/sidebar.blade.php
+│       ├── ./resources/views/pages
+│       │   └── ./resources/views/pages/default-template.blade.php
+│       ├── ./resources/views/partials
+│       │   ├── ./resources/views/partials/errors.blade.php
+│       │   ├── ./resources/views/partials/search.blade.php
+│       │   └── ./resources/views/partials/user-online.blade.php
+│       ├── ./resources/views/profile
+│       │   ├── ./resources/views/profile/create.blade.php
+│       │   ├── ./resources/views/profile/index.blade.php
+│       │   └── ./resources/views/profile/show.blade.php
+│       ├── ./resources/views/profiles
+│       ├── ./resources/views/shared
+│       └── ./resources/views/welcome.blade.php
+├── ./routes
+│   ├── ./routes/api.v1.php
+│   ├── ./routes/api.v2.php
+│   ├── ./routes/channels.php
+│   ├── ./routes/console.php
+│   ├── ./routes/socket.php
+│   ├── ./routes/web.admin.php
+│   ├── ./routes/web.authentication.php
+│   ├── ./routes/web.cashier.php
+│   ├── ./routes/web.impersonate.php
+│   ├── ./routes/web.php
+│   ├── ./routes/web.scout.php
+│   ├── ./routes/web.testing.php
+│   └── ./routes/web.user.php
+├── ./server.php
+├── ./start-webdriver.sh
+├── ./tests
+│   ├── ./tests/ApiTestTrait.php
+│   ├── ./tests/Browser
+│   │   ├── ./tests/Browser/Components
+│   │   ├── ./tests/Browser/Pages
+│   │   │   ├── ./tests/Browser/Pages/HomePage.php
+│   │   │   └── ./tests/Browser/Pages/Page.php
+│   │   ├── ./tests/Browser/console
+│   │   └── ./tests/Browser/screenshots
+│   ├── ./tests/Codeception
+│   │   ├── ./tests/Codeception/codeception.yml
+│   │   └── ./tests/Codeception/tests
+│   │       ├── ./tests/Codeception/tests/_data
+│   │       ├── ./tests/Codeception/tests/_output
+│   │       ├── ./tests/Codeception/tests/_support
+│   │       │   ├── ./tests/Codeception/tests/_support/AcceptanceTester.php
+│   │       │   ├── ./tests/Codeception/tests/_support/FunctionalTester.php
+│   │       │   ├── ./tests/Codeception/tests/_support/Helper
+│   │       │   │   ├── ./tests/Codeception/tests/_support/Helper/Acceptance.php
+│   │       │   │   ├── ./tests/Codeception/tests/_support/Helper/Functional.php
+│   │       │   │   └── ./tests/Codeception/tests/_support/Helper/Unit.php
+│   │       │   ├── ./tests/Codeception/tests/_support/UnitTester.php
+│   │       │   └── ./tests/Codeception/tests/_support/_generated
+│   │       │       ├── ./tests/Codeception/tests/_support/_generated/AcceptanceTesterActions.php
+│   │       │       ├── ./tests/Codeception/tests/_support/_generated/FunctionalTesterActions.php
+│   │       │       └── ./tests/Codeception/tests/_support/_generated/UnitTesterActions.php
+│   │       ├── ./tests/Codeception/tests/acceptance
+│   │       ├── ./tests/Codeception/tests/acceptance.suite.yml
+│   │       ├── ./tests/Codeception/tests/functional
+│   │       ├── ./tests/Codeception/tests/functional.suite.yml
+│   │       ├── ./tests/Codeception/tests/unit
+│   │       └── ./tests/Codeception/tests/unit.suite.yml
+│   ├── ./tests/CreatesApplication.php
+│   ├── ./tests/DuskTestCase.php
+│   ├── ./tests/Feature
+│   ├── ./tests/Javascript
+│   │   └── ./tests/Javascript/helpers
+│   │       └── ./tests/Javascript/helpers/setup-browser.env.js
+│   ├── ./tests/TestCase.php
+│   ├── ./tests/Unit
+│   ├── ./tests/helpers
+│   │   └── ./tests/helpers/functions.php
+│   └── ./tests/setup.js
+├── ./tinker.config.php.moved
+├── ./webpack.config.js
+└── ./webpack.mix.js
+
+114 directories, 383 files
