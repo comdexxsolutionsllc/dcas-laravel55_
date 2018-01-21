@@ -27,6 +27,8 @@ return [
 
     'maxLength' => 48,
 
+    'maxLengthKeepWords' => true,
+
     /*
      * If left to "null", then use the cocur/slugify package to generate the slug
      * (with the separator defined below).
