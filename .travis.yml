@@ -1,30 +1,12 @@
 language: php
 
 php:
-  - 7.1
+  - 7.1.8
   - 7.2
 
 addons:
   hosts:
   - dcas-laravel55.dev
-
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - if [[ $COMPOSER_FLAGS == '' ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
-
-before_install:
-  - sudo apt-get -qq update
-  - mysql -e 'CREATE DATABASE dcas_l55_refactor;'
-
-
-before_script:
-  - cp .env.travis .env
-  - php artisan key:generate
-  - travis_retry composer self-update
-  - travis_retry composer install --dev --prefer-source --no-interaction
-  - npm install
-  - php artisan migrate
-  - node_modules/.bin/bower update
 
 branches:
   only:
@@ -37,6 +19,28 @@ cache:
     - node_modules
     - vendor
 
+before_install:
+  - sudo apt-get -qq update
+  - mysql -e 'CREATE DATABASE dcas_l55_refactor;'
+
+before_script:
+  - cp .env.travis .env
+  - travis_retry composer self-update
+  - travis_retry composer install --dev --prefer-source --no-interaction
+  - npm install
+  - php artisan migrate
+  - node_modules/.bin/bower update
+
+script:
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+  - vendor/phpspec/phpspec/bin/phpspec run
+  - vendor/bin/behat
+  - vendor/bin/codecept run -c tests/Codeception
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - if [[ $COMPOSER_FLAGS == '' ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+
 notifications:
   email:
     recipients:
@@ -44,12 +48,6 @@ notifications:
       - sarahalexandrarenner@icloud.com
     on_success: change
     on_failure: always
-
-script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-  - vendor/phpspec/phpspec/bin/phpspec run
-  - vendor/bin/behat
-  - vendor/bin/codecept run -c tests/Codeception
 
 services:
   - mysql
