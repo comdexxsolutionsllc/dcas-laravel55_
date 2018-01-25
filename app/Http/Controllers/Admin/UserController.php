@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
@@ -17,12 +18,15 @@ class UserController extends Controller
      * @param $new_user
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthenticationException
      */
     public function user_switch_start($new_user): RedirectResponse
     {
+        session()->put('orig_user', auth()->id());
+
         $new_user = User::find($new_user);
 
-        session()->put('orig_user', auth()->id());
+        if (!$new_user) throw new AuthenticationException;
 
         auth()->login($new_user);
 
@@ -30,12 +34,11 @@ class UserController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function user_switch_stop(): RedirectResponse
     {
-        $id = session()->pull('orig_user');
-        $orig_user = User::find($id);
+        $orig_user = User::find($id = session()->pull('orig_user'));
 
         auth()->login($orig_user);
 

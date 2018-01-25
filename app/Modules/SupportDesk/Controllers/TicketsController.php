@@ -2,14 +2,14 @@
 
 namespace Modules\SupportDesk\Controllers;
 
-use Zttp\Zttp;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Modules\SupportDesk\Models\Ticket;
-use Modules\SupportDesk\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Modules\SupportDesk\Mailers\AppMailer;
+use Modules\SupportDesk\Models\Category;
+use Modules\SupportDesk\Models\Ticket;
+use Zttp\Zttp;
 
 class TicketsController extends Controller
 {
@@ -19,6 +19,7 @@ class TicketsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin')->only(['showClosed']);
     }
 
     /**
@@ -99,7 +100,7 @@ class TicketsController extends Controller
             'remoteip' => $_SERVER['REMOTE_ADDR'],
         ]);
 
-        if (! $response->json()['success']) {
+        if (!$response->json()['success']) {
             throw new \Exception('Recaptcha failed');
         }
 
@@ -127,6 +128,7 @@ class TicketsController extends Controller
      * @param AppMailer $mailer
      *
      * @return RedirectResponse
+     * @throws \Exception
      */
     public function close($ticket_id, AppMailer $mailer): RedirectResponse
     {
@@ -135,6 +137,8 @@ class TicketsController extends Controller
         $ticket->status = 'Closed';
 
         $ticket->save();
+
+        $ticket->delete();
 
         $ticketOwner = $ticket->user;
 
