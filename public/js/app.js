@@ -45246,9 +45246,9 @@ window._ = __webpack_require__(413);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(10);
+    window.$ = window.jQuery = __webpack_require__(10);
 
-  __webpack_require__(414);
+    __webpack_require__(414);
 } catch (e) {}
 
 /**
@@ -45265,6 +45265,14 @@ window.chart = __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a;
 
 window.collect = __WEBPACK_IMPORTED_MODULE_1_collect_js___default.a;
 
+window.events = new Vue();
+
+window.flash = function (message) {
+    var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+
+    window.events.$emit('flash', { message: message, level: level });
+};
+
 window.icheck = __WEBPACK_IMPORTED_MODULE_3_icheck___default.a;
 
 window.moment = __WEBPACK_IMPORTED_MODULE_4_moment___default.a;
@@ -45272,6 +45280,24 @@ window.moment = __WEBPACK_IMPORTED_MODULE_4_moment___default.a;
 window.select2 = __WEBPACK_IMPORTED_MODULE_5_select2___default.a;
 
 window.typeahead = __WEBPACK_IMPORTED_MODULE_6_typeahead_js___default.a;
+
+var authorizations = __webpack_require__(492);
+
+Vue.prototype.authorize = function () {
+    if (!window.App.signedIn) return false;
+
+    for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+        params[_key] = arguments[_key];
+    }
+
+    if (typeof params[0] === 'string') {
+        return authorizations[params[0]](params[1]);
+    }
+
+    return params[0](window.App.user);
+};
+
+Vue.prototype.signedIn = window.App.signedIn;
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -45282,9 +45308,9 @@ window.typeahead = __WEBPACK_IMPORTED_MODULE_6_typeahead_js___default.a;
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -108275,6 +108301,62 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */
+/***/ (function(module, exports) {
+
+var user = window.App.user;
+
+module.exports = {
+    owns: function owns(model) {
+        var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'user_id';
+
+        return model[prop] === user.id;
+    },
+    isAdmin: function isAdmin() {
+        return user.isAdmin;
+    }
+};
 
 /***/ })
 /******/ ]);
