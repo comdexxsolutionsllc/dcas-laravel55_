@@ -1,7 +1,41 @@
+language: php
+
+php:
+  - 7.1
+  - 7.2
+
+addons:
+  hosts:
+  - dcas-laravel55.dev
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - if [[ $COMPOSER_FLAGS == '' ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+
+before_install:
+  - sudo apt-get -qq update
+  - mysql -e 'CREATE DATABASE dcas_l55_refactor;'
+
+
+before_script:
+  - cp .env.travis .env
+  - php artisan key:generate
+  - travis_retry composer self-update
+  - travis_retry composer install --dev --prefer-source --no-interaction
+  - npm install
+  - php artisan migrate
+  - node_modules/.bin/bower update
+
 branches:
   only:
   - master
   - /^deploy-.*$/
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - node_modules
+    - vendor
 
 notifications:
   email:
@@ -10,35 +44,6 @@ notifications:
       - sarahalexandrarenner@icloud.com
     on_success: change
     on_failure: always
-
-addons:
-  hosts:
-  - dcas-laravel55.dev
-
-language: php
-
-sudo: required
-
-php:
-  - 7.1.8
-
-cache:
-  directories:
-    - $HOME/.composer/cache
-    - node_modules
-    - vendor
-
-before_install:
-  - sudo apt-get -qq update
-  - mysql -e 'CREATE DATABASE dcas_l55_refactor;'
-
-
-before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --dev --prefer-source --no-interaction
-  - npm install
-  - php artisan migrate
-  - node_modules/.bin/bower update
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
@@ -51,6 +56,4 @@ services:
   - redis
   - sqlite3
 
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - if [[ $COMPOSER_FLAGS == '' ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+sudo: required
