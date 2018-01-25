@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.32 on 2018-01-20.
+ * Generated for Laravel 5.5.32 on 2018-01-25.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12569,6 +12569,7 @@ namespace Bugsnag\BugsnagLaravel\Facades {
         /**
          * Notify Bugsnag of a deployment.
          *
+         * @deprecated This function is being deprecated in favour of `build`.
          * @param string|null $repository the repository from which you are deploying the code
          * @param string|null $branch the source control branch from which you are deploying
          * @param string|null $revision the source control revision you are currently deploying
@@ -12578,6 +12579,21 @@ namespace Bugsnag\BugsnagLaravel\Facades {
         public static function deploy($repository = null, $branch = null, $revision = null)
         {
             \Bugsnag\Client::deploy($repository, $branch, $revision);
+        }
+        
+        /**
+         * Notify Bugsnag of a build.
+         *
+         * @param string|null $repository the repository from which you are deploying the code
+         * @param string|null $revision the source control revision you are currently deploying
+         * @param string|null $provider the provider of the source control for the build
+         * @param string|null $builderName the name of who or what is making the build
+         * @return void 
+         * @static 
+         */ 
+        public static function build($repository = null, $revision = null, $provider = null, $builderName = null)
+        {
+            \Bugsnag\Client::build($repository, $revision, $provider, $builderName);
         }
         
         /**

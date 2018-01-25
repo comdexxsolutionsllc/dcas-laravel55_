@@ -18,8 +18,11 @@ class AdminMiddleware
     {
         $user = auth()->user();
 
-        if (is_null($user) === true) {
-            return redirect('home');
+        if (is_null($user) === true || !$user->isAdmin()) {
+            return redirect('home')
+                ->withCookie(
+                    cookie('admin_middleware', '0', 1)
+                );
         } else {
             return $next($request);
         }
