@@ -59,6 +59,16 @@ abstract class Model extends Eloquent implements GetsCleanedUp
     }
 
     /**
+     * Show the last record of the given model.
+     *
+     * @return $this
+     */
+    protected static function last()
+    {
+        return static::orderBy('id', 'desc')->limit(1)->get();
+    }
+
+    /**
      * Return orderable array.
      *
      * @return array

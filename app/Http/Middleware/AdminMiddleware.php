@@ -3,9 +3,12 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class AdminMiddleware
 {
+    use WithoutMiddleware;
+
     /**
      * Handle an incoming request.
      *
@@ -18,7 +21,7 @@ class AdminMiddleware
     {
         $user = auth()->user();
 
-        if (is_null($user) === true || !$user->isAdmin()) {
+        if (is_null($user) === true || !$user->isAdmin() || !$user->isSuperAdmin()) {
             return redirect('home')
                 ->withCookie(
                     cookie('admin_middleware', '0', 1)
