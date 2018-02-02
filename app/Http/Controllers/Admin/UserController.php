@@ -7,6 +7,11 @@ use App\User;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\RedirectResponse;
 
+/**
+ * Class UserController
+ *
+ * @package App\Http\Controllers\Admin
+ */
 class UserController extends Controller
 {
     public function __construct()

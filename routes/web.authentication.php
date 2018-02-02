@@ -6,6 +6,11 @@ $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login')->name('login.post');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
+// Passport Routes
+Route::get('/social/redirect/{provider}', ['as' => 'social.redirect', 'uses' => 'Auth\OAuthController@getSocialRedirect']);
+Route::get('/social/handle/{provider}', ['as' => 'social.handle', 'uses' => 'Auth\OAuthController@getSocialHandle']);
+/////////////////////
+
 // Registration Routes...
 Route::match(['GET', 'POST'], 'register', function () {
     Flashy::info('Registration is closed.  Please contact the administrator for more information.');

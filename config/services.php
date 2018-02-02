@@ -13,9 +13,37 @@ return [
     |
     */
 
+    'discord' => [
+        'token' => env('DISCORD_BOT_TOKEN'),
+    ],
+
+    'facebook' => [
+        'client_id' => env('FB_ID'),
+        'client_secret' => env('FB_SECRET'),
+        'redirect' => env('FB_REDIRECT'),
+        'page-token' => env('FACEBOOK_PAGE_TOKEN'),
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_ID'),
+        'client_secret' => env('GITHUB_SECRET'),
+        'redirect' => env('GITHUB_REDIRECT'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT')
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
+    ],
+
+    'recaptcha' => [
+        'key' => env('RECAPTCHA_KEY'),
+        'secret' => env('RECAPTCHA_SECRET')
     ],
 
     'ses' => [
@@ -34,8 +62,13 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'recaptcha' => [
-        'key' => env('RECAPTCHA_KEY'),
-        'secret' => env('RECAPTCHA_SECRET')
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN'),
+    ],
+
+    'twitter' => [
+        'client_id' => env('TW_ID'),
+        'client_secret' => env('TW_SECRET'),
+        'redirect' => env('TW_REDIRECT')
     ],
 ];

@@ -6,6 +6,7 @@ import Moment from 'moment'
 import Select2 from 'select2'
 import typeahead from 'typeahead.js'
 
+
 window._ = require('lodash');
 
 /**
@@ -35,12 +36,6 @@ window.chart = Chart;
 
 window.collect = Collect;
 
-window.events = new Vue();
-
-window.flash = function (message, level = 'success') {
-    window.events.$emit('flash', {message, level});
-};
-
 window.icheck = iCheck;
 
 window.moment = Moment;
@@ -48,21 +43,6 @@ window.moment = Moment;
 window.select2 = Select2;
 
 window.typeahead = typeahead;
-
-let authorizations = require('./authorizations');
-
-Vue.prototype.authorize = function (...params) {
-    if (!window.App.signedIn) return false;
-
-    if (typeof params[0] === 'string') {
-        return authorizations[params[0]](params[1]);
-    }
-
-    return params[0](window.App.user);
-};
-
-Vue.prototype.signedIn = window.App.signedIn;
-
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

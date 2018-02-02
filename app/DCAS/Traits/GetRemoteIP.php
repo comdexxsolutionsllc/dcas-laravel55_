@@ -4,6 +4,9 @@ namespace DCAS\Traits;
 
 trait GetRemoteIP
 {
+    /**
+     * @var array
+     */
     protected $remote_ip_srcs = [
         'HTTP_CLIENT_IP',
         'HTTP_X_FORWARDED_FOR',
@@ -14,13 +17,17 @@ trait GetRemoteIP
         'REMOTE_ADDR',
     ];
 
-    protected $whitelist = [];
-
+    /**
+     * @return bool
+     */
     public function isAllowed(): bool
     {
         return in_array($this->execute(), $this->whitelist);
     }
 
+    /**
+     * @return string
+     */
     private function execute(): string
     {
         foreach ($this->remote_ip_srcs as $key) {

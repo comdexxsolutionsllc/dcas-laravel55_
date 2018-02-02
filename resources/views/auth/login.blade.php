@@ -1,131 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Datacenter Automation Suite</title>
+@extends('layouts.login')
 
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+@section('head')
 
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <link rel="stylesheet" href="/css/parsley.css">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+@stop
 
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+@section('content')
 
-    <!-- Theme style -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css">
 
-    <!-- iCheck -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/_all-skins.min.css">
+    {!! Form::open(['url' => url('login'), 'class' => 'form-signin', 'data-parsley-validate' ] ) !!}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css"/>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <a href="{{ url('/dashboard') }}">Datacenter Automation</a>
+    @include('partials.status')
+
+    <h2 class="form-signin-heading">Please sign in</h2>
+
+    <label for="username" class="sr-only">Username</label>
+    {!! Form::text('username', null, [
+        'class'                         => 'form-control',
+        'placeholder'                   => 'Username',
+        'required',
+        'id'                            => 'username',
+        'data-parsley-required-message' => 'Username is required',
+        'data-parsley-trigger'          => 'change focusout',
+        'data-parsley-type'             => 'string'
+    ]) !!}
+
+    <label for="password" class="sr-only">Password</label>
+    {!! Form::password('password', [
+        'class'                         => 'form-control',
+        'placeholder'                   => 'Password',
+        'required',
+        'id'                            => 'password',
+        'data-parsley-required-message' => 'Password is required',
+        'data-parsley-trigger'          => 'change focusout',
+        'data-parsley-minlength'        => '5',
+        'data-parsley-maxlength'        => '20'
+    ]) !!}
+
+    <div style="height:15px;"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset class="form-group">
+                {!! Form::checkbox('remember', 1, null, ['id' => 'remember-me']) !!}
+                <label for="remember-me">Remember me</label>
+            </fieldset>
+        </div>
     </div>
 
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+    <button class="btn btn-lg btn-primary btn-block login-btn" type="submit">Sign in</button>
+    <p><a href="{{ url('password/reset') }}">Forgot password?</a></p>
 
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-        @if (session('warning'))
-            <div class="alert alert-warning">
-                {{ session('warning') }}
-            </div>
-        @endif
+    <p class="or-social">Or Use Social Login</p>
 
-        <form method="post" action="{{ url('/login') }}">
-            {!! csrf_field() !!}
+    @include('partials.socials')
 
-            <div class="form-group has-feedback {{ $errors->has('username') ? ' has-error' : '' }}">
-                <input type="username" class="form-control" name="username" id="username" value="{{ old('username') }}"
-                       placeholder="Username" autofocus>
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                @if ($errors->has('username'))
-                    <span class="help-block">
-                    <strong>{{ $errors->first('username') }}</strong>
-                </span>
-                @endif
-            </div>
+    {!! Form::close() !!}
 
-            <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" placeholder="Password" name="password" id="password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-                @endif
-            </div>
+@stop
 
-            <div class="form-group has-feedback{{ $errors->has('domain') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" placeholder="Domain" name="domain">
-                <span class="glyphicon glyphicon-globe form-control-feedback"></span>
-                @if ($errors->has('domain'))
-                    <span class="help-block">
-                    <strong>{{ $errors->first('domain') }}</strong>
-                </span>
-                @endif
-            </div>
+@section('footer')
 
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox" name="remember" id="remember"> Remember Me
-                        </label>
-                    </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                </div>
-                <!-- /.col -->
-            </div>
-        </form>
+    <script type="text/javascript">
+        window.ParsleyConfig = {
+            errorsWrapper: '<div></div>',
+            errorTemplate: '<span class="error-text"></span>',
+            classHandler: function (el) {
+                return el.$element.closest('input');
+            },
+            successClass: 'valid',
+            errorClass: 'invalid'
+        };
+    </script>
 
-        <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.5.0/parsley.min.js"></script>
 
-    </div>
-    <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-
-<!-- AdminLTE App -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_minimal-blue',
-            radioClass: 'iradio_minimal',
-            handle: 'checkbox',
-            increaseArea: '20%'
-        });
-    });
-</script>
-</body>
-</html>
+@stop

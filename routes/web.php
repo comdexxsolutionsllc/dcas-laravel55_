@@ -12,3 +12,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::post('profile', 'ProfileController@store')->name('profile.store');
     Route::get('/profile/{username}', 'ProfileController@show')->name('profile.{username}')->middleware(['auth']);
 });
+
+Route::get('passport', function() {
+    return view('passport');
+});

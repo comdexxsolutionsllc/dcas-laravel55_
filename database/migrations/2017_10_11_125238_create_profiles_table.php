@@ -18,12 +18,12 @@ class CreateProfilesTable extends Migration
             $table->integer('user_id')->unsigned()->unique();
             $table->string('avatar')->nullable();
             $table->longText('biography')->nullable();
-            $table->string('address_1');
+            $table->string('address_1')->nullable();
             $table->string('address_2')->nullable();
-            $table->string('city');
-            $table->char('state', 2);
-            $table->char('country', 2);
-            $table->bigInteger('postal_code')->unsigned();
+            $table->string('city')->nullable();
+            $table->char('state', 2)->nullable();
+            $table->char('country', 2)->nullable();
+            $table->bigInteger('postal_code')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -16,12 +16,12 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('profile_id')->unsigned()->nullable()->unique();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->unique();
-            $table->string('username')->unique();
+            $table->string('username')->nullable()->unique();
             $table->string('password');
             $table->string('domain')->nullable();
-            $table->text('slug');
+            $table->text('slug')->nullable();
             $table->string('stripe_id')->nullable();
             $table->string('card_brand')->nullable();
             $table->string('card_last_four')->nullable();
@@ -29,6 +29,7 @@ class CreateAccountsTable extends Migration
             $table->boolean('is_logged_in')->default(0);
             $table->boolean('is_disabled')->default(0);
             $table->boolean('verified')->default(false);
+            $table->string('oauth_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

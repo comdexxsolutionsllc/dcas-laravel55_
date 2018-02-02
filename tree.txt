@@ -6,6 +6,7 @@
 │   │   │   ├── ./app/Console/Commands/DisableUser.php
 │   │   │   ├── ./app/Console/Commands/EnableUser.php
 │   │   │   ├── ./app/Console/Commands/GenerateSitemap.php
+│   │   │   ├── ./app/Console/Commands/InstallCommand.php
 │   │   │   ├── ./app/Console/Commands/JWTGenerateCommand.php
 │   │   │   ├── ./app/Console/Commands/MakeVueFile.php
 │   │   │   ├── ./app/Console/Commands/MigrationCommand.php
@@ -33,10 +34,13 @@
 │   │   │   └── ./app/DCAS/Observers/UserObserver.php
 │   │   ├── ./app/DCAS/Presenters
 │   │   ├── ./app/DCAS/Scoping
+│   │   │   └── ./app/DCAS/Scoping/LastScope.php
 │   │   ├── ./app/DCAS/Services
 │   │   ├── ./app/DCAS/Support
 │   │   ├── ./app/DCAS/Traits
 │   │   │   ├── ./app/DCAS/Traits/ApiErrorResponse.php
+│   │   │   ├── ./app/DCAS/Traits/Attributable.php
+│   │   │   ├── ./app/DCAS/Traits/Authorizable.php
 │   │   │   ├── ./app/DCAS/Traits/CustomCasts.php
 │   │   │   ├── ./app/DCAS/Traits/DisableUpdatedAt.php
 │   │   │   ├── ./app/DCAS/Traits/Enums.php
@@ -45,14 +49,16 @@
 │   │   │   ├── ./app/DCAS/Traits/GetRemoteIP.php
 │   │   │   ├── ./app/DCAS/Traits/HasGravatar.php
 │   │   │   ├── ./app/DCAS/Traits/OwnsModels.php
-│   │   │   └── ./app/DCAS/Traits/ProvidesModelCacheKey.php
+│   │   │   ├── ./app/DCAS/Traits/ProvidesModelCacheKey.php
+│   │   │   └── ./app/DCAS/Traits/Responsible.php
 │   │   ├── ./app/DCAS/Translations
 │   │   ├── ./app/DCAS/UtilityClasses
 │   │   └── ./app/DCAS/ViewComposers
 │   ├── ./app/Exceptions
 │   │   ├── ./app/Exceptions/AccountDisabledException.php
 │   │   ├── ./app/Exceptions/Handler.php
-│   │   └── ./app/Exceptions/InvalidEnumException.php
+│   │   ├── ./app/Exceptions/InvalidEnumException.php
+│   │   └── ./app/Exceptions/ThrottleException.php
 │   ├── ./app/Http
 │   │   ├── ./app/Http/Controllers
 │   │   │   ├── ./app/Http/Controllers/Admin
@@ -93,6 +99,7 @@
 │   │   ├── ./app/Listeners/RevokeOldTokens.php
 │   │   └── ./app/Listeners/UserEventSubscriber.php
 │   ├── ./app/Mail
+│   │   ├── ./app/Mail/PleaseConfirmYourEmail.php
 │   │   ├── ./app/Mail/UponUserLoginLockout.php
 │   │   └── ./app/Mail/VerifyMail.php
 │   ├── ./app/Model.php
@@ -230,6 +237,7 @@
 │   │   └── ./app/Rules/Weekday.php
 │   ├── ./app/Services
 │   │   └── ./app/Services/Pdf.php
+│   ├── ./app/Social.php
 │   ├── ./app/UUIDModel.php
 │   ├── ./app/User.php
 │   └── ./app/VerifyUser.php
@@ -240,6 +248,7 @@
 │   ├── ./bin/git-branch_status.sh
 │   ├── ./bin/make-tree-output.sh
 │   ├── ./bin/phpdoc.sh
+│   ├── ./bin/runApiCreate.sh
 │   ├── ./bin/setup-codebase.sh
 │   └── ./bin/update-bower-composer-npm.sh
 ├── ./bower.json
@@ -302,6 +311,7 @@
 │   │   ├── ./database/factories/CategoryFactory.php
 │   │   ├── ./database/factories/CommentFactory.php
 │   │   ├── ./database/factories/ConsumerFactory.php
+│   │   ├── ./database/factories/NotificationFactory.php
 │   │   ├── ./database/factories/PermissionFactory.php
 │   │   ├── ./database/factories/ProfileFactory.php
 │   │   ├── ./database/factories/QueueFactory.php
@@ -340,7 +350,8 @@
 │   │   ├── ./database/migrations/2018_01_09_082542_create_tag_tables.php
 │   │   ├── ./database/migrations/2018_01_09_083206_create_language_lines_table.php
 │   │   ├── ./database/migrations/2018_01_09_083805_update_accounts_table.php
-│   │   └── ./database/migrations/2018_01_10_120641_entrust_setup_tables.php
+│   │   ├── ./database/migrations/2018_01_10_120641_entrust_setup_tables.php
+│   │   └── ./database/migrations/2018_01_31_163821_create_social_logins.php
 │   └── ./database/seeds
 │       ├── ./database/seeds/CategoryTableSeeder.php
 │       ├── ./database/seeds/CommentTableSeeder.php
@@ -362,7 +373,14 @@
 ├── ./phpunit.xml
 ├── ./public
 │   ├── ./public/css
-│   │   └── ./public/css/app.css
+│   │   ├── ./public/css/app.css
+│   │   ├── ./public/css/custom.css
+│   │   ├── ./public/css/navbar-static-top.css
+│   │   ├── ./public/css/parsley.css
+│   │   ├── ./public/css/register.css
+│   │   ├── ./public/css/reset-form.css
+│   │   ├── ./public/css/reset.css
+│   │   └── ./public/css/signin.css
 │   ├── ./public/favicon.ico
 │   ├── ./public/fonts
 │   ├── ./public/images
@@ -370,20 +388,26 @@
 │   │   └── ./public/img/blue_logo_150x150.jpg
 │   ├── ./public/index.php
 │   ├── ./public/js
-│   │   └── ./public/js/app.js
+│   │   ├── ./public/js/app.js
+│   │   └── ./public/js/ie10-viewport-bug-workaround.js
 │   ├── ./public/mix-manifest.json
+│   ├── ./public/plugins
+│   │   └── ./public/plugins/parsley.min.js
 │   └── ./public/sitemap.xml
 ├── ./resources
 │   ├── ./resources/assets
 │   │   ├── ./resources/assets/js
 │   │   │   ├── ./resources/assets/js/app.js
+│   │   │   ├── ./resources/assets/js/authorizations.js
 │   │   │   ├── ./resources/assets/js/bootstrap.js
-│   │   │   └── ./resources/assets/js/components
-│   │   │       ├── ./resources/assets/js/components/ExampleComponent.vue
-│   │   │       └── ./resources/assets/js/components/passport
-│   │   │           ├── ./resources/assets/js/components/passport/AuthorizedClients.vue
-│   │   │           ├── ./resources/assets/js/components/passport/Clients.vue
-│   │   │           └── ./resources/assets/js/components/passport/PersonalAccessTokens.vue
+│   │   │   ├── ./resources/assets/js/components
+│   │   │   │   └── ./resources/assets/js/components/passport
+│   │   │   │       ├── ./resources/assets/js/components/passport/AuthorizedClients.vue
+│   │   │   │       ├── ./resources/assets/js/components/passport/Clients.vue
+│   │   │   │       └── ./resources/assets/js/components/passport/PersonalAccessTokens.vue
+│   │   │   ├── ./resources/assets/js/mixins
+│   │   │   │   └── ./resources/assets/js/mixins/collection.js
+│   │   │   └── ./resources/assets/js/pages
 │   │   └── ./resources/assets/sass
 │   │       ├── ./resources/assets/sass/_variables.scss
 │   │       └── ./resources/assets/sass/app.scss
@@ -398,6 +422,7 @@
 │       │   ├── ./resources/views/auth/emails
 │       │   │   └── ./resources/views/auth/emails/password.blade.php
 │       │   ├── ./resources/views/auth/login.blade.php
+│       │   ├── ./resources/views/auth/login.blade.php.save
 │       │   ├── ./resources/views/auth/passwords
 │       │   │   ├── ./resources/views/auth/passwords/email.blade.php
 │       │   │   └── ./resources/views/auth/passwords/reset.blade.php
@@ -408,6 +433,7 @@
 │       │   │   └── ./resources/views/dashboard/admin/index.blade.php
 │       │   └── ./resources/views/dashboard/user
 │       ├── ./resources/views/emails
+│       │   ├── ./resources/views/emails/confirm-email.blade.php
 │       │   └── ./resources/views/emails/verifyUser.blade.php
 │       ├── ./resources/views/entrust
 │       │   └── ./resources/views/entrust/generators
@@ -419,14 +445,21 @@
 │       │   ├── ./resources/views/layouts/app.blade.php
 │       │   ├── ./resources/views/layouts/datatables_css.blade.php
 │       │   ├── ./resources/views/layouts/datatables_js.blade.php
+│       │   ├── ./resources/views/layouts/login.blade.php
 │       │   ├── ./resources/views/layouts/menu.blade.php
 │       │   └── ./resources/views/layouts/sidebar.blade.php
 │       ├── ./resources/views/pages
-│       │   └── ./resources/views/pages/default-template.blade.php
+│       │   ├── ./resources/views/pages/default-template.blade.php
+│       │   └── ./resources/views/pages/status.blade.php
 │       ├── ./resources/views/partials
+│       │   ├── ./resources/views/partials/above-navbar-alert.blade.php
 │       │   ├── ./resources/views/partials/errors.blade.php
 │       │   ├── ./resources/views/partials/search.blade.php
+│       │   ├── ./resources/views/partials/socials.blade.php
+│       │   ├── ./resources/views/partials/status-panel.blade.php
+│       │   ├── ./resources/views/partials/status.blade.php
 │       │   └── ./resources/views/partials/user-online.blade.php
+│       ├── ./resources/views/passport.blade.php
 │       ├── ./resources/views/profile
 │       │   ├── ./resources/views/profile/create.blade.php
 │       │   ├── ./resources/views/profile/index.blade.php
@@ -485,6 +518,17 @@
 │   ├── ./tests/CreatesApplication.php
 │   ├── ./tests/DuskTestCase.php
 │   ├── ./tests/Feature
+│   │   ├── ./tests/Feature/CategoryTest.php
+│   │   ├── ./tests/Feature/CloseOpenTicketsTest.php
+│   │   ├── ./tests/Feature/CommentTest.php
+│   │   ├── ./tests/Feature/PermissionTest.php
+│   │   ├── ./tests/Feature/ProfileTest.php
+│   │   ├── ./tests/Feature/QueueTest.php
+│   │   ├── ./tests/Feature/ReadTicketsTest.php
+│   │   ├── ./tests/Feature/RoleTest.php
+│   │   ├── ./tests/Feature/StatusTest.php
+│   │   ├── ./tests/Feature/TagTest.php
+│   │   └── ./tests/Feature/UserImpersonateTest.php
 │   ├── ./tests/Javascript
 │   │   └── ./tests/Javascript/helpers
 │   │       └── ./tests/Javascript/helpers/setup-browser.env.js
@@ -497,4 +541,4 @@
 ├── ./webpack.config.js
 └── ./webpack.mix.js
 
-114 directories, 383 files
+117 directories, 424 files

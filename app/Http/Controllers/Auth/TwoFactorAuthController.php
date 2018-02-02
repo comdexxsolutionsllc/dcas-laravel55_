@@ -8,6 +8,11 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
 
+/**
+ * Class TwoFactorAuthController
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class TwoFactorAuthController extends Controller
 {
     /**

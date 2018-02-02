@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="{{mix('/css/app.css')}}">
 
     @yield('css')
-
-    <script src='//www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body class="skin-blue sidebar-mini">
@@ -148,12 +146,10 @@
     @endif
 </div>
 
-
-<script src="{{mix('/js/app.js')}}"></script>
-
 <!-- jQuery 3.1.1 -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src='//www.google.com/recaptcha/api.js'></script>
 
 <!-- AdminLTE App -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
@@ -164,8 +160,19 @@
     });
 </script>
 
+<script>
+    window.App = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            'user' => Auth::user(),
+            'signedIn' => Auth::check()
+    ]) !!};
+</script>
+
 <!-- Routes (Ziggy) -->
 @routes
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 
 @yield('scripts')
 </body>

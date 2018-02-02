@@ -11,6 +11,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+/**
+ * Class LoginController
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class LoginController extends Controller
 {
     /*

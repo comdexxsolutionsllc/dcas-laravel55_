@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
+use App\Mail\VerifyMail;
 use App\User;
 use App\VerifyUser;
-use App\Mail\VerifyMail;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class RegisterController
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class RegisterController extends Controller
 {
     /*
@@ -45,7 +49,10 @@ class RegisterController extends Controller
     }
 
     /**
+     * Verify user account.
+     *
      * @param $token
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function verifyUser($token): RedirectResponse
@@ -53,7 +60,7 @@ class RegisterController extends Controller
         $verifyUser = VerifyUser::where('token', $token)->first();
         if (isset($verifyUser)) {
             $user = $verifyUser->user;
-            if (! $user->verified) {
+            if (!$user->verified) {
                 $verifyUser->user->verified = 1;
                 $verifyUser->user->save();
                 $status = 'Your e-mail is verified. You can now login.';
@@ -71,9 +78,10 @@ class RegisterController extends Controller
      * Get a validator for an incoming registration request.
      *
      * @param  array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data): Validator
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
@@ -86,6 +94,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
+     *
      * @return \App\User
      */
     protected function create(array $data): User
