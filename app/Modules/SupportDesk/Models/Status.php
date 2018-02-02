@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Modules\SupportDesk\Models\Status.
+ * Modules\SupportDesk\Models\Status
  *
  * @property int $id
  * @property string $name
@@ -46,9 +46,12 @@ class Status extends Model
 {
     use SoftDeletes;
 
-    public $fillable = [
-        'name',
+    /**
+     * @var array
+     */
+    protected $fillable = [
         'hex',
+        'name',
     ];
 
     /**

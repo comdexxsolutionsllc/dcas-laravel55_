@@ -30,21 +30,24 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 //use DCAS\Traits\Excludable;
 
 /**
- * App\User.
+ * App\User
  *
  * @property int $id
- * @property string $name
+ * @property int|null $profile_id
+ * @property string|null $name
  * @property string $email
- * @property string $username
+ * @property string|null $username
  * @property string $password
  * @property string|null $domain
- * @property string $slug
+ * @property string|null $slug
  * @property string|null $stripe_id
  * @property string|null $card_brand
  * @property string|null $card_last_four
  * @property string|null $trial_ends_at
  * @property bool $is_logged_in
  * @property bool $is_disabled
+ * @property int $verified
+ * @property string|null $oauth_token
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -55,18 +58,23 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\SupportDesk\Models\Comment[] $comments
  * @property-read string $gravatar
+ * @property-read bool $is_admin
+ * @property-read bool $is_super_admin
  * @property-read bool $using_two_factor_auth
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \App\Profile $profile
  * @property-read \Illuminate\Database\Eloquent\Collection|\Gabievi\Promocodes\Models\Promocode[] $promocodes
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Social[] $social
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Cashier\Subscription[] $subscriptions
  * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\SupportDesk\Models\Ticket[] $tickets
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read \App\VerifyUser $verifyUser
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User filter(\DCAS\Filters\QueryFilter $filters)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User findSimilarSlugs($attribute, $config, $slug)
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\User onlyTrashed()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User sortable($defaultSortColumn = null, $direction = 'asc')
@@ -80,9 +88,11 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereIsDisabled($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereIsLoggedIn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereOauthToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePhoneCountryCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePhoneNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereProfileId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereStripeId($value)
@@ -90,14 +100,9 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereTwoFactorOptions($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUsername($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereVerified($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\User withoutTrashed()
- * @property int|null $profile_id
- * @property int $verified
- * @property-read bool $is_admin
- * @property-read \App\VerifyUser $verifyUser
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereProfileId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereVerified($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements Presentable, TwoFactorAuthenticatableContract
@@ -140,6 +145,7 @@ class User extends Authenticatable implements Presentable, TwoFactorAuthenticata
     protected $fillable = [
         'domain',
         'email',
+        'github_id',
         'name',
         'password',
         'username',
@@ -219,7 +225,7 @@ class User extends Authenticatable implements Presentable, TwoFactorAuthenticata
     {
         $roles = $this->roles->pluck('name')->toArray();
 
-        return (count($roles) === 0) ? false : Arr::find('_admin', $roles);
+        return (count($roles) === 0) ? false : Arr::find('admin', $roles);
     }
 
     /**
@@ -299,6 +305,14 @@ class User extends Authenticatable implements Presentable, TwoFactorAuthenticata
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function social(): HasMany
+    {
+        return $this->hasMany(Social::class);
     }
 
     /**

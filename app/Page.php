@@ -3,7 +3,7 @@
 namespace App;
 
 /**
- * App\Page.
+ * App\Page
  *
  * @property int $id
  * @property string $slug
@@ -33,12 +33,15 @@ class Page extends Model
     /**
      * @var array
      */
-    public $fillable = [
+    protected $fillable = [
         'slug',
     ];
 
     /**
+     * Find record by slug.
+     *
      * @param $slug
+     *
      * @return Page
      */
     public static function findBySlug($slug): self

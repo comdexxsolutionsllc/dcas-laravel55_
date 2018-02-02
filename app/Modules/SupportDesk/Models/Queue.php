@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Modules\SupportDesk\Models\Queue.
+ * Modules\SupportDesk\Models\Queue
  *
  * @property int $id
  * @property string $name
@@ -46,9 +46,12 @@ class Queue extends Model
 {
     use SoftDeletes;
 
-    public $fillable = [
-        'name',
+    /**
+     * @var array
+     */
+    protected $fillable = [
         'description',
+        'name',
     ];
 
     /**

@@ -3,14 +3,23 @@
 namespace App;
 
 /**
- * App\NullProfile.
+ * App\NullProfile
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model sortable($defaultSortColumn = null, $direction = 'asc')
+ * @property-read string $address1
+ * @property-read null|string $address2
+ * @property-read string $biography
+ * @property-read string $city
+ * @property-read string $country
+ * @property-read int $id
  * @property-read string $is_active
  * @property-read string $is_archived
  * @property-read string $is_deleted
  * @property-read string $is_removed
+ * @property-read string $postal_code
+ * @property-read string $state
  * @property-read string $state_name
+ * @property-read int $user_id
+ * @property-read string $username
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model mode($mode = '0')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model onlyActive($type = true)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model onlyArchived($type = true)
@@ -18,6 +27,7 @@ namespace App;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model order($field = '', $direction = '')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model sortable($defaultSortColumn = null, $direction = 'asc')
  * @mixin \Eloquent
  */
 class NullProfile extends Model
@@ -73,6 +83,8 @@ class NullProfile extends Model
     protected $postal_code = '00000';
 
     /**
+     * Get ID from database.
+     *
      * @return int
      */
     public function getIdAttribute(): int
@@ -81,6 +93,8 @@ class NullProfile extends Model
     }
 
     /**
+     * Get User ID from database.
+     *
      * @return int
      */
     public function getUserIdAttribute(): int
@@ -89,6 +103,8 @@ class NullProfile extends Model
     }
 
     /**
+     * Get Username from database.
+     *
      * @return string
      */
     public function getUsernameAttribute(): string
@@ -97,6 +113,8 @@ class NullProfile extends Model
     }
 
     /**
+     * Get Biography from database.
+     *
      * @return string
      */
     public function getBiographyAttribute(): string
@@ -105,6 +123,8 @@ class NullProfile extends Model
     }
 
     /**
+     * Get Address1 from database.
+     *
      * @return string
      */
     public function getAddress1Attribute(): string
@@ -112,12 +132,19 @@ class NullProfile extends Model
         return $this->address_1;
     }
 
+    /**
+     * Get Address2 from database.
+     *
+     * @return null|string
+     */
     public function getAddress2Attribute()
     {
         return $this->address_2;
     }
 
     /**
+     * Get City from database.
+     *
      * @return string
      */
     public function getCityAttribute(): string
@@ -126,6 +153,8 @@ class NullProfile extends Model
     }
 
     /**
+     * Get State from database.
+     *
      * @return string
      */
     public function getStateAttribute(): string
@@ -134,6 +163,8 @@ class NullProfile extends Model
     }
 
     /**
+     * Get country from database.
+     *
      * @return string
      */
     public function getCountryAttribute(): string
@@ -142,6 +173,8 @@ class NullProfile extends Model
     }
 
     /**
+     * Get Postal Code from database.
+     *
      * @return string
      */
     public function getPostalCodeAttribute(): string

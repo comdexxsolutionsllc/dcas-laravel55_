@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Modules\SupportDesk\Models\Tag.
+ * Modules\SupportDesk\Models\Tag
  *
  * @property int $id
  * @property mixed $name
@@ -47,6 +47,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Tag extends Model
 {
     use SoftDeletes;
+
+    /**
+     * @var array
+     */
+    protected $fillable = [];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

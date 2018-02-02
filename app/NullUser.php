@@ -2,19 +2,22 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\SupportDesk\Models\NullComment;
+use Modules\SupportDesk\Models\NullTicket;
 
 /**
- * App\NullUser.
+ * App\NullUser
  *
  * @property int $id
+ * @property int|null $profile_id
  * @property string $name
  * @property string $email
  * @property string $username
  * @property string $password
- * @property string|null $domain
+ * @property null|string $domain
  * @property string $slug
  * @property string|null $stripe_id
  * @property string|null $card_brand
@@ -22,6 +25,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string|null $trial_ends_at
  * @property int $is_logged_in
  * @property int $is_disabled
+ * @property int $verified
+ * @property string|null $oauth_token
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -42,9 +47,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereIsDisabled($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereIsLoggedIn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereOauthToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser wherePhoneCountryCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser wherePhoneNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereProfileId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereStripeId($value)
@@ -52,9 +59,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereTwoFactorOptions($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereUsername($value)
- * @property int|null $profile_id
- * @property int $verified
- * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereProfileId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\NullUser whereVerified($value)
  * @mixin \Eloquent
  */
@@ -144,6 +148,8 @@ class NullUser extends Authenticatable
     }
 
     /**
+     * Get ID from database.
+     *
      * @return int
      */
     public function getIdAttribute(): int
@@ -152,6 +158,8 @@ class NullUser extends Authenticatable
     }
 
     /**
+     * Get Name from database.
+     *
      * @return string
      */
     public function getNameAttribute(): string
@@ -160,6 +168,8 @@ class NullUser extends Authenticatable
     }
 
     /**
+     * Get Email from database.
+     *
      * @return string
      */
     public function getEmailAttribute(): string
@@ -168,6 +178,8 @@ class NullUser extends Authenticatable
     }
 
     /**
+     * Get Username from database.
+     *
      * @return string
      */
     public function getUsernameAttribute(): string
@@ -175,12 +187,19 @@ class NullUser extends Authenticatable
         return $this->username;
     }
 
+    /**
+     * Get Domain from database.
+     *
+     * @return null|string
+     */
     public function getDomainAttribute()
     {
         return $this->domain;
     }
 
     /**
+     * Get Slug from database.
+     *
      * @return string
      */
     public function getSlugAttribute(): string

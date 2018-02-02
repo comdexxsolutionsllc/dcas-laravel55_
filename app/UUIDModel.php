@@ -31,6 +31,7 @@ abstract class UUIDModel extends Model
     public static function boot()
     {
         parent::boot();
+
         self::observe(UUIDModelObserver::class);
     }
 }

@@ -3,7 +3,7 @@
 namespace App;
 
 /**
- * App\Invoice.
+ * App\Invoice
  *
  * @property int $id
  * @property \Carbon\Carbon|null $created_at
@@ -28,7 +28,10 @@ namespace App;
  */
 class Invoice extends Model
 {
-    //
+    /**
+     * @var array
+     */
+    protected $fillable = [];
 
     /**
      * Get the index name for the model.

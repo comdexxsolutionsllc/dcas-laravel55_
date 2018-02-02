@@ -5,14 +5,20 @@ namespace Modules\SupportDesk\Models;
 use App\Model;
 
 /**
- * App\NullTicket.
+ * Modules\SupportDesk\Models\NullTicket
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model sortable($defaultSortColumn = null, $direction = 'asc')
+ * @property-read int $category_id
  * @property-read string $is_active
  * @property-read string $is_archived
  * @property-read string $is_deleted
  * @property-read string $is_removed
+ * @property-read string $message
+ * @property-read int $priority
  * @property-read string $state_name
+ * @property-read string $status
+ * @property-read null $ticket_id
+ * @property-read string $title
+ * @property-read int $user_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model mode($mode = '0')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model onlyActive($type = true)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model onlyArchived($type = true)
@@ -20,6 +26,7 @@ use App\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model order($field = '', $direction = '')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Model searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model sortable($defaultSortColumn = null, $direction = 'asc')
  * @mixin \Eloquent
  */
 class NullTicket extends Model
@@ -60,6 +67,8 @@ class NullTicket extends Model
     protected $status = 'nullable';
 
     /**
+     * Get User ID from database.
+     *
      * @return int
      */
     public function getUserIdAttribute(): int
@@ -68,6 +77,8 @@ class NullTicket extends Model
     }
 
     /**
+     * Get Category ID from database.
+     *
      * @return int
      */
     public function getCategoryIdAttribute(): int
@@ -75,12 +86,19 @@ class NullTicket extends Model
         return $this->category_id;
     }
 
+    /**
+     * Get Ticket ID from database.
+     *
+     * @return null
+     */
     public function getTicketIdAttribute()
     {
         return $this->ticket_id;
     }
 
     /**
+     * Get Title from database.
+     *
      * @return string
      */
     public function getTitleAttribute(): string
@@ -89,6 +107,8 @@ class NullTicket extends Model
     }
 
     /**
+     * Get Priority from database.
+     *
      * @return int
      */
     public function getPriorityAttribute(): int
@@ -97,6 +117,8 @@ class NullTicket extends Model
     }
 
     /**
+     * Get Message from database.
+     *
      * @return string
      */
     public function getMessageAttribute(): string
@@ -105,6 +127,8 @@ class NullTicket extends Model
     }
 
     /**
+     * Get Status from database.
+     *
      * @return string
      */
     public function getStatusAttribute(): string
