@@ -28,7 +28,7 @@ class TicketsController extends Controller
     public function index(): View
     {
         $tickets = Ticket::paginate(
-            $pagination = config('modules.tickets.ticket.pagination')
+            config('modules.tickets.ticket.pagination')
         );
 
         $categories = Category::all();
@@ -47,13 +47,13 @@ class TicketsController extends Controller
     }
 
     /**
-     * @param $ticket_id
+     * @param $ticketId
      *
      * @return \Illuminate\Contracts\View\Factory|View
      */
-    public function show($ticket_id): View
+    public function show($ticketId): View
     {
-        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+        $ticket = Ticket::where('ticket_id', $ticketId)->firstOrFail();
 
         $comments = $ticket->comments;
 
@@ -69,7 +69,7 @@ class TicketsController extends Controller
     {
         $tickets = Ticket::where('status', 'Closed')
             ->paginate(
-                $pagination = config('modules.tickets.ticket.pagination')
+                config('modules.tickets.ticket.pagination')
             );
 
         $categories = Category::all();
@@ -78,7 +78,7 @@ class TicketsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param Request   $request
      * @param AppMailer $mailer
      *
      * @return RedirectResponse
@@ -97,7 +97,7 @@ class TicketsController extends Controller
         $response = Zttp::asFormParams()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => config('services.recaptcha.secret'),
             'response' => request()->input('g-recaptcha-response'),
-            'remoteip' => $_SERVER['REMOTE_ADDR'],
+            'remoteip' => request()->server('REMOTE_ADDR'),
         ]);
 
         if (!$response->json()['success']) {
@@ -124,15 +124,15 @@ class TicketsController extends Controller
     }
 
     /**
-     * @param $ticket_id
+     * @param           $ticketId
      * @param AppMailer $mailer
      *
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function close($ticket_id, AppMailer $mailer): RedirectResponse
+    public function close($ticketId, AppMailer $mailer): RedirectResponse
     {
-        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+        $ticket = Ticket::where('ticket_id', $ticketId)->firstOrFail();
 
         $ticket->status = 'Closed';
 
@@ -148,14 +148,14 @@ class TicketsController extends Controller
     }
 
     /**
-     * @param $ticket_id
+     * @param           $ticketId
      * @param AppMailer $mailer
      *
      * @return RedirectResponse
      */
-    public function open($ticket_id, AppMailer $mailer): RedirectResponse
+    public function open($ticketId, AppMailer $mailer): RedirectResponse
     {
-        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+        $ticket = Ticket::where('ticket_id', $ticketId)->firstOrFail();
 
         $ticket->status = 'Open';
 
@@ -175,7 +175,7 @@ class TicketsController extends Controller
     {
         $tickets = Ticket::where('user_id', auth()->user()->id)
             ->paginate(
-                $pagination = config('modules.tickets.ticket.pagination')
+                config('modules.tickets.ticket.pagination')
             );
 
         $categories = Category::all();

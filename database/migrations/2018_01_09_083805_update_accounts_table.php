@@ -5,34 +5,34 @@ use Illuminate\Database\Migrations\Migration;
 
 class UpdateAccountsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::table('accounts', function (Blueprint $table) {
-            // Two-Factor Authentication Columns...
-            $table->string('phone_country_code')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->text('two_factor_options')->nullable();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::table('accounts', function (Blueprint $table) {
+			// Two-Factor Authentication Columns...
+			$table->string('phone_country_code')->nullable();
+			$table->string('phone_number')->nullable();
+			$table->text('two_factor_options')->nullable();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('accounts', function (Blueprint $table) {
-            $table->dropColumn([
-                'phone_country_code',
-                'phone_number',
-                'two_factor_options',
-            ]);
-        });
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::table('accounts', function (Blueprint $table) {
+			$table->dropColumn([
+				'phone_country_code',
+				'phone_number',
+				'two_factor_options',
+			]);
+		});
+	}
 }

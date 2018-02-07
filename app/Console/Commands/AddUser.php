@@ -25,24 +25,20 @@ class AddUser extends Command
 
         $email = $this->argument('email');
 
-        $slug = (string) $email.'-'.(string) $username;
+        $slug = (string)$email . '-' . (string)$username;
 
-        if ($this->confirm('Let system generate password for you?')) {
-            $password = str_random(16);
-            $this->info("Your password: $password");
-        } else {
+        $this->confirm('Let system generate password for you?') ?
+            $this->info("Your password: " . $password = str_random(16)) :
             $password = $this->secret('Please enter your new password');
-        }
+
         $password = bcrypt($password);
 
-        $is_disabled = 0;
+        $isDisabled = 0;
 
-        if ($this->confirm('Does the user have a main domain?')) {
-            $domain = $this->ask('What is the user\'s main domain?');
-        } else {
+        $this->confirm('Does the user have a main domain?') ?
+            $domain = $this->ask('What is the user\'s main domain?') :
             $domain = null;
-        }
 
-        User::create(compact(['name', 'username', 'email', 'password', 'is_disabled', 'slug', 'domain']));
+        User::create(compact(['name', 'username', 'email', 'password', 'isDisabled', 'slug', 'domain']));
     }
 }

@@ -24,6 +24,7 @@
 
                     <hr>
 
+                    @can('view', $comments)
                     <div class="comments">
                         @foreach ($comments as $comment)
                             <div class="panel panel-@if($ticket->user->id === $comment->user_id) {{"default"}}@else{{"success"}}@endif">
@@ -38,6 +39,7 @@
                             </div>
                         @endforeach
                     </div>
+                    @endcan
 
                     @if($ticket->isOpen())
                         <div class="comment-form">

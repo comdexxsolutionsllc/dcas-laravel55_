@@ -6,27 +6,27 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateVerifyUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('verify_users', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->string('token');
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('verify_users', function (Blueprint $table) {
+			$table->integer('user_id');
+			$table->string('token');
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('verify_users');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('verify_users');
+	}
 }

@@ -19,19 +19,12 @@ class OAuthController extends Controller
 {
     public function getSocialRedirect($provider)
     {
-        $providerKey = Config::get('services.' . $provider);
-
-        if (empty($providerKey)) {
-            return view('pages.status')->with('error', 'No such provider');
-        }
-
-        return Socialite::driver($provider)->redirect();
+        return Socialite::driver($providerKey = $this->getProviderKey($provider))->redirect();
     }
 
     public function getSocialHandle($provider)
     {
-        if (Request::get('denied') != '')
-        {
+        if (Request::get('denied') != '') {
             return redirect()->to('/login')
                 ->with('status', 'danger')
                 ->with('message', 'You did not share your profile data with our social app.');
@@ -63,7 +56,7 @@ class OAuthController extends Controller
                 $newSocialUser->email = $email;
                 $newSocialUser->username = $user->nickname;
 
-                if($user->name) {
+                if ($user->name) {
                     $newSocialUser->name = $user->name;
                 }
 
@@ -97,5 +90,20 @@ class OAuthController extends Controller
         auth()->login($socialUser, true);
 
         return redirect('/dashboard');
+    }
+
+    /**
+     * @param $provider
+     * @return $this|mixed
+     */
+    protected function getProviderKey($provider)
+    {
+        $providerKey = Config::get('services.' . $provider);
+
+        if (empty($providerKey)) {
+            return view('pages.status')->with('error', 'No such provider');
+        }
+
+        return $providerKey;
     }
 }

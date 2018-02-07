@@ -25,7 +25,7 @@ class AppMailer
     /**
      * @var string
      */
-    protected $to;
+    protected $recipient;
 
     /**
      * @var string
@@ -50,14 +50,14 @@ class AppMailer
     }
 
     /**
-     * @param $user
+     * @param        $user
      * @param Ticket $ticket
      *
      * @return bool
      */
     public function sendTicketInformation($user, Ticket $ticket)
     {
-        $this->to = $user->email;
+        $this->recipient = $user->email;
         $this->subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
         $this->view = 'SupportDesk::emails.ticket_info';
         $this->data = compact('user', 'ticket');
@@ -74,21 +74,21 @@ class AppMailer
     {
         $this->mailer->send($this->view, $this->data, function ($message) {
             $message->from($this->fromAddress, $this->fromName)
-                ->to($this->to)->subject($this->subject);
+                ->to($this->recipient)->subject($this->subject);
         });
 
         return true;
     }
 
     /**
-     * @param $ticketOwner
+     * @param        $ticketOwner
      * @param Ticket $ticket
      *
      * @return bool
      */
     public function sendTicketStatusNotification($ticketOwner, Ticket $ticket)
     {
-        $this->to = $ticketOwner->email;
+        $this->recipient = $ticketOwner->email;
         $this->subject = "RE: $ticket->title (Ticket ID: $ticket->ticket_id)";
         $this->view = 'SupportDesk::emails.ticket_status';
         $this->data = compact('ticketOwner', 'ticket');
@@ -97,16 +97,16 @@ class AppMailer
     }
 
     /**
-     * @param $ticketOwner
-     * @param $user
+     * @param        $ticketOwner
+     * @param        $user
      * @param Ticket $ticket
-     * @param $comment
+     * @param        $comment
      *
      * @return bool
      */
     public function sendTicketComments($ticketOwner, $user, Ticket $ticket, $comment)
     {
-        $this->to = $ticketOwner->email;
+        $this->recipient = $ticketOwner->email;
         $this->subject = "RE: $ticket->title (Ticket ID: $ticket->ticket_id)";
         $this->view = 'SupportDesk::emails.ticket_comments';
         $this->data = compact('ticketOwner', 'user', 'ticket', 'comment');

@@ -18,7 +18,7 @@ class ProfilePolicy
      */
     public function before($user): bool
     {
-        if ($user->isAdmin()) {
+        if ($user->isSuperAdmin() || $user->isAdmin()) {
             return true;
         }
     }
@@ -55,7 +55,7 @@ class ProfilePolicy
      */
     public function update(User $user, Profile $profile)
     {
-        return $user->may('update-profile') && ($user->id === $profile->user_id);
+        return $user->may('update-profile') || ($user->id === $profile->user_id);
     }
 
     /**

@@ -15,8 +15,8 @@ class TicketId
     {
         return self::compileTicketString(
             $length,
-            $chars = self::getChars(),
-            $result = srand((float) microtime(true) * 1000000)
+            self::getChars(),
+            srand((float)microtime(true) * 1000000)
         );
     }
 
@@ -36,7 +36,7 @@ class TicketId
         }
 
         return strtoupper(
-            substr($result.uniqid(), 0, $length)
+            substr($result . uniqid(), 0, $length)
         );
     }
 

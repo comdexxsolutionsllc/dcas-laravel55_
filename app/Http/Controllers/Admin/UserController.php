@@ -20,20 +20,23 @@ class UserController extends Controller
     }
 
     /**
-     * @param $new_user
+     * @param $newUser
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws AuthenticationException
      */
-    public function user_switch_start($new_user): RedirectResponse
+    public function userSwitchStart($newUser): RedirectResponse
     {
         session()->put('orig_user', auth()->id());
 
-        $new_user = User::find($new_user);
+        $newUser = User::find($newUser);
 
-        if (!$new_user) throw new AuthenticationException;
+        if (!$newUser) {
+            throw new AuthenticationException;
+        }
 
-        auth()->login($new_user);
+        auth()->login($newUser);
 
         return redirect()->back();
     }
@@ -41,11 +44,11 @@ class UserController extends Controller
     /**
      * @return RedirectResponse
      */
-    public function user_switch_stop(): RedirectResponse
+    public function userSwitchStop(): RedirectResponse
     {
-        $orig_user = User::find($id = session()->pull('orig_user'));
+        $origUser = User::find(session()->pull('orig_user'));
 
-        auth()->login($orig_user);
+        auth()->login($origUser);
 
         return redirect()->back();
     }

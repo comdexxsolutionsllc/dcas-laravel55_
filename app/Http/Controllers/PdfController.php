@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use App\Services\Pdf;
 
+/**
+ * Class PdfController
+ *
+ * @package App\Http\Controllers
+ */
 class PdfController extends Controller
 {
     /**

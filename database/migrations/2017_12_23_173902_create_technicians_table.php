@@ -6,30 +6,30 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTechniciansTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('technicians', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('email');
-            $table->timestamps();
-            $table->softDeletes();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('technicians', function (Blueprint $table) {
+			$table->increments('id');
+			$table->string('firstName');
+			$table->string('lastName');
+			$table->string('email');
+			$table->timestamps();
+			$table->softDeletes();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('technicians');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('technicians');
+	}
 }

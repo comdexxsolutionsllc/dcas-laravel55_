@@ -22,7 +22,7 @@ class EvenNumber implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value): bool
+    public function passes(?$attribute, $value): bool
     {
         return (int) $value % 2 === 0;
     }

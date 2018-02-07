@@ -24,7 +24,7 @@ class IncrementOnly implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value): bool
+    public function passes(?$attribute, $value): bool
     {
         return version_compare($this->model->version, $value, '<');
     }

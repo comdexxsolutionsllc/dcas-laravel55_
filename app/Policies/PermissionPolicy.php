@@ -30,7 +30,7 @@ class PermissionPolicy
      */
     public function create(User $user)
     {
-        if ($user->isAdmin()) {
+        if ($user->isSuperAdmin()) {
             return true;
         }
     }
@@ -44,7 +44,7 @@ class PermissionPolicy
      */
     public function update(User $user)
     {
-        if ($user->isAdmin()) {
+        if ($user->isSuperAdmin()) {
             return true;
         }
     }
@@ -52,10 +52,12 @@ class PermissionPolicy
     /**
      * Determine whether the user can delete the permission.
      *
+     * @param User $user
+     *
      * @return mixed
      */
-    public function delete()
+    public function delete(User $user)
     {
-        return false;
+        return ($user->isSuperAdmin()) ? true : false;
     }
 }

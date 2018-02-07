@@ -6,56 +6,56 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAccountsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('profile_id')->unsigned()->nullable()->unique();
-            $table->string('name')->nullable();
-            $table->string('email')->unique();
-            $table->string('username')->nullable()->unique();
-            $table->string('password');
-            $table->string('domain')->nullable();
-            $table->text('slug')->nullable();
-            $table->string('stripe_id')->nullable();
-            $table->string('card_brand')->nullable();
-            $table->string('card_last_four')->nullable();
-            $table->timestamp('trial_ends_at')->nullable();
-            $table->boolean('is_logged_in')->default(0);
-            $table->boolean('is_disabled')->default(0);
-            $table->boolean('verified')->default(false);
-            $table->string('oauth_token')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('accounts', function (Blueprint $table) {
+			$table->increments('id');
+			$table->string('name')->nullable();
+			$table->string('email')->unique();
+			$table->string('username')->nullable()->unique();
+			$table->string('password');
+			$table->string('domain')->nullable();
+			$table->text('slug')->nullable();
+			$table->string('stripe_id')->nullable();
+			$table->string('card_brand')->nullable();
+			$table->string('card_last_four')->nullable();
+			$table->timestamp('trial_ends_at')->nullable();
+			$table->boolean('is_logged_in')->default(0);
+			$table->boolean('is_disabled')->default(0);
+			$table->boolean('verified')->default(false);
+			$table->string('oauth_token')->nullable();
+			$table->rememberToken();
+			$table->timestamp('last_logged_in')->nullable();
+			$table->timestamps();
+			$table->softDeletes();
+		});
 
-        Schema::create('subscriptions', function ($table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->string('name');
-            $table->string('stripe_id');
-            $table->string('stripe_plan');
-            $table->integer('quantity');
-            $table->timestamp('trial_ends_at')->nullable();
-            $table->timestamp('ends_at')->nullable();
-            $table->timestamps();
-        });
-    }
+		Schema::create('subscriptions', function ($table) {
+			$table->increments('id');
+			$table->integer('user_id');
+			$table->string('name');
+			$table->string('stripe_id');
+			$table->string('stripe_plan');
+			$table->integer('quantity');
+			$table->timestamp('trial_ends_at')->nullable();
+			$table->timestamp('ends_at')->nullable();
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('accounts');
-        Schema::dropIfExists('subscriptions');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('accounts');
+		Schema::dropIfExists('subscriptions');
+	}
 }

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Request;
 use App\Profile;
+use Request;
 
+/**
+ * Class ProfileController
+ *
+ * @package App\Http\Controllers
+ */
 class ProfileController extends Controller
 {
     /**
@@ -17,6 +22,7 @@ class ProfileController extends Controller
 
     /**
      * @param Profile $profile
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Profile $profile)
@@ -28,18 +34,22 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param Profile $profile
      * @param $username
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Profile $profile, $username)
+    public function show($username)
     {
         $this->middleware(['guest']);
 
-        // Return the views of the requested profile
-        return view('profile.show', [
-            'profile' => $profile->where('username', $username)->get(),
-        ]);
+        try {
+            // Return the views of the requested profile
+            return view('profile.show', [
+               'profile' => Profile::findOrFail($username),
+            ]);
+        } catch (\Exception $e) {
+            return abort(404, 'Profile does not exist.');
+        }
     }
 
     /**
@@ -53,6 +63,7 @@ class ProfileController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -64,14 +75,14 @@ class ProfileController extends Controller
         // And fill the instance with the validated result
         $profile->fill(
             $request->validate([
-                'avatar' => 'nullable',
-                'biography' => 'nullable',
-                'address_1' => 'required',
-                'address_2' => 'nullable',
-                'city' => 'required',
-                'state' => 'required|between:2,2',
-                'country' => 'required|between:2,2',
-                'postal_code' => 'required',
+            'avatar' => 'nullable',
+            'biography' => 'nullable',
+            'address_1' => 'required',
+            'address_2' => 'nullable',
+            'city' => 'required',
+            'state' => 'required|between:2,2',
+            'country' => 'required|between:2,2',
+            'postal_code' => 'required',
             ])
         );
 
@@ -82,6 +93,34 @@ class ProfileController extends Controller
         $profile->save();
 
         // Redirect to the profile
-        return redirect('/dashboard/profile/'.$profile->username);
+        return redirect('/dashboard/profile/' . $profile->username);
+    }
+
+    /**
+     * @param Request $request
+     * @param Profile $profile
+     *
+     * @return \App\Profile
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(Request $request, Profile $profile)
+    {
+        $this->authorize('update', $profile);
+
+        $profile->whereUserId($profile->user->id)
+            ->update($request->only([
+                'address_1',
+                'address_2',
+                'avatar',
+                'biography',
+                'city',
+                'country',
+                'postal_code',
+                'state',
+            ]));
+
+        return $profile;
+//        return redirect()->back();
     }
 }

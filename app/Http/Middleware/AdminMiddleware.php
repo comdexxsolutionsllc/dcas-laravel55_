@@ -13,7 +13,7 @@ class AdminMiddleware
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
+     * @param \Closure                 $next
      *
      * @return mixed
      */
@@ -26,7 +26,9 @@ class AdminMiddleware
                 ->withCookie(
                     cookie('admin_middleware', '0', 1)
                 );
-        } else {
+        }
+
+        if (is_null($user) === false || $user->isAdmin() || $user->isSuperAdmin()) {
             return $next($request);
         }
     }

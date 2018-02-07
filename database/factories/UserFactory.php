@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 /*
@@ -14,45 +15,46 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
-    static $password;
+	static $password;
 
-    return [
-        'name' => $faker->firstName().' '.$faker->lastName,
-        'username' => $faker->unique(1)->userName,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'is_disabled' => 0,
-        'domain' => $faker->domainName,
-    ];
+	return [
+		'name' => $faker->firstName().' '.$faker->lastName,
+		'username' => $faker->unique(1)->userName,
+		'email' => $faker->unique()->safeEmail,
+		'password' => $password ?: $password = bcrypt('secret'),
+		'is_disabled' => 0,
+		'domain' => $faker->domainName,
+		'last_logged_in' => Carbon::now()->subDay(ceil(rand(1, 1000))),
+	];
 });
 
 $factory->state(App\User::class, 'testing', function () {
-    return [
-        'name' => 'Sarah Renner',
-        'email' => 'sarah@sarahrenner.work',
-        'username' => 'srenner',
-        'password' => bcrypt('secret'),
-        'slug' => 'sarah-renner',
-        'is_disabled' => 0,
-        'domain' => null,
-        'verified' => 1,
-    ];
+	return [
+		'name' => 'Sarah Renner',
+		'email' => 'sarah@sarahrenner.work',
+		'username' => 'srenner',
+		'password' => bcrypt('secret'),
+		'slug' => 'sarah-renner',
+		'is_disabled' => 0,
+		'domain' => null,
+		'verified' => 1,
+	];
 });
 
 $factory->state(App\User::class, 'hasRememberToken', function () {
-    return [
-        'remember_token' => str_random(25),
-    ];
+	return [
+		'remember_token' => str_random(25),
+	];
 });
 
 $factory->state(App\User::class, 'isDisabled', function () {
-    return [
-        'is_disabled' => 1,
-    ];
+	return [
+		'is_disabled' => 1,
+	];
 });
 
 $factory->state(App\User::class, 'verified', function () {
-    return [
-        'verified' => 1,
-    ];
+	return [
+		'verified' => 1,
+	];
 });

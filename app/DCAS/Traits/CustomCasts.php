@@ -28,9 +28,7 @@ trait CustomCasts
             $method = 'set'.Str::studly($key).'Attribute';
 
             return $this->{$method}($value);
-        }
-
-        // If an attribute is listed as a "date", we'll convert it from a DateTime
+        } // If an attribute is listed as a "date", we'll convert it from a DateTime
         // instance into a form proper for storage on the database tables using
         // the connection grammar's date format. We will auto set the values.
         elseif ($value && (in_array($key, $this->getDates()) || $this->isDateCastable($key))) {

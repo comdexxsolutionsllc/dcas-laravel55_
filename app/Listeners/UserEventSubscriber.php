@@ -2,13 +2,11 @@
 
 namespace App\Listeners;
 
-use Log;
-use Cache;
 use App\User;
+use Cache;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Login;
-use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Lockout;
+use Log;
 
 class UserEventSubscriber
 {
@@ -30,11 +28,13 @@ class UserEventSubscriber
         if (auth()->check()) {
             $userId = auth()->user()->id;
 
-            Cache::put('user-is-online-'.$userId, true, $expiresAt = Carbon::now()->addMinutes(5));
+            Cache::put('user-is-online-' . $userId, true, Carbon::now()->addMinutes(5));
 
             $user = User::find($userId);
 
             $user->is_logged_in = 1;
+
+            $user->last_logged_in = Carbon::now();
 
             $user->save();
         }
@@ -49,7 +49,7 @@ class UserEventSubscriber
     {
         $userId = auth()->user()->id;
 
-        Cache::delete('user-is-online-'.$userId);
+        Cache::delete('user-is-online-' . $userId);
 
         $user = User::find($userId);
 
@@ -63,6 +63,6 @@ class UserEventSubscriber
      */
     protected function logLockout(Lockout $event)
     {
-        Log::notice($message = $event->request->username.' has been locked out at '.Carbon::now());
+        Log::notice($event->request->username . ' has been locked out at ' . Carbon::now());
     }
 }

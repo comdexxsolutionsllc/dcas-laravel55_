@@ -22,8 +22,8 @@ class PruneOldTokens
      * @param  RefreshTokenCreated $event
      * @return void
      */
-    public function handle(RefreshTokenCreated $event)
-    {
-        //
-    }
+//	public function handle(RefreshTokenCreated $event)
+//	{
+//		//
+//	}
 }

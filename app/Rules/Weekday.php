@@ -23,7 +23,7 @@ class Weekday implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value): bool
+    public function passes(?$attribute, $value): bool
     {
         return (new Carbon($value))->isWeekDay();
     }

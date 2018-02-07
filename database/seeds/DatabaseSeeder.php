@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
         'comments',
         'consumers',
         'permissions',
-        'profiles',
         'queues',
         'requestors',
         'roles',
@@ -33,8 +32,8 @@ class DatabaseSeeder extends Seeder
 
         Eloquent::unguard();
 
+//        $this->call(ProfileTableSeeder::class);
         $this->call(UserTableSeeder::class);
-        $this->call(ProfileTableSeeder::class);
         $this->call(PermissionRoleSeeder::class);
         $this->call(ConsumerTableSeeder::class);
         $this->call(CategoryTableSeeder::class);

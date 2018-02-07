@@ -76,10 +76,10 @@ class TwoFactorAuthController extends Controller
     /**
      * Generate a redirect response to the two-factor token screen.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request                   $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user): Response
     {

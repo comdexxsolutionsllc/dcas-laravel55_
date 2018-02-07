@@ -18,9 +18,11 @@ trait DisableUpdatedAt
     protected static function boot()
     {
         parent::boot();
+
         static::updating(function ($model) {
             $model->timestamps = false;
         });
+
         static::updated(function ($model) {
             $model->timestamps = true;
         });
@@ -29,7 +31,7 @@ trait DisableUpdatedAt
     /**
      * @param $value
      */
-    public function setUpdatedAt($value = null)
+    public function setUpdatedAt(?$value)
     {
         //
     }

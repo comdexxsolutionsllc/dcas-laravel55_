@@ -10,7 +10,7 @@ trait ApiErrorResponse
     /**
      * @var int
      */
-    protected $StatusCode = SymphonyResponse::HTTP_OK;
+    protected $statusCode = SymphonyResponse::HTTP_OK;
 
     /**
      * @param string $message
@@ -38,7 +38,7 @@ trait ApiErrorResponse
     }
 
     /**
-     * @param $data
+     * @param       $data
      * @param array $headers
      *
      * @return \Illuminate\Http\JsonResponse
@@ -53,7 +53,7 @@ trait ApiErrorResponse
      */
     public function getStatusCode(): int
     {
-        return $this->StatusCode;
+        return $this->statusCode;
     }
 
     /**
@@ -63,7 +63,7 @@ trait ApiErrorResponse
      */
     public function setStatusCode($StatusCode)
     {
-        $this->StatusCode = $StatusCode;
+        $this->statusCode = $StatusCode;
 
         return $this;
     }

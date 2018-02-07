@@ -1,8 +1,14 @@
 language: php
 
-php:
-  - 7.1.8
-  - 7.2
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.1
+    - php: 7.1
+      env: setup=lowest
+    - php: 7.2
+    - php: 7.2
+      env: setup=lowest
 
 addons:
   hosts:
@@ -19,9 +25,16 @@ cache:
     - node_modules
     - vendor
 
+env:
+  global:
+    - setup=stable
+
 before_install:
   - sudo apt-get -qq update
   - mysql -e 'CREATE DATABASE dcas_l55_refactor;'
+  - phpenv config-rm xdebug.ini || true
+  - echo "extension = memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - printf "\n" | pecl install -f redis
 
 before_script:
   - cp .env.travis .env
@@ -41,6 +54,10 @@ after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - if [[ $COMPOSER_FLAGS == '' ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
 
+install:
+  - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
+  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest; fi
+
 notifications:
   email:
     recipients:
@@ -50,8 +67,9 @@ notifications:
     on_failure: always
 
 services:
+  - memcached
   - mysql
-  - redis
+  - redis-server
   - sqlite3
 
-sudo: required
+sudo: false

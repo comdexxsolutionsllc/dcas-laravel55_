@@ -22,8 +22,8 @@ class RevokeOldTokens
      * @param  AccessTokenCreated $event
      * @return void
      */
-    public function handle(AccessTokenCreated $event)
-    {
-        //
-    }
+//	public function handle(AccessTokenCreated $event)
+//	{
+//		//
+//	}
 }

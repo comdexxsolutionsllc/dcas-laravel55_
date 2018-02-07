@@ -2,8 +2,9 @@
 
 namespace Tests;
 
-use App\User;
 use App\Exceptions\Handler;
+use App\Role;
+use App\User;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -27,7 +28,8 @@ abstract class TestCase extends BaseTestCase
 
         // DB::statement('PRAGMA foreign_keys=on');
 
-        $this->disableExceptionHandling();
+        // $this->disableExceptionHandling();
+        $this->withExceptionHandling();
     }
 
     /**
@@ -37,11 +39,41 @@ abstract class TestCase extends BaseTestCase
      */
     public function signIn($user = null)
     {
-        if (! $user) {
+        if (!$user) {
             $user = factory(User::class)->create();
         }
 
         $this->user = $user;
+
+        $this->actingAs($this->user);
+
+        return $this;
+    }
+
+
+    /**
+     * SignIn an administrator to the application.
+     *
+     * @param null $user
+     * @param string $roleType
+     *
+     * @return $this
+     */
+    public function signInAdmin($user = null, $roleType = 'super_admin')
+    {
+        if (!$user) {
+            $user = factory(User::class)->create();
+        }
+
+        $this->user = $user;
+
+        $this->user->attachRole(
+            $adminRole = create(Role::class, [
+                'name' => $roleType,
+                'display_name' => '',
+                'description' => ''
+            ])
+        );
 
         $this->actingAs($this->user);
 
@@ -54,7 +86,8 @@ abstract class TestCase extends BaseTestCase
     protected function disableExceptionHandling()
     {
         $this->oldExceptionHandler = $this->app->make(ExceptionHandler::class);
-        $this->app->instance(ExceptionHandler::class, new class extends Handler {
+        $this->app->instance(ExceptionHandler::class, new class extends Handler
+        {
             public function __construct()
             {
             }

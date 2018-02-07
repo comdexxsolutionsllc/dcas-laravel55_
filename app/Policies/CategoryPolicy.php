@@ -2,8 +2,6 @@
 
 namespace App\Policies;
 
-use App\User;
-use Modules\Supportdesk\Models\Category;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CategoryPolicy
@@ -19,7 +17,7 @@ class CategoryPolicy
      */
     public function before($user): bool
     {
-        if ($user->isAdmin()) {
+        if ($user->isSuperAdmin()) {
             return true;
         }
     }

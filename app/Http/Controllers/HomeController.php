@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use Illuminate\View\View;
+use Session;
 
+/**
+ * Class HomeController
+ *
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**

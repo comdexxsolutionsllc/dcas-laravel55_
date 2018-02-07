@@ -18,9 +18,9 @@ class TicketPolicy
      *
      * @return bool
      */
-    public function before($user, $ability): bool
+    public function before($user, ?$ability): bool
     {
-        if ($user->isAdmin()) {
+        if ($user->isSuperAdmin() || $user->isAdmin()) {
             return true;
         }
     }

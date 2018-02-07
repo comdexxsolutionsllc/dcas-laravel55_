@@ -1,6 +1,7 @@
 /.idea
 /.tmp
 /.vagrant
+/.vscode
 /node_modules
 /public/css/app.css
 /public/fonts
@@ -16,10 +17,12 @@
 /storage/logs
 /storage/purify
 /vendor
+.DS_Store
 .env
 Homestead.json
 Homestead.yaml
 notes.txt
 npm-debug.log
+Thumbs.db
 tree.output.txt
 yarn-error.log

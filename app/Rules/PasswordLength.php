@@ -7,12 +7,14 @@ use Illuminate\Contracts\Validation\Rule;
 
 class PasswordLength implements Rule
 {
-    protected $min_passwd_length = 6;
-    protected $max_passwd_length = 18;
+    protected $minPasswdLength = 6;
+    protected $maxPasswdLength = 18;
     protected $user;
 
     /**
      * Create a new rule instance.
+     *
+     * @param \App\User $user
      */
     public function __construct(User $user)
     {
@@ -27,11 +29,11 @@ class PasswordLength implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value): bool
+    public function passes(?$attribute, $value): bool
     {
         $password_length = strlen($this->user->password);
 
-        return ($password_length >= $this->min_passwd_length) && ($password_length <= $this->max_passwd_length);
+        return ($password_length >= $this->minPasswdLength) && ($password_length <= $this->maxPasswdLength);
     }
 
     /**

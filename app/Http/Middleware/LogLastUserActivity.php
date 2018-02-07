@@ -22,6 +22,7 @@ class LogLastUserActivity
         if (auth()->check()) {
             $user = User::find(auth()->user()->id);
             $user->is_logged_in = 1;
+            $user->last_logged_in = Carbon::now();
             $user->save();
 
             $expiresAt = Carbon::now()->addMinutes(5);

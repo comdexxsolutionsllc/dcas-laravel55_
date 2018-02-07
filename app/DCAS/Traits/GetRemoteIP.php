@@ -31,8 +31,8 @@ trait GetRemoteIP
     private function execute(): string
     {
         foreach ($this->remote_ip_srcs as $key) {
-            if (array_key_exists($key, $_SERVER)) {
-                foreach (explode(',', $_SERVER[$key]) as $ip) {
+            if (array_key_exists($key, request()->server())) {
+                foreach (explode(',', request()->server($key)) as $ip) {
 //                    if (filter_var(trim($ip), FILTER_VALIDATE_IP,
 //                            FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE))
                     if (filter_var(trim($ip), FILTER_VALIDATE_IP)) {
