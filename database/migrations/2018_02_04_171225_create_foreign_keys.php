@@ -36,6 +36,19 @@ class CreateForeignKeys extends Migration
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
         });
+
+//        $table->foreign('user_id')
+//            ->references('id')
+//            ->on('accounts')
+//            ->onDelete('cascade');
+//
+//        $table->foreign('website_id')
+//            ->references('id')
+//            ->on('websites');
+//
+//        $table->foreign('profile_id')
+//            ->references('id')
+//            ->on('profiles');
     }
 
     /**

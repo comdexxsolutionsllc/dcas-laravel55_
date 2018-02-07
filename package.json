@@ -54,7 +54,9 @@
     },
     "dependencies": {
         "axios": "^0.17.1",
+        "beautifier": "^0.1.7",
         "bootstrap-sass": "^3.3.7",
+        "bootstrap-select": "^1.12.4",
         "bourbon": "^5.0.0",
         "bourbon-neat": "^1.9.0",
         "bulma": "^0.6.2",
@@ -88,7 +90,7 @@
         "uglify-js": "^3.3.9",
         "underscore": "^1.8.3",
         "vue": "^2.5.13",
-        "vue-loader": "^14.1.0",
+        "vue-loader": "^14.1.1",
         "vue-moment": "^3.1.0",
         "vuex": "^3.0.1"
     },

@@ -6,6 +6,8 @@
 /public/fonts
 /public/hot
 /public/js/app.js
+/public/phpcs.xml
+/public/phpmd.html
 /public/storage
 /resources/assets/bower
 /staging

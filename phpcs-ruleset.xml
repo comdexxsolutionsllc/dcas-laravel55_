@@ -10,6 +10,7 @@
     -->
     <description>The Laravel Coding Standards</description>
 
+
     <!--
     If no files or directories are specified on the command line
     your custom standard can specify what files should be checked
@@ -42,6 +43,8 @@
     <exclude-pattern>*/docs/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/migrations/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/public/index.php</exclude-pattern>
 
     <!--
        You can hard-code command line values into your custom standard.
@@ -51,8 +54,8 @@
        The following tags are equivalent to the command line arguments:
        -p
     -->
-    <arg name="report" value="summary"/>
-    <arg name="colors"/>
+    <arg name="report" value="xml"/>
+    <arg name="report-file" value="public/phpcs.xml"/>
     <arg value="p"/>
 
     <!--
@@ -67,6 +70,9 @@
        PEAR standard exists inside the PHP_CodeSniffer install
        directory.
     -->
-    <rule ref="PSR2"/>
+    <rule ref="PSR2">
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+    </rule>
+
 
 </ruleset>
